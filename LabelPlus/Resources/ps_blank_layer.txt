@@ -1,0 +1,5 @@
+
+/*只有名字的空白图层*/
+artLayerRef = bg.artLayers.add();
+artLayerRef.name = "{0}";
+

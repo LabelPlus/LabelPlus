@@ -1,0 +1,14 @@
+﻿
+
+/*添加标签文本*/
+artLayerRef = bg.artLayers.add();
+artLayerRef.kind = LayerKind.TEXT;
+textItemRef = artLayerRef.textItem;
+
+textItemRef.contents = "{0}";
+textItemRef.size = {3};
+textItemRef.font = "{4}";
+textItemRef.fauxBold =true;
+textItemRef.direction = Direction.VERTICAL;
+textItemRef.position = Array(bg.width*{1},bg.height*{2});
+

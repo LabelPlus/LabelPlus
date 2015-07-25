@@ -1,0 +1,6 @@
+﻿
+
+/*打开原文件*/
+var bgFile = File(folder+"//{0}");
+var bg = app.open(bgFile);
+//bg.changeMode(ChangeMode.RGB);
