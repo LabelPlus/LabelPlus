@@ -66,16 +66,21 @@ namespace LabelPlus
                     {
                         Image in_img = Image.FromFile(inputFilename);
                         Image out_img = null;
-                        if (!pv.MakeImage(ref out_img, ref in_img, zoom, store[key]))
+                        var rslt = pv.MakeImage(ref out_img, ref in_img, zoom, store[key]);
+                        in_img.Dispose();
+                        if (!rslt)
                         {
                             throw new FormatException();
                         }
                         else
                         {
-                            Stream stream = new FileStream(outputFilename, FileMode.Create);
-                            out_img.Save(stream, imageFormat);
-                            stream.Close();
-                        }
+                            using (Stream stream = new FileStream(outputFilename, FileMode.Create))
+                            {
+                                out_img.Save(stream, imageFormat);
+                                out_img.Dispose();
+                            }
+                            //stream.Close();
+                        }                        
                     }
                     catch
                     {
