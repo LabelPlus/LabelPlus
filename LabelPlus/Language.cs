@@ -245,17 +245,26 @@ namespace LabelPlus
         /* get lang.xml's XmlDocument Object */
         private static XmlDocument getLangXmlDocument(string lang)
         {
-            XmlReader reader = null;
-            FileInfo fi = new FileInfo(Folder + lang + ".xml");
-            if (!fi.Exists)
-                reader = new XmlTextReader(Folder + "EN.xml");
-            else
-                reader = new XmlTextReader(Folder + lang + ".xml");
+            try {
+                XmlReader reader = null;
+                FileInfo fi = new FileInfo(Folder + lang + ".xml");
+                if (!fi.Exists)
+                    reader = new XmlTextReader(Folder + "EN.xml");
+                else
+                    reader = new XmlTextReader(Folder + lang + ".xml");
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(reader);
-            reader.Close();
-            return doc;
+                XmlDocument doc = new XmlDocument();
+                doc.Load(reader);
+
+                reader.Close();
+                return doc;
+            }
+            catch
+            {
+                MessageBox.Show("Language Definition Error.");
+                Environment.Exit(1); // kill this process
+                return null; // make compile pass (never reach)
+            }
         }
     }
 }
