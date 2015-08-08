@@ -34,8 +34,8 @@ namespace LabelPlus
                 string str_blank_layer = LabelPlus.Properties.Resources.ps_blank_layer;   //空白图层{0}=图层名
 
                 string str_close_file = "\nbg.close();\n";
-                string str_font_size = (checkBoxSetFontSize.Checked) ? (numericUpDownFontSize.Value.ToString()) : "bg.height/120.0";
-                string str_font = (checkBoxSetFont.Checked && comboBoxFont.SelectedIndex!=-1) ? comboBoxFont.Text : "宋体";
+                string str_font_size = (checkBoxSetFontSize.Checked) ? (numericUpDownFontSize.Value.ToString()) : "bg.height/320.0";
+                string str_font = (checkBoxSetFont.Checked && comboBoxFont.SelectedIndex != -1) ? comboBoxFont.Text : "SimSun";
 
 
 

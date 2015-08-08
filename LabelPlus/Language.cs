@@ -15,7 +15,7 @@ namespace LabelPlus
 {
     static class Language
     {
-        static Hashtable stringResources;
+        //static Hashtable stringResources;
 
         const string Folder=@"Lang/";
         const string DefaultLanguageFile = Folder + "DefaultLanguage.xml";
@@ -134,7 +134,7 @@ namespace LabelPlus
          */
         public static void InitStringResouce(string lang)
         {
-            stringResources = new Hashtable();
+            //stringResources = new Hashtable();
 
             XmlDocument doc = getLangXmlDocument(lang);
 
@@ -164,15 +164,15 @@ namespace LabelPlus
             return  str.Replace(@"\n","\r\n");
         }
         /* Get Stirng Resource in lang.xml (InitStringResouce() in advance) */
-        public static string GetStringResource(string key)
-        {
-            string tmp = (string)stringResources[key.ToLower()];
-            if(tmp!=null)
-                return tmp;
-            else
-                return "";
+        //public static string GetStringResource(string key)
+        //{
+        //    string tmp = (string)stringResources[key.ToLower()];
+        //    if(tmp!=null)
+        //        return tmp;
+        //    else
+        //        return "";
 
-        }
+        //}
 
         /** =========== private =========== **/
         /* Recursion Set Controls' Names */

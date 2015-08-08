@@ -14,23 +14,32 @@ namespace LabelPlus
             int index;
             float x_percent;
             float y_percent;
-            public LabelUserActionEventArgs(int n, float X_percent, float Y_percent)
+            public enum ClickType
+            {
+                left,
+                right,
+            }
+            ClickType type;
+
+            public LabelUserActionEventArgs(int n, float X_percent, float Y_percent, ClickType Type)
             {
                 index = n;
                 x_percent = X_percent;
                 y_percent = Y_percent;
+                type = Type;
             }
 
             public int Index { get{return index;} }
             public float X_percent { get { return x_percent; } }
             public float Y_percent { get { return y_percent; } }
+            public ClickType Type { get { return type; } }
         }
 
         public delegate void UserActionEventHandler(object sender, LabelUserActionEventArgs e);
         /*Label相关*/
-        public UserActionEventHandler LabelUserClickAction; 
-        public UserActionEventHandler LabelUserAddAction;
-        public UserActionEventHandler LabelUserDelAction;
+        public UserActionEventHandler LabelUserClickAction;
+        //public UserActionEventHandler LabelUserAddAction;
+        //public UserActionEventHandler LabelUserDelAction;
         /*图像相关*/
         private Image imageOriginal;
         private Image image;
@@ -112,7 +121,15 @@ namespace LabelPlus
         RectangleF getLabelRectangle(float x, float y, Image image)
         {
             if (image == null) return new RectangleF();
-            return new RectangleF(x * image.Width, y * image.Height, 1.4f * LabelSideLength(image), LabelSideLength(image));
+            RectangleF rect = new RectangleF();
+            rect.Width =  1.4f * LabelSideLength(image);
+            rect.Height = LabelSideLength(image);
+            rect.X = x * image.Width - rect.Width / 2 ;
+            rect.Y = y * image.Height - rect.Height / 2;
+            return rect;
+
+            //原来的：
+            //return new RectangleF(x * image.Width, y * image.Height, 1.4f * LabelSideLength(image), LabelSideLength(image));
         }
 
         public PicView()
@@ -248,7 +265,8 @@ namespace LabelPlus
 #endregion
 
         #region 拖拽操作
-        Boolean draging = false;
+        bool draging = false;
+        bool alreadyDraged = false;
         Point draging_mosuestartpoint;
         PointF draging_beforeStartP;
         Thread zooming_thread;
@@ -259,18 +277,22 @@ namespace LabelPlus
                 draging = true;
                 draging_mosuestartpoint = e.Location;
                 draging_beforeStartP = startP;
+                alreadyDraged = false;
             }
         }
 
         void PicView_Draging_MouseUp(object sender, MouseEventArgs e)
         {
             draging = false;
+            alreadyDraged = false;
         }
 
         void PicView_Draging_MouseMove(object sender, MouseEventArgs e)
         {
             if (draging == false) return;
-            
+
+            alreadyDraged = true;
+
             float dx = e.Location.X - draging_mosuestartpoint.X;
             float dy = e.Location.Y - draging_mosuestartpoint.Y;
             StartP = new PointF(draging_beforeStartP.X - dx/zoom,draging_beforeStartP.Y - dy/zoom);
@@ -353,43 +375,56 @@ namespace LabelPlus
 
         void PicView_Label_MouseClick(object sender, MouseEventArgs e)
         {
-            if (image == null) return; 
+            if (image == null) return;
+            if (alreadyDraged == true) return;
 
-            bool ctrlBepush = (Control.ModifierKeys == Keys.Control);
             int index = getLabelIndex(e.X, e.Y);
             float x_percent = (startP.X * zoom + e.X) / image.Width;
             float y_percent = (startP.Y * zoom + e.Y) / image.Height;
             if (x_percent > 1.0f || y_percent > 1.0f) return;   //忽略超出边界的点击
 
-            if (ctrlBepush && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                //添加
-                var referRect = getLabelRectangle(0, 0); //参考矩形
-                x_percent = (startP.X * zoom + e.X - referRect.Width / 2) / image.Width;
-                y_percent = (startP.Y * zoom + e.Y - referRect.Height / 2) / image.Height;
-                //重新计算，为了契合鼠标点击的目标
-                if(LabelUserAddAction!=null)
-                    LabelUserAddAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent));
-            }
-            else if (ctrlBepush && e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                //删除
-                if (index == -1) return;                
-                if(LabelUserDelAction!=null)
-                    LabelUserDelAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent));
-            }
-            else if (!ctrlBepush && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                //点击事件
-                if (index == -1) return;
-                if (LabelUserClickAction != null)
-                    LabelUserClickAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent));
-            }
-            else if (!ctrlBepush && e.Button == System.Windows.Forms.MouseButtons.Right) 
-            { 
-                //检阅模式
+            //var referRect = getLabelRectangle(0, 0); //参考矩形
+            //x_percent = (startP.X * zoom + e.X - referRect.Width / 2) / image.Width;
+            //y_percent = (startP.Y * zoom + e.Y - referRect.Height / 2) / image.Height;
+            //重新计算，为了契合鼠标点击的目标
 
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                //左键
+                if (LabelUserClickAction != null)
+                    LabelUserClickAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ClickType.left));
+                
+                ////添加
+                //var referRect = getLabelRectangle(0, 0); //参考矩形
+                //x_percent = (startP.X * zoom + e.X - referRect.Width / 2) / image.Width;
+                //y_percent = (startP.Y * zoom + e.Y - referRect.Height / 2) / image.Height;
+                ////重新计算，为了契合鼠标点击的目标
+                //if(LabelUserAddAction!=null)
+                //    LabelUserAddAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent));
             }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                //右键
+                if (LabelUserClickAction != null)
+                    LabelUserClickAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ClickType.right));
+
+                ////删除
+                //if (index == -1) return;                
+                //if(LabelUserDelAction!=null)
+                //    LabelUserDelAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent));
+            }
+            //else if (!ctrlBepush && e.Button == System.Windows.Forms.MouseButtons.Left)
+            //{
+            //    //点击事件
+            //    if (index == -1) return;
+            //    if (LabelUserClickAction != null)
+            //        LabelUserClickAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent));
+            //}
+            //else if (!ctrlBepush && e.Button == System.Windows.Forms.MouseButtons.Right) 
+            //{ 
+            //    //检阅模式
+
+            //}
         }
 
         bool tooltop_showing = false;
@@ -397,16 +432,6 @@ namespace LabelPlus
         {
             try
             {
-                //鼠标样式
-                if (Control.ModifierKeys == Keys.Control)
-                {
-                    this.Cursor = Cursors.Cross;
-                }
-                else
-                {
-                    this.Cursor = Cursors.Default;
-                }
-
                 //提示文本
 
                 int index = getLabelIndex(e.X, e.Y);

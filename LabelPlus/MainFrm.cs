@@ -84,6 +84,8 @@ namespace LabelPlus
             wsp.NewFile();
 
             this.Text = FROM_TITLE;
+
+
         }
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -151,8 +153,32 @@ namespace LabelPlus
 
             wsp_control_apt.NewFile();
             wsp.NewFile();
-            
             this.Text = FROM_TITLE;
+
+            folderBrowserDialog.Description = StringResources.GetValue("tip_chose_photo_dir");
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) { 
+                DirectoryInfo dirInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+                if (dirInfo.Exists) { 
+                    //目录可用
+
+                    string filename = StringResources.GetValue("default_file_name") + ".txt";
+                    wsp.Path = dirInfo.FullName + "\\" + filename ;
+                    if (wsp.Save()) {
+                        //显示提示
+                        string tip = StringResources.GetValue("tip_new_file_be_saved");
+                        tip = String.Format(tip,wsp.Path);
+                        MessageBox.Show(tip);
+                        this.Text = FROM_TITLE + filename ;
+
+                        //显示管理图片窗口
+                        imageToolStripMenuItem_Click(null, null);
+                        wsp.Save();
+                    }
+                }
+                
+            }
+            
+            
         }
         private void saveAsDToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -258,10 +284,23 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, wsp);
+            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode,toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, wsp);
             langComboxApt = new LangComboxAdaptor(langToolStripComboBox, this);
         }
         #endregion
+
+        private void toolStripButton_HideWindow_Click(object sender, EventArgs e)
+        {
+            notifyIcon.Visible = true;
+            this.Visible = false;
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            notifyIcon.Visible = false;
+            this.Visible = true;
+        }
+         
 
     }
 

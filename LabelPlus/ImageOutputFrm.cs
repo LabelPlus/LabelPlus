@@ -113,9 +113,9 @@ namespace LabelPlus
             catch (ThreadAbortException) {
                 MessageBox.Show(StringResources.GetValue("output_aborted"));
             }
-            catch (Exception ec)
+            catch 
             {
-                MessageBox.Show(//ec.ToString()
+                MessageBox.Show(
                     StringResources.GetValue("output_fail")
                     );
                 Invoke(new Action(() => this.Close()));

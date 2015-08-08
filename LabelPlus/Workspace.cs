@@ -16,6 +16,7 @@ namespace LabelPlus
         LabelItemsManager store;
 
         bool alter = false;
+        bool alterNeedBak = false; 
         string path = "";
         #endregion
 
@@ -23,10 +24,10 @@ namespace LabelPlus
 
         public Boolean Alter { get { return alter; } }
         public Boolean NeedSave { get { return Alter; } }
-
         public Boolean HavePath { get { return (path!=""); } }
         public string Path { set { path = value; } get { return path; } }
         public string DirPath { get { return (new FileInfo(path)).DirectoryName; } }
+        public string Filename { get { return (new FileInfo(path)).Name; } }
 
         public LabelItemsManager Store { get{ return store;} }
 
@@ -60,9 +61,17 @@ namespace LabelPlus
         }
         public Boolean SaveBAK()
         {
-            if (HavePath)
+            if (HavePath && alterNeedBak)
             {
-                bool tmp = writeFileFromWorkspace(path+".bak");
+                DateTime time = DateTime.Now;
+                string timeStr = time.ToString("yyMMdd_HHmmss_");
+                DirectoryInfo dirInfo = new DirectoryInfo(DirPath + "\\bak\\");
+                if (!dirInfo.Exists) {
+                    dirInfo.Create();
+                }
+                bool tmp = writeFileFromWorkspace(dirInfo.FullName + "\\" + timeStr + Filename);
+                if (tmp)
+                    alterNeedBak = false; 
                 return tmp;
             }
             else
@@ -72,6 +81,7 @@ namespace LabelPlus
         private void storeChanged(object sender, EventArgs e)
         {
             alter = true;
+            alterNeedBak = true;
         }
         #endregion
 

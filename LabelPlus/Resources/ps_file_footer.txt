@@ -1,7 +1,7 @@
 ﻿
 
 /*另存为*/
-var fileOut = new File(folder+"//{0}.psd");
+var fileOut = new File(folder+"//{0}");
 var options = PhotoshopSaveOptions;
 var asCopy = false;
 var extensionType = Extension.LOWERCASE;

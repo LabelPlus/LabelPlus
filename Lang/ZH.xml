@@ -22,13 +22,16 @@
       <Control name="aboutAToolStripMenuItem" text="关于(&amp;A)" />
 
       <!-- 工具栏 -->
+	  <Control name="toolStripButton_EditLabelMode" text="Label模式(&amp;E)" />
       <Control name="fileToolStripLabel" text="图片" />
       <Control name="toolStripButton_Left" text="前页(←)" />
       <Control name="toolStripButton_Right" text="后页(→)" />
       <Control name="toolStripButton_EditBig" text="字体增大" />
       <Control name="toolStripButton_EditSmall" text="字体减小" />
       <Control name="toolStripButton_Clear" text="清空标签" />
-
+      <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;Q)" />
+      
+      
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter切换到下一条" />
     </Controls>
@@ -76,6 +79,8 @@
     <String name="output_fail" text="输出失败"/>
     <String name="output_aborted" text="输出已终止"/>
     <String name="ps_output_complete" text="生成成功 脚本文件已保存在同一目录下：auto_label_for_photoshop.jsx \n 使用方法：1.直接拖进Photoshop中；或“文件-脚本-浏览”，选中脚本 \n2.选择图片所在目录"/>
-
+    <String name="tip_chose_photo_dir" text="请选择图片文件夹。\n程序将为您在目录下自动创建翻译文本文件。"/>
+    <String name="tip_new_file_be_saved" text="新建文件已保存为：{0}"/>
+	<String name="default_file_name" text="翻译"/>
   </Strings>
 </Resource>

@@ -45,6 +45,8 @@
             this.aboutAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.langToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton_EditLabelMode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.fileToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox_File = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton_Left = new System.Windows.Forms.ToolStripButton();
@@ -54,6 +56,7 @@
             this.toolStripButton_EditSmall = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_Clear = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_HideWindow = new System.Windows.Forms.ToolStripButton();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -65,8 +68,9 @@
             this.TranslateTextBox = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -108,40 +112,40 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.newToolStripMenuItem.Text = "New(&N)";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.openToolStripMenuItem.Text = "Open(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveProjectSToolStripMenuItem
             // 
             this.saveProjectSToolStripMenuItem.Name = "saveProjectSToolStripMenuItem";
-            this.saveProjectSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveProjectSToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveProjectSToolStripMenuItem.Text = "Save(&S)";
             this.saveProjectSToolStripMenuItem.Click += new System.EventHandler(this.saveSToolStripMenuItem_Click);
             // 
             // saveAsDToolStripMenuItem
             // 
             this.saveAsDToolStripMenuItem.Name = "saveAsDToolStripMenuItem";
-            this.saveAsDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsDToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveAsDToolStripMenuItem.Text = "Save As(&S)";
             this.saveAsDToolStripMenuItem.Click += new System.EventHandler(this.saveAsDToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 6);
             // 
             // exitEToolStripMenuItem
             // 
             this.exitEToolStripMenuItem.Name = "exitEToolStripMenuItem";
-            this.exitEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitEToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.exitEToolStripMenuItem.Text = "Exit(&E)";
             this.exitEToolStripMenuItem.Click += new System.EventHandler(this.exitEToolStripMenuItem_Click);
             // 
@@ -191,6 +195,8 @@
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton_EditLabelMode,
+            this.toolStripSeparator3,
             this.fileToolStripLabel,
             this.toolStripComboBox_File,
             this.toolStripButton_Left,
@@ -199,12 +205,27 @@
             this.toolStripButton_EditBig,
             this.toolStripButton_EditSmall,
             this.toolStripSeparator2,
-            this.toolStripButton_Clear});
+            this.toolStripButton_Clear,
+            this.toolStripButton_HideWindow});
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(722, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "text";
+            // 
+            // toolStripButton_EditLabelMode
+            // 
+            this.toolStripButton_EditLabelMode.CheckOnClick = true;
+            this.toolStripButton_EditLabelMode.Image = global::LabelPlus.Properties.Resources.LabelMode;
+            this.toolStripButton_EditLabelMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_EditLabelMode.Name = "toolStripButton_EditLabelMode";
+            this.toolStripButton_EditLabelMode.Size = new System.Drawing.Size(49, 22);
+            this.toolStripButton_EditLabelMode.Text = "text";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // fileToolStripLabel
             // 
@@ -273,6 +294,15 @@
             this.toolStripButton_Clear.Size = new System.Drawing.Size(49, 22);
             this.toolStripButton_Clear.Text = "text";
             this.toolStripButton_Clear.Click += new System.EventHandler(this.toolStripButton_Clear_Click);
+            // 
+            // toolStripButton_HideWindow
+            // 
+            this.toolStripButton_HideWindow.Image = global::LabelPlus.Properties.Resources.Hide;
+            this.toolStripButton_HideWindow.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_HideWindow.Name = "toolStripButton_HideWindow";
+            this.toolStripButton_HideWindow.Size = new System.Drawing.Size(67, 22);
+            this.toolStripButton_HideWindow.Text = "text(&Q)";
+            this.toolStripButton_HideWindow.Click += new System.EventHandler(this.toolStripButton_HideWindow_Click);
             // 
             // splitContainer
             // 
@@ -349,7 +379,7 @@
             this.TextBox_GroupBox.Controls.Add(this.labelCtrlEnterTip);
             this.TextBox_GroupBox.Controls.Add(this.TranslateTextBox);
             this.TextBox_GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_GroupBox.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TextBox_GroupBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TextBox_GroupBox.Location = new System.Drawing.Point(0, 0);
             this.TextBox_GroupBox.Name = "TextBox_GroupBox";
             this.TextBox_GroupBox.Size = new System.Drawing.Size(265, 141);
@@ -361,7 +391,7 @@
             this.labelCtrlEnterTip.AutoSize = true;
             this.labelCtrlEnterTip.BackColor = System.Drawing.SystemColors.Window;
             this.labelCtrlEnterTip.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelCtrlEnterTip.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelCtrlEnterTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelCtrlEnterTip.Location = new System.Drawing.Point(3, 126);
             this.labelCtrlEnterTip.Name = "labelCtrlEnterTip";
             this.labelCtrlEnterTip.Size = new System.Drawing.Size(65, 12);
@@ -393,6 +423,12 @@
             this.timerAutoSave.Enabled = true;
             this.timerAutoSave.Interval = 30000;
             this.timerAutoSave.Tick += new System.EventHandler(this.timerAutoSave_Tick);
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "LabelPlus";
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // MainFrm
             // 
@@ -454,7 +490,6 @@
         private System.Windows.Forms.GroupBox TextBox_GroupBox;
         private System.Windows.Forms.TextBox TranslateTextBox;
         private System.Windows.Forms.ToolStripMenuItem saveAsDToolStripMenuItem;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.ToolStripComboBox langToolStripComboBox;
         private System.Windows.Forms.ToolStripLabel fileToolStripLabel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -464,6 +499,11 @@
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ToolStripButton toolStripButton_EditLabelMode;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton_HideWindow;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
 
     }
 }

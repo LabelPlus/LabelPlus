@@ -20,7 +20,11 @@ namespace LabelPlus
             textBox.Text += Resources.AppName+" \r\n";
             textBox.Text += "Version " + Resources.AppVer + "\r\n";
             textBox.Text += ".NET Framework Version:"+Environment.Version.ToString ()+"\r\n";
-            
+
+            CoderLabel.Text = Properties.Resources.CodeContributors.Replace(", ", "\n");
+
+            okbutton.Top = CoderLabel.Bottom + 10;
+            this.Height = okbutton.Bottom + 40;
         }
     }
 }

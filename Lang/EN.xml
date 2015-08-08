@@ -28,12 +28,14 @@
       <Control name="aboutAToolStripMenuItem" text="About(&amp;A)" />
 
       <!-- 工具栏 -->
+	  <Control name="toolStripButton_EditLabelMode" text="Label Mod(&amp;E)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
       <Control name="toolStripButton_Right" text="→" />
       <Control name="toolStripButton_EditBig" text="Font Size" />
       <Control name="toolStripButton_EditSmall" text="" />
       <Control name="toolStripButton_Clear" text="Clear Labels" />
+	  <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
 
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Next Label" />
@@ -82,6 +84,9 @@
     <String name="output_fail" text="Failed to output the file!"/>
     <String name="output_aborted" text="Output progress is aborted"/>
     <String name="ps_output_complete" text="auto_label_for_photoshop.jsx is you script file \n Method to use it：1.drag it into Photoshop \n2.Select the Dir of images"/>
+	<String name="tip_chose_photo_dir" text="Plase choose directory of images。\nProgram will create a text file in this directory。"/>
+    <String name="tip_new_file_be_saved" text="New file saved:{0}"/>
+	<String name="default_file_name" text="translation"/>
 
   </Strings>
 </Resource>

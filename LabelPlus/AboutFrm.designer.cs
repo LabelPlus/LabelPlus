@@ -31,12 +31,12 @@
             this.okbutton = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.CoderLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // okbutton
             // 
-            this.okbutton.Location = new System.Drawing.Point(112, 149);
+            this.okbutton.Location = new System.Drawing.Point(111, 157);
             this.okbutton.Name = "okbutton";
             this.okbutton.Size = new System.Drawing.Size(132, 38);
             this.okbutton.TabIndex = 0;
@@ -59,20 +59,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(120, 121);
+            this.label1.Location = new System.Drawing.Point(27, 121);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 4;
             this.label1.Text = "by";
             // 
-            // label3
+            // CoderLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(167, 121);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 12);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "虾包/Noodlefighter";
+            this.CoderLabel.AutoSize = true;
+            this.CoderLabel.Location = new System.Drawing.Point(130, 121);
+            this.CoderLabel.Name = "CoderLabel";
+            this.CoderLabel.Size = new System.Drawing.Size(113, 12);
+            this.CoderLabel.TabIndex = 6;
+            this.CoderLabel.Text = "虾包/Noodlefighter\r\n";
             // 
             // AboutFrm
             // 
@@ -80,7 +80,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 207);
             this.ControlBox = false;
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.CoderLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.okbutton);
@@ -101,6 +101,6 @@
         private System.Windows.Forms.Button okbutton;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label CoderLabel;
     }
 }

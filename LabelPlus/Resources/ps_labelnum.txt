@@ -7,7 +7,7 @@ artLayerRef.opacity = 90;
 textItemRef = artLayerRef.textItem;
 
 textItemRef.font = "Arial";
-textItemRef.size = bg.height/100.0;
+textItemRef.size = bg.height/200.0;
 textItemRef.fauxBold =true;
 textItemRef.position = Array(bg.width*{1},bg.height*{2});
 textItemRef.contents = "{0}";
