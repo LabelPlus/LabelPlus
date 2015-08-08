@@ -190,9 +190,15 @@ namespace LabelPlus
                     tmp.DrawString((i + 1).ToString(), myFont, myBrushRed, rect, sf);
                     //外框                
                     //tmp.DrawRectangle(mySidePen, rect.X, rect.Y, rect.Width, rect.Height);
+                    myFont.Dispose();
+                    myBrushRed.Dispose();
+                    myBrushWhite.Dispose();
+                    mySidePen.Dispose();
+                    sf.Dispose();                                        
                 }
 
                 Refresh();
+                tmp.Dispose();
                 return true;
             }
             catch { return false; }
@@ -220,6 +226,10 @@ namespace LabelPlus
 
                 //缓存->屏幕
                 g.DrawImage(myBuffer, 0, 0);
+
+                // if(g != null) g.Dispose(); // what the fuck?
+                if(myBuffer != null) myBuffer.Dispose();
+                if(gBuffer != null) gBuffer.Dispose();
             }
             catch { }
         }

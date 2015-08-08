@@ -349,7 +349,7 @@
             this.TextBox_GroupBox.Controls.Add(this.labelCtrlEnterTip);
             this.TextBox_GroupBox.Controls.Add(this.TranslateTextBox);
             this.TextBox_GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_GroupBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TextBox_GroupBox.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TextBox_GroupBox.Location = new System.Drawing.Point(0, 0);
             this.TextBox_GroupBox.Name = "TextBox_GroupBox";
             this.TextBox_GroupBox.Size = new System.Drawing.Size(265, 141);
@@ -361,7 +361,7 @@
             this.labelCtrlEnterTip.AutoSize = true;
             this.labelCtrlEnterTip.BackColor = System.Drawing.SystemColors.Window;
             this.labelCtrlEnterTip.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelCtrlEnterTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelCtrlEnterTip.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelCtrlEnterTip.Location = new System.Drawing.Point(3, 126);
             this.labelCtrlEnterTip.Name = "labelCtrlEnterTip";
             this.labelCtrlEnterTip.Size = new System.Drawing.Size(65, 12);

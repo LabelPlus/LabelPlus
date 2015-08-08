@@ -227,7 +227,9 @@ namespace LabelPlus
 
             TranslateTextBox.Font = newFont;
             listView.Font = newFont;
-            
+
+            oldFont.Dispose();
+            newFont.Dispose();
         }
         private void toolStripButton_EditSmall_Click(object sender, EventArgs e)
         {
@@ -236,6 +238,9 @@ namespace LabelPlus
 
             TranslateTextBox.Font = newFont;
             listView.Font = newFont;
+
+            oldFont.Dispose();
+            newFont.Dispose();
         }
 
         private void timerAutoSave_Tick(object sender, EventArgs e)
