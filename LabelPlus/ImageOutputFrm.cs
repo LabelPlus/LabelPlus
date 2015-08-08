@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Threading;
 
 namespace LabelPlus
 {
@@ -12,7 +13,7 @@ namespace LabelPlus
         Workspace wsp;
         PicView pv;
 
-        public ImageOutputFrm(Workspace wsp,PicView pv)
+        public ImageOutputFrm(Workspace wsp, PicView pv)
         {
             this.wsp = wsp;
             this.pv = pv;
@@ -20,7 +21,7 @@ namespace LabelPlus
             InitializeComponent();
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
-        }         
+        }
 
         /**
          * replace extension of a path
@@ -40,21 +41,39 @@ namespace LabelPlus
             }
         }
 
+        Thread th; // 分离UI线程，防止进度条卡死
+
         private void button_Click(object sender, EventArgs e)
-        {          
-            try{
+        {
+
+            th = new Thread(doOutput);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+        }
+
+        void doOutput()
+        {
+            try
+            {
                 bool png_or_jpg = radioButtonPNG.Checked;
-                ImageFormat imageFormat = png_or_jpg?ImageFormat.Png:ImageFormat.Jpeg;
-                string extension = png_or_jpg ?".png":".jpg";       
-                
-                float zoom = Convert.ToSingle(textBox.Text); 
+                ImageFormat imageFormat = png_or_jpg ? ImageFormat.Png : ImageFormat.Jpeg;
+                string extension = png_or_jpg ? ".png" : ".jpg";
+
+                float zoom = Convert.ToSingle(textBox.Text);
                 var store = wsp.Store;
                 var keys = store.Filenames;
 
                 if (folderBrowserDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                     return;
 
+                Invoke(new Action(() => button.Enabled = false)); // 防止出现2个输出线程
+                Invoke(new Action(() => buttonAbort.Enabled = true));
+
                 string log = "";
+
+                Invoke(new Action(() => outPgBar.Maximum = keys.Length));
+                Invoke(new Action(() => outPgBar.Value = 0));
+
                 foreach (string key in keys)
                 {
                     string outputFilename = folderBrowserDialog.SelectedPath + @"\" + key;
@@ -80,19 +99,35 @@ namespace LabelPlus
                                 out_img.Dispose();
                             }
                             //stream.Close();
-                        }                        
+                        }
                     }
                     catch
                     {
                         log += "\n" + StringResources.GetValue("can_not_output_file") + outputFilename;
                     }
+                    Invoke(new Action(() => ++outPgBar.Value));
                 }
                 MessageBox.Show(log + "\n\n" + StringResources.GetValue("output_complete"));
-                this.Close();
-            }catch{
-                MessageBox.Show(StringResources.GetValue("output_fail"));
-                this.Close();
+                Invoke(new Action(() => this.Close()));
             }
+            catch (ThreadAbortException) {
+                MessageBox.Show(StringResources.GetValue("output_aborted"));
+            }
+            catch (Exception ec)
+            {
+                MessageBox.Show(//ec.ToString()
+                    StringResources.GetValue("output_fail")
+                    );
+                Invoke(new Action(() => this.Close()));
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (th != null) th.Abort();
+            button.Enabled = true;
+            buttonAbort.Enabled = false;
+            outPgBar.Value = 0;
         }
     }
 }
