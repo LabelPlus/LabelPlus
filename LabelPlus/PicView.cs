@@ -244,7 +244,7 @@ namespace LabelPlus
                 //缓存->屏幕
                 g.DrawImage(myBuffer, 0, 0);
 
-                // if(g != null) g.Dispose(); // what the fuck?
+                // if(g != null) g.Dispose(); // 屏幕不可删除
                 if(myBuffer != null) myBuffer.Dispose();
                 if(gBuffer != null) gBuffer.Dispose();
             }

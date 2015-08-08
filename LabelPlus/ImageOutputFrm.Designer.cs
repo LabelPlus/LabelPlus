@@ -104,7 +104,7 @@
             this.outPgBar.Size = new System.Drawing.Size(184, 23);
             this.outPgBar.TabIndex = 4;
             // 
-            // btnCancel
+            // buttonAbort
             // 
             this.buttonAbort.Enabled = false;
             this.buttonAbort.Location = new System.Drawing.Point(122, 102);
@@ -132,6 +132,7 @@
             this.Name = "ImageOutputFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Image Output";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageOutputFrm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -41,51 +41,38 @@ namespace LabelPlus
             }
         }
 
-        Thread th; // 分离UI线程，防止进度条卡死
+        Thread th = null; // 分离UI线程，防止进度条卡死
 
         private void button_Click(object sender, EventArgs e)
         {
+            if (th != null) th.Abort();
+
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK) return;
+
+            button.Enabled = false;
+            buttonAbort.Enabled = true;
 
             th = new Thread(doOutput);
-            th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
 
         void doOutput()
         {
+            string log = "";
+
             try
             {
-                bool png_or_jpg = radioButtonPNG.Checked;
-                ImageFormat imageFormat = png_or_jpg ? ImageFormat.Png : ImageFormat.Jpeg;
-                string extension = png_or_jpg ? ".png" : ".jpg";
-
-                float zoom = Convert.ToSingle(textBox.Text);
-                var store = wsp.Store;
-                var keys = store.Filenames;
-
-                if (folderBrowserDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                    return;
-
-                Invoke(new Action(() => button.Enabled = false)); // 防止出现2个输出线程
-                Invoke(new Action(() => buttonAbort.Enabled = true));
-
-                string log = "";
-
-                Invoke(new Action(() => outPgBar.Maximum = keys.Length));
-                Invoke(new Action(() => outPgBar.Value = 0));
-
-                foreach (string key in keys)
+                foreach (string key in wsp.Store.Filenames)
                 {
                     string outputFilename = folderBrowserDialog.SelectedPath + @"\" + key;
-
-                    outputFilename = replaceExtension(outputFilename, extension);
+                    outputFilename = replaceExtension(outputFilename, radioButtonPNG.Checked ? ".png" : ".jpg");
 
                     string inputFilename = wsp.DirPath + @"\" + key;
                     try
                     {
                         Image in_img = Image.FromFile(inputFilename);
                         Image out_img = null;
-                        var rslt = pv.MakeImage(ref out_img, ref in_img, zoom, store[key]);
+                        var rslt = pv.MakeImage(ref out_img, ref in_img, Convert.ToSingle(textBox.Text), wsp.Store[key]);
                         in_img.Dispose();
                         if (!rslt)
                         {
@@ -95,39 +82,39 @@ namespace LabelPlus
                         {
                             using (Stream stream = new FileStream(outputFilename, FileMode.Create))
                             {
-                                out_img.Save(stream, imageFormat);
+                                out_img.Save(stream, radioButtonPNG.Checked ? ImageFormat.Png : ImageFormat.Jpeg);
                                 out_img.Dispose();
                             }
                             //stream.Close();
                         }
                     }
                     catch
-                    {
-                        log += "\n" + StringResources.GetValue("can_not_output_file") + outputFilename;
-                    }
+                    { log += "\n" + StringResources.GetValue("can_not_output_file") + outputFilename; }
                     Invoke(new Action(() => ++outPgBar.Value));
                 }
-                MessageBox.Show(log + "\n\n" + StringResources.GetValue("output_complete"));
-                Invoke(new Action(() => this.Close()));
+                log += "\n\n" + StringResources.GetValue("output_complete");
             }
-            catch (ThreadAbortException) {
-                MessageBox.Show(StringResources.GetValue("output_aborted"));
-            }
-            catch 
+            catch (ThreadAbortException)
+            { log += "\n\n" + StringResources.GetValue("output_aborted"); }
+            catch (Exception)
+            { log += "\n\n" + StringResources.GetValue("output_fail"); }
+            finally
             {
-                MessageBox.Show(
-                    StringResources.GetValue("output_fail")
-                    );
-                Invoke(new Action(() => this.Close()));
+                try
+                {
+                    MessageBox.Show(log);
+                    Invoke(new Action(() => { if (button != null) button.Enabled = true; }));
+                    Invoke(new Action(() => { if (buttonAbort != null) buttonAbort.Enabled = false; }));
+                    Invoke(new Action(() => { if (outPgBar != null) outPgBar.Value = 0; }));
+                }
+                catch { /* 窗口销毁后发生的线程冲突之 InvalidOperationException 强行不要了，嗯 */ }
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        {
-            if (th != null) th.Abort();
-            button.Enabled = true;
-            buttonAbort.Enabled = false;
-            outPgBar.Value = 0;
-        }
+        { if (th != null) th.Abort(); }
+
+        private void ImageOutputFrm_FormClosing(object sender, FormClosingEventArgs e)
+        { if (th != null) th.Abort(); }
     }
 }
