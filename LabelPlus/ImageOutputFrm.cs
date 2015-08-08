@@ -59,6 +59,7 @@ namespace LabelPlus
         void doOutput()
         {
             string log = "";
+            Invoke(new Action(() => outPgBar.Maximum = wsp.Store.Filenames.Length));
 
             try
             {
