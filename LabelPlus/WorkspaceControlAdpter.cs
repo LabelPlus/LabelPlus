@@ -56,6 +56,7 @@ namespace LabelPlus
         {
             fileName = "";
             picview.Image = null;
+            picview.LoadImage(Application.StartupPath + "\\default_image.png");
             textboxgroupbox.Text = "";
             setTextboxText("");
         }
@@ -298,7 +299,7 @@ namespace LabelPlus
             picview.Image = null;
             picview.Refresh();
             //picview.LabelUserAddAction += new PicView.UserActionEventHandler(picView_UserActionEventAdd);
-            //picview.LabelUserDelAction += new PicView.UserActionEventHandler(picView_UserActionEventDel);
+            //picview.LabelUserDelAction += new PicView.UserActionEventHandler(picView_UserActionEventDel);            
             picview.LabelUserClickAction += new PicView.UserActionEventHandler(picView_UserClickAction);
             picView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(picView_PreviewKeyDown);
             picview.MouseMove += new MouseEventHandler(picView_MouseMove);
@@ -319,6 +320,8 @@ namespace LabelPlus
 
             editlabelbutton = toolStripButtonEditLabelMode;
             editlabelbutton.Click += new EventHandler(editLabelButton_Click);
+
+            NewFile();
         }
 
         #endregion

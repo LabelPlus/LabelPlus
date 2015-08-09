@@ -47,7 +47,6 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_EditLabelMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.fileToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox_File = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton_Left = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_Right = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +57,6 @@
             this.toolStripButton_Clear = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_HideWindow = new System.Windows.Forms.ToolStripButton();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,6 +69,7 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -92,7 +91,7 @@
             this.langToolStripComboBox});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(722, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(644, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -196,8 +195,8 @@
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton_EditLabelMode,
+            this.toolStripButton_HideWindow,
             this.toolStripSeparator3,
-            this.fileToolStripLabel,
             this.toolStripComboBox_File,
             this.toolStripButton_Left,
             this.toolStripButton_Right,
@@ -205,11 +204,10 @@
             this.toolStripButton_EditBig,
             this.toolStripButton_EditSmall,
             this.toolStripSeparator2,
-            this.toolStripButton_Clear,
-            this.toolStripButton_HideWindow});
+            this.toolStripButton_Clear});
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(722, 25);
+            this.toolStrip.Size = new System.Drawing.Size(644, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "text";
             // 
@@ -227,16 +225,11 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // fileToolStripLabel
-            // 
-            this.fileToolStripLabel.Name = "fileToolStripLabel";
-            this.fileToolStripLabel.Size = new System.Drawing.Size(25, 22);
-            this.fileToolStripLabel.Text = "file";
-            // 
             // toolStripComboBox_File
             // 
+            this.toolStripComboBox_File.DropDownWidth = 250;
             this.toolStripComboBox_File.Name = "toolStripComboBox_File";
-            this.toolStripComboBox_File.Size = new System.Drawing.Size(250, 25);
+            this.toolStripComboBox_File.Size = new System.Drawing.Size(200, 25);
             // 
             // toolStripButton_Left
             // 
@@ -318,18 +311,9 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer.Size = new System.Drawing.Size(722, 358);
-            this.splitContainer.SplitterDistance = 451;
+            this.splitContainer.Size = new System.Drawing.Size(644, 402);
+            this.splitContainer.SplitterDistance = 402;
             this.splitContainer.TabIndex = 2;
-            // 
-            // picView
-            // 
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.Location = new System.Drawing.Point(0, 0);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(449, 356);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
             // 
             // splitContainer1
             // 
@@ -346,8 +330,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.TextBox_GroupBox);
-            this.splitContainer1.Size = new System.Drawing.Size(265, 356);
-            this.splitContainer1.SplitterDistance = 211;
+            this.splitContainer1.Size = new System.Drawing.Size(236, 400);
+            this.splitContainer1.SplitterDistance = 237;
             this.splitContainer1.TabIndex = 3;
             // 
             // listView
@@ -359,7 +343,7 @@
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.Location = new System.Drawing.Point(0, 0);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(265, 211);
+            this.listView.Size = new System.Drawing.Size(236, 237);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -382,7 +366,7 @@
             this.TextBox_GroupBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TextBox_GroupBox.Location = new System.Drawing.Point(0, 0);
             this.TextBox_GroupBox.Name = "TextBox_GroupBox";
-            this.TextBox_GroupBox.Size = new System.Drawing.Size(265, 141);
+            this.TextBox_GroupBox.Size = new System.Drawing.Size(236, 159);
             this.TextBox_GroupBox.TabIndex = 0;
             this.TextBox_GroupBox.TabStop = false;
             // 
@@ -392,7 +376,7 @@
             this.labelCtrlEnterTip.BackColor = System.Drawing.SystemColors.Window;
             this.labelCtrlEnterTip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelCtrlEnterTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelCtrlEnterTip.Location = new System.Drawing.Point(3, 126);
+            this.labelCtrlEnterTip.Location = new System.Drawing.Point(3, 144);
             this.labelCtrlEnterTip.Name = "labelCtrlEnterTip";
             this.labelCtrlEnterTip.Size = new System.Drawing.Size(65, 12);
             this.labelCtrlEnterTip.TabIndex = 6;
@@ -405,7 +389,7 @@
             this.TranslateTextBox.Location = new System.Drawing.Point(3, 22);
             this.TranslateTextBox.Multiline = true;
             this.TranslateTextBox.Name = "TranslateTextBox";
-            this.TranslateTextBox.Size = new System.Drawing.Size(259, 116);
+            this.TranslateTextBox.Size = new System.Drawing.Size(230, 134);
             this.TranslateTextBox.TabIndex = 5;
             // 
             // openFileDialog
@@ -430,11 +414,20 @@
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
+            // picView
+            // 
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.Location = new System.Drawing.Point(0, 0);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(400, 400);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 412);
+            this.ClientSize = new System.Drawing.Size(644, 456);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip1);
@@ -491,7 +484,6 @@
         private System.Windows.Forms.TextBox TranslateTextBox;
         private System.Windows.Forms.ToolStripMenuItem saveAsDToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox langToolStripComboBox;
-        private System.Windows.Forms.ToolStripLabel fileToolStripLabel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
         private System.Windows.Forms.Timer timerAutoSave;
