@@ -360,10 +360,13 @@ namespace LabelPlus
             MakeImage(ref image, ref imageOriginal);
         }
 
-        int getLabelIndex(int x, int y) { 
+        int getLabelIndex(int x, int y) {
+            if (labels == null) return -1;
+
             float realX = startP.X*zoom +x;
             float realY = startP.Y*zoom +y;
             PointF realP = new PointF(realX,realY);
+
             RectangleF[] rectList = new RectangleF[labels.Count];
             for (int i=0;i<labels.Count;i++) {
                 RectangleF tmpRect = getLabelRectangle(labels[i].X_percent, labels[i].Y_percent);
