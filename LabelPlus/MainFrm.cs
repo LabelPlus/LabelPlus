@@ -75,7 +75,7 @@ namespace LabelPlus
         }
 
         private void MainFrm_Load(object sender, EventArgs e)
-        { 
+        {
             DoubleBuffered = true;
             SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.ResizeRedraw |
@@ -85,8 +85,9 @@ namespace LabelPlus
 
             this.Text = FROM_TITLE;
 
-            FileInfo misakiLock = new FileInfo(Application.StartupPath +"\\kcolikasim.db");
-            if (!misakiLock.Exists) {
+            FileInfo misakiLock = new FileInfo(Application.StartupPath + "\\kcolikasim.db");
+            if (!misakiLock.Exists)
+            {
                 outputPhotoshopScriptToolStripMenuItem.Visible = false;
             }
         }
@@ -135,7 +136,7 @@ namespace LabelPlus
             DialogResult result = openFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                if (wsp.NeedSave) 
+                if (wsp.NeedSave)
                     alter_and_save();
 
                 wsp.readWorkspaceFromFile(openFileDialog.FileName);
@@ -160,29 +161,32 @@ namespace LabelPlus
             this.Text = FROM_TITLE;
 
             folderBrowserDialog.Description = StringResources.GetValue("tip_chose_photo_dir");
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) { 
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 DirectoryInfo dirInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
-                if (dirInfo.Exists) { 
+                if (dirInfo.Exists)
+                {
                     //目录可用
 
                     string filename = StringResources.GetValue("default_file_name") + ".txt";
-                    wsp.Path = dirInfo.FullName + "\\" + filename ;
-                    if (wsp.Save()) {
+                    wsp.Path = dirInfo.FullName + "\\" + filename;
+                    if (wsp.Save())
+                    {
                         //显示提示
                         string tip = StringResources.GetValue("tip_new_file_be_saved");
-                        tip = String.Format(tip,wsp.Path);
+                        tip = String.Format(tip, wsp.Path);
                         MessageBox.Show(tip);
-                        this.Text = FROM_TITLE + filename ;
+                        this.Text = FROM_TITLE + filename;
 
                         //显示管理图片窗口
                         imageToolStripMenuItem_Click(null, null);
                         wsp.Save();
                     }
                 }
-                
+
             }
-            
-            
+
+
         }
         private void saveAsDToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -194,7 +198,8 @@ namespace LabelPlus
         }
         private void saveSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (save_file(false) == System.Windows.Forms.DialogResult.OK) {
+            if (save_file(false) == System.Windows.Forms.DialogResult.OK)
+            {
                 MessageBox.Show(StringResources.GetValue("save_complete"));
                 this.Text = FROM_TITLE + new FileInfo(wsp.Path).Name;
             }
@@ -238,17 +243,17 @@ namespace LabelPlus
         private void toolStripButton_Right_Click(object sender, EventArgs e)
         {
             wsp_control_apt.page_right();
-        }        
+        }
         private void toolStripButton_Clear_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
                 StringResources.GetValue("clear_all_label_question"),
-                "warning！！！", 
+                "warning！！！",
                 MessageBoxButtons.YesNo);
 
             if (result == System.Windows.Forms.DialogResult.Yes)
                 wsp.Store.DelAllLabelInFile(wsp_control_apt.FileName);
-                
+
         }
         private void toolStripButton_EditBig_Click(object sender, EventArgs e)
         {
@@ -288,8 +293,10 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode,toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, wsp);
+            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, wsp);
             langComboxApt = new LangComboxAdaptor(langToolStripComboBox, this);
+
+            SetLayout();
         }
         #endregion
 
@@ -304,8 +311,47 @@ namespace LabelPlus
             notifyIcon.Visible = false;
             this.Visible = true;
         }
-         
 
+        private void MainFrm_SizeChanged(object sender, EventArgs e)
+        {
+            SetLayout();
+        }
+
+        #region SetLayout
+        enum LayoutStatus { Horizontal, Vertical };
+        LayoutStatus CurrentLayout = LayoutStatus.Horizontal;
+
+        private void SetLayout()
+        {
+            double h = this.ClientSize.Height;
+            double w = this.ClientSize.Width;           
+
+            if (h > w * 1.5) // set to Vertical
+            {
+                if (CurrentLayout == LayoutStatus.Horizontal) // Event: change layout
+                {
+                    splitContainer.Orientation = Orientation.Horizontal;
+                    splitContainer1.Orientation = Orientation.Vertical;
+                    splitContainer.SplitterDistance = (int)(splitContainer.ClientSize.Height * 0.85);
+                    splitContainer1.SplitterDistance = (int)(splitContainer1.ClientSize.Width * 0.618);
+
+                    CurrentLayout = LayoutStatus.Vertical;
+                }
+            }
+            else // set to Horizontal
+            {
+                if (CurrentLayout == LayoutStatus.Vertical)
+                {
+                    splitContainer.Orientation = Orientation.Vertical;
+                    splitContainer1.Orientation = Orientation.Horizontal;
+                    splitContainer.SplitterDistance = (int)(splitContainer.ClientSize.Width * 0.618);
+                    splitContainer1.SplitterDistance = (int)(splitContainer1.ClientSize.Height * 0.618);
+
+                    CurrentLayout = LayoutStatus.Horizontal;
+                }
+            }
+        }
+        #endregion
     }
 
 }
