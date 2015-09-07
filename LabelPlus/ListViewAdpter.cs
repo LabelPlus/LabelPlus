@@ -49,8 +49,14 @@ namespace LabelPlus
                 //record selected item
                 int index;
                 if (lv.SelectedIndices.Count != 0)
+                {
                     index = lv.SelectedIndices[0];
-                else index = -1;
+                }
+                else 
+                { 
+                    index = -1; 
+                }
+
                 if (items == null)
                 {
                     lv.Items.Clear();
