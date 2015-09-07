@@ -289,16 +289,19 @@ namespace LabelPlus
 
         void PicView_Draging_MouseMove(object sender, MouseEventArgs e)
         {
-            if (draging == false) return;
-
-            alreadyDraged = true;
+            if (draging == false) return;          
 
             float dx = e.Location.X - draging_mosuestartpoint.X;
             float dy = e.Location.Y - draging_mosuestartpoint.Y;
             StartP = new PointF(draging_beforeStartP.X - dx/zoom,draging_beforeStartP.Y - dy/zoom);
             Refresh();
 
+            //Console.WriteLine(Math.Abs(dx) +Math.Abs(dy));
             
+            //容忍范围
+            if(Math.Abs(dx) +Math.Abs(dy) >= 5.0f)
+                alreadyDraged = true;
+
         }
         #endregion
 
