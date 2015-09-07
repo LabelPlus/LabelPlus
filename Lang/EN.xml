@@ -29,14 +29,15 @@
 
       <!-- 工具栏 -->
 	  <Control name="toolStripButton_EditLabelMode" text="Label Mod(&amp;E)" />
+      <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
+      <Control name="toolStripButton_HideLabel" text="HideLabel(&amp;V)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
       <Control name="toolStripButton_Right" text="→" />
       <Control name="toolStripButton_EditBig" text="Font Size" />
       <Control name="toolStripButton_EditSmall" text="" />
       <Control name="toolStripButton_Clear" text="Clear Labels" />
-	  <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
-
+	  
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Next Label" />
 

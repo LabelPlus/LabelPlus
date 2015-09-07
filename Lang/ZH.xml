@@ -7,30 +7,30 @@
     <Controls>
       <!-- 菜单 -->
       <Control name="fileToolStripMenuItem" text="文件(&amp;F)" />
-      <Control name="newToolStripMenuItem" text="新建(&amp;N)" />
-      <Control name="openToolStripMenuItem" text="打开(&amp;O)" />
-      <Control name="saveProjectSToolStripMenuItem" text="保存(&amp;S)" />
-      <Control name="saveAsDToolStripMenuItem" text="另存为(&amp;S)" />
+      <Control name="newToolStripMenuItem" text="新建翻译(&amp;N)" />
+      <Control name="openToolStripMenuItem" text="打开翻译(&amp;O)" />
+      <Control name="saveProjectSToolStripMenuItem" text="保存翻译(&amp;S)" />
+      <Control name="saveAsDToolStripMenuItem" text="翻译另存为(&amp;S)" />
       <Control name="exitEToolStripMenuItem" text="退出(&amp;E)" />
 
       <Control name="imageToolStripMenuItem" text="图片管理(&amp;I)" />
 
       <Control name="outputPToolStripMenuItem" text="导出(&amp;O)" />
-      <Control name="outputAllToolStripMenuItem" text="导出所有图片(&amp;O)" />
+      <Control name="outputAllToolStripMenuItem" text="导出带标记图片(&amp;O)" />
       <Control name="outputPhotoshopScriptToolStripMenuItem" text="导出Photoshop脚本(&amp;P)" />
 
       <Control name="aboutAToolStripMenuItem" text="关于(&amp;A)" />
 
       <!-- 工具栏 -->
 	  <Control name="toolStripButton_EditLabelMode" text="Label模式(&amp;E)" />
+      <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;Q)" />
+      <Control name="toolStripButton_HideLabel" text="隐藏标签(&amp;V)" />      
       <Control name="fileToolStripLabel" text="图片" />
       <Control name="toolStripButton_Left" text="前页(←)" />
       <Control name="toolStripButton_Right" text="后页(→)" />
       <Control name="toolStripButton_EditBig" text="字体增大" />
       <Control name="toolStripButton_EditSmall" text="字体减小" />
       <Control name="toolStripButton_Clear" text="清空标签" />
-      <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;Q)" />
-      
       
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter切换到下一条" />
@@ -63,7 +63,7 @@
   <Form>
     <Name>ManageImageFrm</Name>
     <Controls>
-      <Control name="labelFolderFile" text="目录下图片文件" />
+      <Control name="labelFolderFile" text="忽略文件" />
       <Control name="labelIncludedFile" text="包含文件" />
       <Control name="buttonOK" text="确定" />
       <Control name="buttonCancel" text="取消" />
