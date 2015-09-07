@@ -24,7 +24,7 @@
       <!-- 工具栏 -->
 	  <Control name="toolStripButton_EditLabelMode" text="Label模式(&amp;E)" />
       <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;Q)" />
-      <Control name="toolStripButton_HideLabel" text="隐藏标签(&amp;V)" />      
+      <Control name="toolStripButton_HideLabel" text="隐藏Label(&amp;V)" />      
       <Control name="fileToolStripLabel" text="图片" />
       <Control name="toolStripButton_Left" text="前页(←)" />
       <Control name="toolStripButton_Right" text="后页(→)" />
