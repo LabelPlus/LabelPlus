@@ -90,6 +90,9 @@ namespace LabelPlus
                     else 
                     { 
                         //normal click
+                        if (e.Index == -1)
+                            return;
+
                         listviewapt.SelectedIndex = e.Index;
                         textbox.Focus();
                     }
