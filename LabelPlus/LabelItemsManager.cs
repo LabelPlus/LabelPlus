@@ -91,11 +91,15 @@ namespace LabelPlus
             }
             catch { return false; }
         }
-        internal bool addLabelItem(string file, LabelItem item) 
+        internal bool addLabelItem(string file, LabelItem item, int insertIndex = -1) 
         {
             try
             {
-                store[file].Add(item); 
+                if (insertIndex == -1)
+                    store[file].Add(item);
+                else
+                    store[file].Insert(insertIndex, item);
+
                 return true;
             }
             catch { return false; }
@@ -114,11 +118,11 @@ namespace LabelPlus
             }
             catch { return false; }
         }
-        public bool AddLabelItem(string file, LabelItem item)
+        public bool AddLabelItem(string file, LabelItem item, int insertIndex = -1)
         {
             try
             {
-                if (addLabelItem(file, item))
+                if (addLabelItem(file, item, insertIndex))
                 {
                     OnLabelItemListChanged();
                     return true;

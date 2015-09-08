@@ -85,7 +85,11 @@ namespace LabelPlus
                     if (ctrlBePush)
                     {
                         //add
-                        wsp.Store.AddLabelItem(FileName, new LabelItem(e.X_percent, e.Y_percent, ""));
+                        wsp.Store.AddLabelItem(FileName, 
+                            new LabelItem(e.X_percent, e.Y_percent, ""),
+                            listviewapt.SelectedIndex);
+
+                        listviewapt.SelectedIndex = -1;
                     }
                     else 
                     { 
@@ -102,6 +106,8 @@ namespace LabelPlus
                     {
                         //del
                         wsp.Store.DelLabelItem(FileName, e.Index);
+
+                        listviewapt.SelectedIndex = -1;
                     }
                     break;
             }
@@ -156,7 +162,7 @@ namespace LabelPlus
                 {
                     listviewapt.ReloadItems(wsp.Store[fileName]);
                     picview.SetLabels(wsp.Store[fileName]);
-                    listviewapt.SelectedIndex = 0;
+                    listviewapt.SelectedIndex = -1;
                 }
                 else {
                     listviewapt.ReloadItems(null);
