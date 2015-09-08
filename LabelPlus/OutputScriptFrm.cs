@@ -64,8 +64,9 @@ namespace LabelPlus
                         ouputStr += String.Format(str_blank_layer, "end");
 
                     //插入文字
-                    foreach (LabelItem label in store[filename])
+                    for(int labelIndex = store[filename].Count - 1; labelIndex >= 0;labelIndex--)
                     {
+                        LabelItem label = store[filename][labelIndex];
                         string str = label.Text.Trim();
                         if (str == "") continue;
                         str = str.Replace("\r\n", @"\r");
@@ -75,11 +76,12 @@ namespace LabelPlus
                     if (!not_label_num)
                     {
                         //插入标号
-                        int labelNum = 0;
-                        foreach (LabelItem label in store[filename])
+                        int labelNum = store[filename].Count;
+                        for(int labelIndex = store[filename].Count - 1; labelIndex >= 0;labelIndex--)
                         {
-                            labelNum++;
+                            LabelItem label = store[filename][labelIndex];                            
                             ouputStr += String.Format(str_labelnum, labelNum.ToString(), label.X_percent.ToString(), label.Y_percent.ToString());
+                            labelNum--;
                         }
                     }
                     //头部标志
