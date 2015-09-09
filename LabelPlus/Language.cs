@@ -198,6 +198,9 @@ namespace LabelPlus
                 if (control.GetType() == typeof(System.Windows.Forms.SplitterPanel))
                     SetControlNames(control.Controls, table);
 
+                if (control.GetType() == typeof(System.Windows.Forms.TableLayoutPanel))
+                    SetControlNames(control.Controls, table);
+
                 if (control.GetType() == typeof(System.Windows.Forms.MenuStrip))
                 {
                     SetToolStripItemNames(((MenuStrip)control).Items, table);

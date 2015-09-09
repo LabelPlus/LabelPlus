@@ -46,16 +46,13 @@
             this.langToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_EditLabelMode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_HideLabel = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_HideWindow = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripComboBox_File = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton_Left = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_Right = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton_EditBig = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_EditSmall = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton_Clear = new System.Windows.Forms.ToolStripButton();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView = new System.Windows.Forms.ListView();
@@ -69,7 +66,12 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStripButton_HideLabel = new System.Windows.Forms.ToolStripButton();
+            this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStripLabels = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton_EditBig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_EditSmall = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton_Clear = new System.Windows.Forms.ToolStripButton();
             this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -80,6 +82,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.TextBox_GroupBox.SuspendLayout();
+            this.tableLayoutPanelLabels.SuspendLayout();
+            this.toolStripLabels.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -202,11 +206,7 @@
             this.toolStripComboBox_File,
             this.toolStripButton_Left,
             this.toolStripButton_Right,
-            this.toolStripSeparator1,
-            this.toolStripButton_EditBig,
-            this.toolStripButton_EditSmall,
-            this.toolStripSeparator2,
-            this.toolStripButton_Clear});
+            this.toolStripSeparator1});
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(644, 25);
@@ -221,6 +221,13 @@
             this.toolStripButton_EditLabelMode.Name = "toolStripButton_EditLabelMode";
             this.toolStripButton_EditLabelMode.Size = new System.Drawing.Size(49, 22);
             this.toolStripButton_EditLabelMode.Text = "text";
+            // 
+            // toolStripButton_HideLabel
+            // 
+            this.toolStripButton_HideLabel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_HideLabel.Name = "toolStripButton_HideLabel";
+            this.toolStripButton_HideLabel.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButton_HideLabel.Text = "text(&Q)";
             // 
             // toolStripButton_HideWindow
             // 
@@ -268,41 +275,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton_EditBig
-            // 
-            this.toolStripButton_EditBig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_EditBig.Image = global::LabelPlus.Properties.Resources.plus;
-            this.toolStripButton_EditBig.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_EditBig.Name = "toolStripButton_EditBig";
-            this.toolStripButton_EditBig.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton_EditBig.Text = "text";
-            this.toolStripButton_EditBig.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripButton_EditBig.Click += new System.EventHandler(this.toolStripButton_EditBig_Click);
-            // 
-            // toolStripButton_EditSmall
-            // 
-            this.toolStripButton_EditSmall.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_EditSmall.Image = global::LabelPlus.Properties.Resources.minis;
-            this.toolStripButton_EditSmall.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_EditSmall.Name = "toolStripButton_EditSmall";
-            this.toolStripButton_EditSmall.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton_EditSmall.Text = "text";
-            this.toolStripButton_EditSmall.Click += new System.EventHandler(this.toolStripButton_EditSmall_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton_Clear
-            // 
-            this.toolStripButton_Clear.Image = global::LabelPlus.Properties.Resources.clear;
-            this.toolStripButton_Clear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_Clear.Name = "toolStripButton_Clear";
-            this.toolStripButton_Clear.Size = new System.Drawing.Size(49, 22);
-            this.toolStripButton_Clear.Text = "text";
-            this.toolStripButton_Clear.Click += new System.EventHandler(this.toolStripButton_Clear_Click);
-            // 
             // splitContainer
             // 
             this.splitContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -331,7 +303,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listView);
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanelLabels);
             // 
             // splitContainer1.Panel2
             // 
@@ -347,9 +319,9 @@
             this.columnHeader1,
             this.columnHeader3});
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView.Location = new System.Drawing.Point(0, 0);
+            this.listView.Location = new System.Drawing.Point(3, 28);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(236, 236);
+            this.listView.Size = new System.Drawing.Size(230, 205);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -421,12 +393,68 @@
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
-            // toolStripButton_HideLabel
+            // tableLayoutPanelLabels
             // 
-            this.toolStripButton_HideLabel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_HideLabel.Name = "toolStripButton_HideLabel";
-            this.toolStripButton_HideLabel.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButton_HideLabel.Text = "text(&Q)";
+            this.tableLayoutPanelLabels.ColumnCount = 1;
+            this.tableLayoutPanelLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelLabels.Controls.Add(this.toolStripLabels, 0, 0);
+            this.tableLayoutPanelLabels.Controls.Add(this.listView, 0, 1);
+            this.tableLayoutPanelLabels.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelLabels.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelLabels.Name = "tableLayoutPanelLabels";
+            this.tableLayoutPanelLabels.RowCount = 2;
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelLabels.Size = new System.Drawing.Size(236, 236);
+            this.tableLayoutPanelLabels.TabIndex = 3;
+            // 
+            // toolStripLabels
+            // 
+            this.toolStripLabels.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton_EditBig,
+            this.toolStripButton_EditSmall,
+            this.toolStripSeparator2,
+            this.toolStripButton_Clear});
+            this.toolStripLabels.Location = new System.Drawing.Point(0, 0);
+            this.toolStripLabels.Name = "toolStripLabels";
+            this.toolStripLabels.Size = new System.Drawing.Size(236, 25);
+            this.toolStripLabels.TabIndex = 0;
+            this.toolStripLabels.Text = "toolStrip1";
+            // 
+            // toolStripButton_EditBig
+            // 
+            this.toolStripButton_EditBig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_EditBig.Image = global::LabelPlus.Properties.Resources.plus;
+            this.toolStripButton_EditBig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_EditBig.Name = "toolStripButton_EditBig";
+            this.toolStripButton_EditBig.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton_EditBig.Text = "text";
+            this.toolStripButton_EditBig.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripButton_EditBig.Click += new System.EventHandler(this.toolStripButton_EditBig_Click);
+            // 
+            // toolStripButton_EditSmall
+            // 
+            this.toolStripButton_EditSmall.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_EditSmall.Image = global::LabelPlus.Properties.Resources.minis;
+            this.toolStripButton_EditSmall.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_EditSmall.Name = "toolStripButton_EditSmall";
+            this.toolStripButton_EditSmall.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton_EditSmall.Text = "text";
+            this.toolStripButton_EditSmall.Click += new System.EventHandler(this.toolStripButton_EditSmall_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton_Clear
+            // 
+            this.toolStripButton_Clear.Image = global::LabelPlus.Properties.Resources.clear;
+            this.toolStripButton_Clear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_Clear.Name = "toolStripButton_Clear";
+            this.toolStripButton_Clear.Size = new System.Drawing.Size(49, 22);
+            this.toolStripButton_Clear.Text = "text";
+            this.toolStripButton_Clear.Click += new System.EventHandler(this.toolStripButton_Clear_Click);
             // 
             // picView
             // 
@@ -464,6 +492,10 @@
             this.splitContainer1.ResumeLayout(false);
             this.TextBox_GroupBox.ResumeLayout(false);
             this.TextBox_GroupBox.PerformLayout();
+            this.tableLayoutPanelLabels.ResumeLayout(false);
+            this.tableLayoutPanelLabels.PerformLayout();
+            this.toolStripLabels.ResumeLayout(false);
+            this.toolStripLabels.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,10 +515,7 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_File;
         private System.Windows.Forms.ToolStripButton toolStripButton_Left;
         private System.Windows.Forms.ToolStripButton toolStripButton_Right;
-        private System.Windows.Forms.ToolStripButton toolStripButton_Clear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton_EditBig;
-        private System.Windows.Forms.ToolStripButton toolStripButton_EditSmall;
         private System.Windows.Forms.ToolStripMenuItem aboutAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputPhotoshopScriptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitEToolStripMenuItem;
@@ -499,7 +528,6 @@
         private System.Windows.Forms.TextBox TranslateTextBox;
         private System.Windows.Forms.ToolStripMenuItem saveAsDToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox langToolStripComboBox;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
         private System.Windows.Forms.Timer timerAutoSave;
         private System.Windows.Forms.Label labelCtrlEnterTip;
@@ -512,6 +540,12 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ToolStripButton toolStripButton_HideLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelLabels;
+        private System.Windows.Forms.ToolStrip toolStripLabels;
+        private System.Windows.Forms.ToolStripButton toolStripButton_EditBig;
+        private System.Windows.Forms.ToolStripButton toolStripButton_EditSmall;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButton_Clear;
 
     }
 }
