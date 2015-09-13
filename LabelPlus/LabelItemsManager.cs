@@ -141,6 +141,19 @@ namespace LabelPlus
             }
             catch { return false; }
         }
+
+        public bool UpdateLabelCategory(string file, int index, int category)
+        {
+            try
+            {
+                store[file][index].Category = category;
+                //OnLabelItemTextChanged();
+                OnLabelItemListChanged();
+                return true;
+            }
+            catch { return false; }
+        }
+
         public bool DelFile(string file)
         {
             try
@@ -288,7 +301,11 @@ namespace LabelPlus
                     {
                         count++;
                         sr.WriteLine("----------------[" + count.ToString() +
-                            "]----------------[" + n.X_percent.ToString("F3") + "," + n.Y_percent.ToString("F3") + "]");
+                            "]----------------[" + 
+                            n.X_percent.ToString("F3") + "," + 
+                            n.Y_percent.ToString("F3") + "," +
+                            n.Category.ToString() + 
+                            "]");
                         sr.WriteLine(n.Text);
                         sr.WriteLine();
                     }
@@ -347,13 +364,33 @@ namespace LabelPlus
         TheEnd:
             return tmp;
         }
+
         internal void addLabelToStore(string nowText, 
                                         string[] nowLabelResultValues, 
                                         string nowFilename)
-        {           
-            addLabelItem(nowFilename,new LabelItem(Convert.ToSingle(nowLabelResultValues[1]),
-                                Convert.ToSingle(nowLabelResultValues[2]),
-                                nowText.Trim()));
+        {
+            int category;
+
+            //nowLabelResultValues的元素个数 判断是否存在
+            if (nowLabelResultValues.Length == 3) 
+            {
+                category = 1;
+            }
+            else if(nowLabelResultValues.Length == 4)
+            {
+                category = Convert.ToInt16(nowLabelResultValues[3]);
+            }
+            else 
+            {
+                return;     //解析失败
+            }
+
+            LabelItem labelItem = new LabelItem(
+                            Convert.ToSingle(nowLabelResultValues[1]),
+                            Convert.ToSingle(nowLabelResultValues[2]),
+                            nowText.Trim(),
+                            category);
+            addLabelItem(nowFilename, labelItem);
         }
 
         internal bool addFilenameToStore(string nowFilename)

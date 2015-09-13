@@ -1,5 +1,4 @@
 ﻿
-
 /*添加标签文本*/
 artLayerRef = bg.artLayers.add();
 artLayerRef.kind = LayerKind.TEXT;
@@ -12,3 +11,4 @@ textItemRef.direction = Direction.VERTICAL;
 textItemRef.antiAliasMethod = AntiAlias.SMOOTH;
 textItemRef.position = Array(bg.width*{1},bg.height*{2});
 
+artLayerRef.move(group{5}, ElementPlacement.PLACEATBEGINNING);

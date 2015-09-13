@@ -263,8 +263,6 @@ namespace LabelPlus
             TranslateTextBox.Font = newFont;
             listView.Font = newFont;
 
-            oldFont.Dispose();
-            newFont.Dispose();
         }
         private void toolStripButton_EditSmall_Click(object sender, EventArgs e)
         {
@@ -274,8 +272,6 @@ namespace LabelPlus
             TranslateTextBox.Font = newFont;
             listView.Font = newFont;
 
-            oldFont.Dispose();
-            newFont.Dispose();
         }
 
         private void timerAutoSave_Tick(object sender, EventArgs e)
@@ -293,7 +289,7 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, wsp);
+            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView,toolStripButton_SetCategory1,toolStripButton_SetCategory2,toolStripButton_SetCategory3,toolStripButton_SetCategory4, wsp);
             langComboxApt = new LangComboxAdaptor(langToolStripComboBox, this);
 
             SetLayout();
@@ -352,6 +348,7 @@ namespace LabelPlus
             }
         }
         #endregion
+
     }
 
 }

@@ -15,11 +15,11 @@ namespace LabelPlus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            StringResources.SetValue("lang", Language.ReadDefaultLanguage());
-            Language.InitStringResouce(StringResources.GetValue("lang"));
             
             try{
+                StringResources.SetValue("lang", Language.ReadDefaultLanguage());
+                Language.InitStringResouce(StringResources.GetValue("lang"));
+
                 loadPsScript("ps_blank_layer");
                 loadPsScript("ps_close_file");
                 loadPsScript("ps_file_footer");
@@ -27,18 +27,22 @@ namespace LabelPlus
                 loadPsScript("ps_header");
                 loadPsScript("ps_labelnum");
                 loadPsScript("ps_labeltext");
+                loadPsScript("ps_add_group");
+
+                if (GlobalVar.Reload() == false) {
+                    throw new Exception();
+                }
             }
             catch
             {
                 MessageBox.Show("PS_Script Definition Error.");
+                Environment.Exit(1);                
             }
 
             Application.Run(new MainFrm());
         }
 
         static void loadPsScript(string script_name) {
-
-            string ps_script_path = @"PS_Script/";
             StringResources.SetValue(script_name, loadStringFile(@"PS_Script/" + script_name + ".txt"));
         }
 

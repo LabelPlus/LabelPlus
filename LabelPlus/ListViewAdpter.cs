@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
 #endregion
 
 namespace LabelPlus
@@ -18,6 +19,23 @@ namespace LabelPlus
 
         #region Events
         public EventHandler ListViewSelectedIndexChanged;
+
+        public class UserSetCategoryEventArgs : EventArgs{
+            int index;
+            int category; 
+
+            public UserSetCategoryEventArgs(int n, int setCategory)
+            {
+                index = n;
+                category = setCategory;
+            }
+
+            public int Index { get{return index;} }
+            public int Category { get { return category; } } 
+        }
+        public delegate void UserActionEventHandler(object sender, UserSetCategoryEventArgs e);
+        public UserActionEventHandler UserSetCategory;
+
         #endregion
  
         #region Properties
@@ -35,6 +53,7 @@ namespace LabelPlus
             }
             set
             {
+                setLvSelectItem(-1);
                 setLvSelectItem(value);
             }
         }
@@ -68,14 +87,20 @@ namespace LabelPlus
                 {
                     if (lv.Items.Count >= number)
                     {
-                        //edit the Text
+                        //edit the category                        
+                        lv.Items[number - 1].SubItems[2].Text = n.Category.ToString();
+                        lv.Items[number - 1].SubItems[2].ForeColor = GlobalVar.CategoryColor[n.Category];                        
+                        //edit the Text                        
                         lv.Items[number - 1].SubItems[1].Text = n.Text;
+                        lv.Items[number - 1].SubItems[1].ForeColor = GlobalVar.CategoryColor[n.Category];                        
                     }
                     else
                     {
                         //Add item
                         lv.Items.Add(number.ToString());
-                        lv.Items[number - 1].SubItems.Add(n.Text);
+                        lv.Items[number - 1].UseItemStyleForSubItems = false;
+                        lv.Items[number - 1].SubItems.Add(n.Text, GlobalVar.CategoryColor[n.Category],lv.BackColor,lv.Font);
+                        lv.Items[number - 1].SubItems.Add(n.Category.ToString(), GlobalVar.CategoryColor[n.Category], lv.BackColor, lv.Font);                        
                     }
                     number++;
                 }
@@ -134,9 +159,26 @@ namespace LabelPlus
         private void lvClientSizeChanged(object sender, EventArgs e)
         {
             lv.Columns[0].Width =(int)lv.Font.SizeInPoints * 3;
-            lv.Columns[1].Width = lv.ClientSize.Width - lv.Columns[0].Width - 10;
+            lv.Columns[2].Width =(int)lv.Font.SizeInPoints * 2;
+            lv.Columns[1].Width = lv.ClientSize.Width - lv.Columns[0].Width - lv.Columns[2].Width - 10;
         }
 
+        private void lvKeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void lvKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D4)
+            {
+                foreach (int item in lv.SelectedIndices) {
+                    UserSetCategory(sender, new UserSetCategoryEventArgs(item, e.KeyCode - Keys.D1 + 1));
+                }
+
+            }
+            e.SuppressKeyPress = true;
+        }
         #endregion
 
         #region Constructors
@@ -146,19 +188,21 @@ namespace LabelPlus
             lv = listview;
 
             lv.Columns.Clear();
-            lv.Columns.Add("No.", 30);
-            lv.Columns.Add("文本", 20);
+            lv.Columns.Add("No.");            
+            lv.Columns.Add("Text");
+            lv.Columns.Add("Category");
             lv.FullRowSelect = true;
             lv.GridLines = true;
             lv.HideSelection = false;
 
-            lv.MultiSelect = false;
+            lv.MultiSelect = true;
             lv.Scrollable = true;
             lv.HeaderStyle = ColumnHeaderStyle.None;
 
             lv.ClientSizeChanged += new EventHandler(lvClientSizeChanged);
             lv.SelectedIndexChanged += new EventHandler(lvSelectedIndexChanged);
             lv.FontChanged += new EventHandler(lvFontChanged);
+            lv.KeyDown += new KeyEventHandler(lvKeyDown);
             lvClientSizeChanged(this, new EventArgs());
         }
 

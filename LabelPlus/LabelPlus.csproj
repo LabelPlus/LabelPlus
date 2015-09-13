@@ -90,6 +90,7 @@
     <Compile Include="AboutFrm.designer.cs">
       <DependentUpon>AboutFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalVar.cs" />
     <Compile Include="ImageOutputFrm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections.Generic;
 
 namespace LabelPlus
 {
@@ -28,11 +29,12 @@ namespace LabelPlus
             {
                 string str_header = StringResources.GetValue("ps_header");   //只做一次
                 string str_file_header = StringResources.GetValue("ps_file_header");   //每个图片做一次，{0}=文件名
-                string str_labeltext = StringResources.GetValue("ps_labeltext");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比 {3}=字体大小
+                string str_labeltext = StringResources.GetValue("ps_labeltext");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比 {3}=字体大小 {4}=字体名 {5}=组序号
                 string str_labelnum = StringResources.GetValue("ps_labelnum");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比
                 string str_file_footer = StringResources.GetValue("ps_file_footer");   //每个图片做一次，{0}=文件名
                 string str_blank_layer = StringResources.GetValue("ps_header");   //空白图层{0}=图层名
                 string str_close_file = StringResources.GetValue("ps_close_file");
+                string str_add_group = StringResources.GetValue("ps_add_group");    //{0}=组序号
 
                 string str_font_size = (checkBoxSetFontSize.Checked) ? (numericUpDownFontSize.Value.ToString()) : "bg.height/90.0";
                 string str_font = (checkBoxSetFont.Checked && comboBoxFont.SelectedIndex != -1) ? comboBoxFont.Text : "SimSun";
@@ -63,6 +65,23 @@ namespace LabelPlus
                     if (!notSign && !fileWithoutLabel)
                         ouputStr += String.Format(str_blank_layer, "end");
 
+                    //插入分组
+                                        
+                    /* 找出存在的分组 */
+                    HashSet<int> hashSet = new HashSet<int>();
+                    foreach (LabelItem item in store[filename]) {
+                        try
+                        {
+                            hashSet.Add(item.Category);
+                        }
+                        catch { }
+                    }
+
+                    /* 添加分组 */
+                    foreach (int i in hashSet) {
+                        ouputStr += String.Format(str_add_group, i.ToString());
+                    }
+
                     //插入文字
                     for(int labelIndex = store[filename].Count - 1; labelIndex >= 0;labelIndex--)
                     {
@@ -71,7 +90,7 @@ namespace LabelPlus
                         if (str == "") continue;
                         str = str.Replace("\r\n", @"\r");
                         str = str.Replace("\r", @"\r");
-                        ouputStr += String.Format(str_labeltext, str, label.X_percent.ToString(), label.Y_percent.ToString(),str_font_size,str_font);
+                        ouputStr += String.Format(str_labeltext, str, label.X_percent.ToString(), label.Y_percent.ToString(), str_font_size,str_font, label.Category.ToString());
                     }
                     if (!not_label_num)
                     {

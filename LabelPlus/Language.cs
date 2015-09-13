@@ -238,8 +238,11 @@ namespace LabelPlus
                     }
                     else {
                         ToolStripItem item = (ToolStripItem)control;
-                        item.Text = (string)table[item.Name.ToLower()];
-                        item.Owner.Refresh();
+                        if (table.Contains(item.Name.ToLower()))
+                        {                            
+                            item.Text = (string)table[item.Name.ToLower()];
+                            item.Owner.Refresh();
+                        }
                     }
                 }
                 catch { }
