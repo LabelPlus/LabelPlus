@@ -26,14 +26,14 @@ namespace LabelPlus
 
             try
             {
-                string str_header = LabelPlus.Properties.Resources.ps_header;   //只做一次
-                string str_file_header = LabelPlus.Properties.Resources.ps_file_header;   //每个图片做一次，{0}=文件名
-                string str_labeltext = LabelPlus.Properties.Resources.ps_labeltext;   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比 {3}=字体大小
-                string str_labelnum = LabelPlus.Properties.Resources.ps_labelnum;   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比
-                string str_file_footer = LabelPlus.Properties.Resources.ps_file_footer;   //每个图片做一次，{0}=文件名
-                string str_blank_layer = LabelPlus.Properties.Resources.ps_blank_layer;   //空白图层{0}=图层名
+                string str_header = StringResources.GetValue("ps_header");   //只做一次
+                string str_file_header = StringResources.GetValue("ps_file_header");   //每个图片做一次，{0}=文件名
+                string str_labeltext = StringResources.GetValue("ps_labeltext");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比 {3}=字体大小
+                string str_labelnum = StringResources.GetValue("ps_labelnum");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比
+                string str_file_footer = StringResources.GetValue("ps_file_footer");   //每个图片做一次，{0}=文件名
+                string str_blank_layer = StringResources.GetValue("ps_header");   //空白图层{0}=图层名
+                string str_close_file = StringResources.GetValue("ps_close_file");
 
-                string str_close_file = "\nbg.close();\n";
                 string str_font_size = (checkBoxSetFontSize.Checked) ? (numericUpDownFontSize.Value.ToString()) : "bg.height/90.0";
                 string str_font = (checkBoxSetFont.Checked && comboBoxFont.SelectedIndex != -1) ? comboBoxFont.Text : "SimSun";
 
