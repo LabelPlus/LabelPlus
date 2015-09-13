@@ -111,6 +111,11 @@
     <Compile Include="OutputScriptFrm.Designer.cs">
       <DependentUpon>OutputScriptFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StringResources.cs" />
     <Compile Include="LangComboxAdaptor.cs" />
     <Compile Include="Language.cs" />
@@ -150,14 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -181,13 +181,7 @@
     <Content Include="Resources\left.png" />
     <Content Include="Resources\minis.png" />
     <Content Include="Resources\plus.png" />
-    <Content Include="Resources\ps_file_footer.txt" />
     <Content Include="Resources\right.png" />
-    <None Include="Resources\ps_blank_layer.txt" />
-    <None Include="Resources\ps_labelnum.txt" />
-    <None Include="Resources\ps_labeltext.txt" />
-    <None Include="Resources\ps_file_header.txt" />
-    <None Include="Resources\ps_header.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

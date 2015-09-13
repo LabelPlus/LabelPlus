@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using System.IO;
 namespace LabelPlus
 {
+    
+
     static class Program
     {
         /// <summary>
@@ -16,8 +18,37 @@ namespace LabelPlus
 
             StringResources.SetValue("lang", Language.ReadDefaultLanguage());
             Language.InitStringResouce(StringResources.GetValue("lang"));
+            
+            try{
+                loadPsScript("ps_blank_layer");
+                loadPsScript("ps_close_file");
+                loadPsScript("ps_file_footer");
+                loadPsScript("ps_file_header");
+                loadPsScript("ps_header");
+                loadPsScript("ps_labelnum");
+                loadPsScript("ps_labeltext");
+            }
+            catch
+            {
+                MessageBox.Show("PS_Script Definition Error.");
+            }
 
             Application.Run(new MainFrm());
+        }
+
+        static void loadPsScript(string script_name) {
+
+            string ps_script_path = @"PS_Script/";
+            StringResources.SetValue(script_name, loadStringFile(@"PS_Script/" + script_name + ".txt"));
+        }
+
+        static string loadStringFile(string filename) {
+            FileStream fs = new FileStream(filename, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            string str = sr.ReadToEnd();            
+            sr.Close();
+            fs.Close();
+            return str;
         }
     }
 }
