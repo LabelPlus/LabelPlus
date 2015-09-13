@@ -241,6 +241,7 @@
             this.toolStripButton_HideLabel.Name = "toolStripButton_HideLabel";
             this.toolStripButton_HideLabel.Size = new System.Drawing.Size(49, 25);
             this.toolStripButton_HideLabel.Text = "text(&V)";
+            this.toolStripButton_HideLabel.Visible = false;
             // 
             // toolStripButton_HideWindow
             // 
@@ -275,7 +276,6 @@
             this.toolStripButton_SetCategory2.Name = "toolStripButton_SetCategory2";
             this.toolStripButton_SetCategory2.Size = new System.Drawing.Size(35, 25);
             this.toolStripButton_SetCategory2.Text = "G2";
-
             // 
             // toolStripButton_SetCategory3
             // 
@@ -286,7 +286,6 @@
             this.toolStripButton_SetCategory3.Name = "toolStripButton_SetCategory3";
             this.toolStripButton_SetCategory3.Size = new System.Drawing.Size(35, 25);
             this.toolStripButton_SetCategory3.Text = "G3";
-            
             // 
             // toolStripButton_SetCategory4
             // 
@@ -298,7 +297,6 @@
             this.toolStripButton_SetCategory4.Size = new System.Drawing.Size(35, 25);
             this.toolStripButton_SetCategory4.Text = "G4";
             this.toolStripButton_SetCategory4.ToolTipText = "G4";
-            
             // 
             // toolStripSeparator5
             // 
@@ -352,7 +350,7 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.splitContainer1);
             this.splitContainer.Size = new System.Drawing.Size(711, 399);
-            this.splitContainer.SplitterDistance = 443;
+            this.splitContainer.SplitterDistance = 442;
             this.splitContainer.TabIndex = 2;
             // 
             // splitContainer1
@@ -370,7 +368,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.TextBox_GroupBox);
-            this.splitContainer1.Size = new System.Drawing.Size(262, 397);
+            this.splitContainer1.Size = new System.Drawing.Size(263, 397);
             this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -386,7 +384,7 @@
             this.tableLayoutPanelLabels.RowCount = 2;
             this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelLabels.Size = new System.Drawing.Size(262, 234);
+            this.tableLayoutPanelLabels.Size = new System.Drawing.Size(263, 234);
             this.tableLayoutPanelLabels.TabIndex = 3;
             // 
             // toolStripLabels
@@ -401,7 +399,7 @@
             this.toolStripLabelTipSetCategory});
             this.toolStripLabels.Location = new System.Drawing.Point(0, 0);
             this.toolStripLabels.Name = "toolStripLabels";
-            this.toolStripLabels.Size = new System.Drawing.Size(262, 25);
+            this.toolStripLabels.Size = new System.Drawing.Size(263, 25);
             this.toolStripLabels.TabIndex = 0;
             // 
             // toolStripButton_EditBig
@@ -464,7 +462,7 @@
             this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView.Location = new System.Drawing.Point(3, 28);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(256, 203);
+            this.listView.Size = new System.Drawing.Size(257, 203);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -494,7 +492,7 @@
             this.TextBox_GroupBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TextBox_GroupBox.Location = new System.Drawing.Point(0, 0);
             this.TextBox_GroupBox.Name = "TextBox_GroupBox";
-            this.TextBox_GroupBox.Size = new System.Drawing.Size(262, 159);
+            this.TextBox_GroupBox.Size = new System.Drawing.Size(263, 159);
             this.TextBox_GroupBox.TabIndex = 0;
             this.TextBox_GroupBox.TabStop = false;
             // 
@@ -517,7 +515,7 @@
             this.TranslateTextBox.Location = new System.Drawing.Point(3, 22);
             this.TranslateTextBox.Multiline = true;
             this.TranslateTextBox.Name = "TranslateTextBox";
-            this.TranslateTextBox.Size = new System.Drawing.Size(256, 134);
+            this.TranslateTextBox.Size = new System.Drawing.Size(257, 134);
             this.TranslateTextBox.TabIndex = 5;
             this.TranslateTextBox.WordWrap = false;
             // 
@@ -548,7 +546,7 @@
             this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picView.Location = new System.Drawing.Point(0, 0);
             this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(441, 397);
+            this.picView.Size = new System.Drawing.Size(440, 397);
             this.picView.TabIndex = 5;
             this.picView.Zoom = 0.05F;
             // 
