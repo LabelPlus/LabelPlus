@@ -53,6 +53,8 @@
             // notHeadFootSignCheckBox
             // 
             this.notHeadFootSignCheckBox.AutoSize = true;
+            this.notHeadFootSignCheckBox.Checked = true;
+            this.notHeadFootSignCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.notHeadFootSignCheckBox.Location = new System.Drawing.Point(14, 40);
             this.notHeadFootSignCheckBox.Name = "notHeadFootSignCheckBox";
             this.notHeadFootSignCheckBox.Size = new System.Drawing.Size(96, 16);

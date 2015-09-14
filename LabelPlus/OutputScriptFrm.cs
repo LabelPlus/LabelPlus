@@ -32,7 +32,7 @@ namespace LabelPlus
                 string str_labeltext = StringResources.GetValue("ps_labeltext");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比 {3}=字体大小 {4}=字体名 {5}=组序号
                 string str_labelnum = StringResources.GetValue("ps_labelnum");   //每个标签做一次,{0}=文本 {1}=x百分比 {2}=y百分比
                 string str_file_footer = StringResources.GetValue("ps_file_footer");   //每个图片做一次，{0}=文件名
-                string str_blank_layer = StringResources.GetValue("ps_header");   //空白图层{0}=图层名
+                string str_blank_layer = StringResources.GetValue("ps_blank_layer");   //空白图层{0}=图层名
                 string str_close_file = StringResources.GetValue("ps_close_file");
                 string str_add_group = StringResources.GetValue("ps_add_group");    //{0}=组序号
 
@@ -61,25 +61,26 @@ namespace LabelPlus
                     //打开文件
                     ouputStr += String.Format(str_file_header, filename);
 
-                    //尾部标志
-                    if (!notSign && !fileWithoutLabel)
-                        ouputStr += String.Format(str_blank_layer, "end");
-
                     //插入分组
                                         
                     /* 找出存在的分组 */
-                    HashSet<int> hashSet = new HashSet<int>();
+                    HashSet<int> groupHashSet = new HashSet<int>();
                     foreach (LabelItem item in store[filename]) {
                         try
                         {
-                            hashSet.Add(item.Category);
+                            groupHashSet.Add(item.Category);
                         }
                         catch { }
                     }
 
-                    /* 添加分组 */
-                    foreach (int i in hashSet) {
+                    /* 添加分组 以及尾部标记 */
+                    foreach (int i in groupHashSet) {
                         ouputStr += String.Format(str_add_group, i.ToString());
+
+                        //尾部标志
+                        if (!notSign && !fileWithoutLabel)
+                            ouputStr += String.Format(str_blank_layer, "end"+i.ToString(), i.ToString());
+
                     }
 
                     //插入文字
@@ -103,9 +104,13 @@ namespace LabelPlus
                             labelNum--;
                         }
                     }
-                    //头部标志
-                    if (!notSign && !fileWithoutLabel)
-                        ouputStr += String.Format(str_blank_layer, "start");
+
+                    /* 添加分组头部标记 */
+                    foreach (int i in groupHashSet)
+                    {
+                        if (!notSign && !fileWithoutLabel)
+                            ouputStr += String.Format(str_blank_layer, "start" + i.ToString(), i.ToString());
+                    }
                     //保存 关闭文件
                     ouputStr += String.Format(str_file_footer, filename);
                     //关闭文件

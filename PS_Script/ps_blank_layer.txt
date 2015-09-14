@@ -3,3 +3,4 @@
 artLayerRef = bg.artLayers.add();
 artLayerRef.name = "{0}";
 
+artLayerRef.move(group{1}, ElementPlacement.PLACEATBEGINNING);
