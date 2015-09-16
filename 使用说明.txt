@@ -29,13 +29,22 @@ Ctrl+鼠标右键（点击标号）：删除标号
 Ctrl+Tab：向后翻页
 键盘←/→：翻页
 数字键1-4：更改添加标签的分组
+V:按下时临时隐藏标号
 
 文字输入界面中：
 Ctrl+回车：输入下一项文本
 Ctrl+上下：切换编辑的标签项目
 Ctrl+左右：翻页
+Alt+A：快速输入短语菜单
+
 
 标签列表中：
 数字键1-4：更改选中项的分组
+
+---
+设置:
+labelplus_config.xml为LabelPlus的配置文件
+QuickText：修改Alt+A时出现的短语列表
+AutoGroupActionGroupname：默认用户动作组名
 
 by虾包
