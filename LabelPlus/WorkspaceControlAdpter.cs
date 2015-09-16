@@ -24,7 +24,7 @@ namespace LabelPlus
         ToolStripButton categorybutton2;
         ToolStripButton categorybutton3;
         ToolStripButton categorybutton4;
-
+        ContextMenuStrip menuquicktext;
 
         bool editLabelMode = false;
         int itemIndex = -1;
@@ -246,7 +246,15 @@ namespace LabelPlus
                     //Ctrl+right
                     page_right();
                 }
-            } 
+            }
+
+            if (e.Alt) {
+                if (e.KeyCode == Keys.A) { 
+                    //Alt+A
+                    menuquicktext.Show(textbox,textbox.Location);
+                    e.SuppressKeyPress = true;
+                }
+            }
         }    
         private void textboxPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -342,10 +350,16 @@ namespace LabelPlus
                 newLabelCcategory = 4;
             }
         }
+
+        private void quickTextItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            textbox.AppendText(e.ClickedItem.ToolTipText);
+        }
+
         #endregion
 
         #region Constructors
-        public WorkspaceControlAdpter(ToolStripButton toolStripButtonEditLabelMode, ToolStripComboBox FileSelectComboBox, TextBox TranslateTextBox, GroupBox TextBoxGroupBox, ListViewAdpter LabelListViewAPT, PicView picView, ToolStripButton catebtn1, ToolStripButton catebtn2, ToolStripButton catebtn3, ToolStripButton catebtn4, Workspace workspace)
+        public WorkspaceControlAdpter(ToolStripButton toolStripButtonEditLabelMode, ToolStripComboBox FileSelectComboBox, TextBox TranslateTextBox, GroupBox TextBoxGroupBox, ListViewAdpter LabelListViewAPT, PicView picView, ToolStripButton catebtn1, ToolStripButton catebtn2, ToolStripButton catebtn3, ToolStripButton catebtn4,ContextMenuStrip contextMenuQuictText , Workspace workspace)
         {
 
             wsp = workspace;
@@ -394,11 +408,18 @@ namespace LabelPlus
             categorybutton2.ForeColor = GlobalVar.CategoryColor[2];
             categorybutton3.ForeColor = GlobalVar.CategoryColor[3];
             categorybutton4.ForeColor = GlobalVar.CategoryColor[4];
-            categorybutton1.Checked = true;
+            categorybutton1.Checked = true;           
+
+            menuquicktext = contextMenuQuictText;
+            foreach(GlobalVar.QuickTextItem item in GlobalVar.QuickTextItems){
+                string menuItemStr = item.Text + "(&" + item.Key + ")";
+                menuquicktext.Items.Add(menuItemStr).ToolTipText = item.Text;
+
+            }
+            menuquicktext.ItemClicked += new ToolStripItemClickedEventHandler(quickTextItemClicked);
 
             NewFile();
         }
-
         #endregion
 
     }

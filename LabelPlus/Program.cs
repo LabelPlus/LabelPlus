@@ -15,11 +15,11 @@ namespace LabelPlus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            StringResources.SetValue("lang", Language.ReadDefaultLanguage());
+            Language.InitStringResouce(StringResources.GetValue("lang"));
             
             try{
-                StringResources.SetValue("lang", Language.ReadDefaultLanguage());
-                Language.InitStringResouce(StringResources.GetValue("lang"));
-
                 loadPsScript("ps_blank_layer");
                 loadPsScript("ps_close_file");
                 loadPsScript("ps_file_footer");
@@ -30,15 +30,17 @@ namespace LabelPlus
                 loadPsScript("ps_add_group");
                 loadPsScript("ps_run_action");
                 loadPsScript("ps_del_group_sign");
-
-                if (GlobalVar.Reload() == false) {
-                    throw new Exception();
-                }
             }
             catch
             {
                 MessageBox.Show("PS_Script Definition Error.");
-                Environment.Exit(1);                
+                Environment.Exit(1);
+            }
+
+            if (GlobalVar.Reload() == false)
+            {
+                MessageBox.Show("Read \"labelplus_config.xml\" Error!");
+                Environment.Exit(1);
             }
 
             Application.Run(new MainFrm());

@@ -169,6 +169,9 @@ namespace LabelPlus
                 }
             }
             catch { }
+
+            /* 载入默认配置 */
+            textBoxAutoGroupActionGroupname.Text = GlobalVar.AutoGroupActionGroupname;
         }
 
         private void checkBoxSetFont_CheckedChanged(object sender, EventArgs e)
