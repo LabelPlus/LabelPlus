@@ -50,6 +50,12 @@
       <Control name="checkBoxSetFont" text="Set Font:" />
       <Control name="checkBoxSetFontSize" text="Set Font Size" />
       <Control name="outputButton" text="Output" />
+      <Control name="checkBoxUseOtherFileType" text="Use other file type" />
+      <Control name="checkBoxAutoGroupAction" text="execute action GroupN to layer group" />
+      <Control name="labelAutoGroupActionTip" text="(action group name)" />
+      <Control name="labelOutputItemTip" text="Output Item" />
+      <Control name="labelDefaultFormatTip" text="Default Format" />
+      <Control name="labelAutodoTip" text="Auto Do" />	  	  
     </Controls>
   </Form>
 

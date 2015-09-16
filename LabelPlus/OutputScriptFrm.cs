@@ -28,8 +28,12 @@ namespace LabelPlus
             bool notSign = !notHeadFootSignCheckBox.Checked;
             bool notCloseFile = notCloseFileCheckBox.Checked;
             bool dealUnLabeledFile = checkBoxMakeUnLabeledFile.Checked;
+
             bool useNewFilenameExtension = checkBoxUseOtherFileType.Checked;
             string newFilenameExtension = textBoxFileType.Text;
+
+            bool runGroupAction = checkBoxAutoGroupAction.Checked;
+            string autoGroupActionGroupname = textBoxAutoGroupActionGroupname.Text;
 
             try
             {
@@ -41,6 +45,8 @@ namespace LabelPlus
                 string str_blank_layer = StringResources.GetValue("ps_blank_layer");   //空白图层{0}=图层名
                 string str_close_file = StringResources.GetValue("ps_close_file");
                 string str_add_group = StringResources.GetValue("ps_add_group");    //{0}=组序号
+                string str_run_action = StringResources.GetValue("ps_run_action");    //{0}：图层分组序号 {1}：动作分组名
+                string str_del_group_sign = StringResources.GetValue("ps_del_group_sign"); //{0}：图层分组序号
 
                 string str_font_size = (checkBoxSetFontSize.Checked) ? (numericUpDownFontSize.Value.ToString()) : "bg.height/90.0";
                 string str_font = (checkBoxSetFont.Checked && comboBoxFont.SelectedIndex != -1) ? comboBoxFont.Text : "SimSun";
@@ -79,12 +85,14 @@ namespace LabelPlus
                         catch { }
                     }
 
-                    /* 添加分组 以及尾部标记 */
+                    /* 遍历分组 */
                     foreach (int i in groupHashSet) {
+
+                        /* 添加分组 */
                         ouputStr += String.Format(str_add_group, i.ToString());
 
-                        //尾部标志
-                        if (!notSign && !fileWithoutLabel)
+                        //添加尾部标志
+                        if (runGroupAction || (!notSign && !fileWithoutLabel))
                             ouputStr += String.Format(str_blank_layer, "end"+i.ToString(), i.ToString());
 
                     }
@@ -111,11 +119,20 @@ namespace LabelPlus
                         }
                     }
 
-                    /* 添加分组头部标记 */
+                    /* 遍历分组 */
                     foreach (int i in groupHashSet)
                     {
-                        if (!notSign && !fileWithoutLabel)
+                        /* 添加首部标记 */
+                        if (runGroupAction || (!notSign && !fileWithoutLabel))
                             ouputStr += String.Format(str_blank_layer, "start" + i.ToString(), i.ToString());
+
+                        /* 执行动作 */
+                        if (runGroupAction)
+                            ouputStr += String.Format(str_run_action, i.ToString(), autoGroupActionGroupname);
+
+                        /* 删除标记 */
+                        if(notSign)
+                            ouputStr += String.Format(str_del_group_sign, i.ToString());
                     }
                     //保存 关闭文件
                     ouputStr += String.Format(str_file_footer, outputFilename);
@@ -167,6 +184,11 @@ namespace LabelPlus
         private void checkBoxUseOtherFileType_CheckedChanged(object sender, EventArgs e)
         {
             textBoxFileType.Enabled = checkBoxUseOtherFileType.Checked;
+        }
+
+        private void checkBoxAutoGroupAction_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxAutoGroupActionGroupname.Enabled = checkBoxAutoGroupAction.Checked;
         }
     }
 }

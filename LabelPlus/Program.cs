@@ -28,6 +28,8 @@ namespace LabelPlus
                 loadPsScript("ps_labelnum");
                 loadPsScript("ps_labeltext");
                 loadPsScript("ps_add_group");
+                loadPsScript("ps_run_action");
+                loadPsScript("ps_del_group_sign");
 
                 if (GlobalVar.Reload() == false) {
                     throw new Exception();
