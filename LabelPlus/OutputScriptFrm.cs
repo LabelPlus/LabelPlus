@@ -18,12 +18,18 @@ namespace LabelPlus
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
         }
 
+        private string changeFilenameExtension(string filename, string newExtension) {
+            return filename.Substring(0, filename.LastIndexOf('.')) + newExtension;
+        }
+
         private void outputButton_Click(object sender, EventArgs e)
         {
             bool not_label_num = !labelNumCheckBox.Checked;
             bool notSign = !notHeadFootSignCheckBox.Checked;
             bool notCloseFile = notCloseFileCheckBox.Checked;
-            bool dealUnLabeledFile = checkBoxMakeUnLabeledFile.Checked;           
+            bool dealUnLabeledFile = checkBoxMakeUnLabeledFile.Checked;
+            bool useNewFilenameExtension = checkBoxUseOtherFileType.Checked;
+            string newFilenameExtension = textBoxFileType.Text;
 
             try
             {
@@ -39,8 +45,6 @@ namespace LabelPlus
                 string str_font_size = (checkBoxSetFontSize.Checked) ? (numericUpDownFontSize.Value.ToString()) : "bg.height/90.0";
                 string str_font = (checkBoxSetFont.Checked && comboBoxFont.SelectedIndex != -1) ? comboBoxFont.Text : "SimSun";
 
-
-
                 //让用户选择目录
                 string ouputStr = str_header;
 
@@ -49,6 +53,8 @@ namespace LabelPlus
 
                 foreach (string filename in keys)
                 {
+                    string outputFilename = useNewFilenameExtension ? changeFilenameExtension(filename, newFilenameExtension) : filename;
+
                     bool fileWithoutLabel = false;
                     if (store[filename].Count == 0) {
                         if (dealUnLabeledFile)      //处理未标号文件
@@ -59,7 +65,7 @@ namespace LabelPlus
                     }
 
                     //打开文件
-                    ouputStr += String.Format(str_file_header, filename);
+                    ouputStr += String.Format(str_file_header, outputFilename);
 
                     //插入分组
                                         
@@ -112,7 +118,7 @@ namespace LabelPlus
                             ouputStr += String.Format(str_blank_layer, "start" + i.ToString(), i.ToString());
                     }
                     //保存 关闭文件
-                    ouputStr += String.Format(str_file_footer, filename);
+                    ouputStr += String.Format(str_file_footer, outputFilename);
                     //关闭文件
                     if (!notCloseFile) ouputStr += str_close_file;
                 }
@@ -156,6 +162,11 @@ namespace LabelPlus
         private void checkBoxSetFontSize_CheckedChanged(object sender, EventArgs e)
         {
             numericUpDownFontSize.Enabled = checkBoxSetFontSize.Checked;
+        }
+
+        private void checkBoxUseOtherFileType_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxFileType.Enabled = checkBoxUseOtherFileType.Checked;
         }
     }
 }

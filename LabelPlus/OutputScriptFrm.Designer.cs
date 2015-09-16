@@ -37,6 +37,8 @@
             this.comboBoxFont = new System.Windows.Forms.ComboBox();
             this.checkBoxSetFontSize = new System.Windows.Forms.CheckBox();
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxUseOtherFileType = new System.Windows.Forms.CheckBox();
+            this.textBoxFileType = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +76,7 @@
             // 
             // outputButton
             // 
-            this.outputButton.Location = new System.Drawing.Point(107, 154);
+            this.outputButton.Location = new System.Drawing.Point(107, 179);
             this.outputButton.Name = "outputButton";
             this.outputButton.Size = new System.Drawing.Size(87, 26);
             this.outputButton.TabIndex = 1;
@@ -128,7 +130,7 @@
             // numericUpDownFontSize
             // 
             this.numericUpDownFontSize.Enabled = false;
-            this.numericUpDownFontSize.Location = new System.Drawing.Point(188, 127);
+            this.numericUpDownFontSize.Location = new System.Drawing.Point(188, 125);
             this.numericUpDownFontSize.Maximum = new decimal(new int[] {
             50,
             0,
@@ -149,15 +151,37 @@
             0,
             0});
             // 
+            // checkBoxUseOtherFileType
+            // 
+            this.checkBoxUseOtherFileType.AutoSize = true;
+            this.checkBoxUseOtherFileType.Location = new System.Drawing.Point(14, 150);
+            this.checkBoxUseOtherFileType.Name = "checkBoxUseOtherFileType";
+            this.checkBoxUseOtherFileType.Size = new System.Drawing.Size(120, 16);
+            this.checkBoxUseOtherFileType.TabIndex = 0;
+            this.checkBoxUseOtherFileType.Text = "使用其他类型图源";
+            this.checkBoxUseOtherFileType.UseVisualStyleBackColor = true;
+            this.checkBoxUseOtherFileType.CheckedChanged += new System.EventHandler(this.checkBoxUseOtherFileType_CheckedChanged);
+            // 
+            // textBoxFileType
+            // 
+            this.textBoxFileType.Enabled = false;
+            this.textBoxFileType.Location = new System.Drawing.Point(188, 145);
+            this.textBoxFileType.Name = "textBoxFileType";
+            this.textBoxFileType.Size = new System.Drawing.Size(58, 21);
+            this.textBoxFileType.TabIndex = 5;
+            this.textBoxFileType.Text = ".psd";
+            // 
             // OutputScriptFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(330, 191);
+            this.ClientSize = new System.Drawing.Size(330, 217);
+            this.Controls.Add(this.textBoxFileType);
             this.Controls.Add(this.numericUpDownFontSize);
             this.Controls.Add(this.comboBoxFont);
             this.Controls.Add(this.outputButton);
+            this.Controls.Add(this.checkBoxUseOtherFileType);
             this.Controls.Add(this.checkBoxSetFontSize);
             this.Controls.Add(this.checkBoxSetFont);
             this.Controls.Add(this.checkBoxMakeUnLabeledFile);
@@ -187,5 +211,7 @@
         private System.Windows.Forms.ComboBox comboBoxFont;
         private System.Windows.Forms.CheckBox checkBoxSetFontSize;
         private System.Windows.Forms.NumericUpDown numericUpDownFontSize;
+        private System.Windows.Forms.CheckBox checkBoxUseOtherFileType;
+        private System.Windows.Forms.TextBox textBoxFileType;
     }
 }
