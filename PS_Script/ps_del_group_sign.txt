@@ -1,0 +1,3 @@
+﻿
+/*删除头尾标记*/
+app.doAction("del_group_sign_g{0}","_LabelplusActionLib.ATN");
