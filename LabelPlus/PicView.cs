@@ -37,6 +37,7 @@ namespace LabelPlus
 
         public delegate void UserActionEventHandler(object sender, LabelUserActionEventArgs e);
         /*Label相关*/
+        private bool hideLabel = false;
         public UserActionEventHandler LabelUserClickAction;
         //public UserActionEventHandler LabelUserAddAction;
         //public UserActionEventHandler LabelUserDelAction;
@@ -145,6 +146,9 @@ namespace LabelPlus
             
             //标签操作相关事件
             this.MouseClick += new MouseEventHandler(this.PicView_Label_MouseClick);
+            this.KeyDown += new KeyEventHandler(PicView_label_KeyDown);
+            this.KeyUp += new KeyEventHandler(PicView_Label_KeyUp);
+
 
             //提示标签
             toolTip.UseFading = false;
@@ -152,6 +156,8 @@ namespace LabelPlus
             toolTip.BackColor = Color.Black;
             toolTip.ForeColor = Color.White;
         }
+
+
 
         #region 绘图操作
         /**
@@ -187,31 +193,34 @@ namespace LabelPlus
                 image = new Bitmap(imageOriginal, (int)(imageOriginal.Size.Width * zoom), (int)(imageOriginal.Size.Height * zoom));
                 //贴上标签
                 Graphics tmp = Graphics.FromImage(image);
-                for (int i = 0; i < labels.Count; i++)
-                {
-                    RectangleF rect = getLabelRectangle(labels[i].X_percent, labels[i].Y_percent,image);
-                    Font myFont = new System.Drawing.Font(new FontFamily("Arial"), LabelSideLength(image) / 1.5f, FontStyle.Bold);
+                if (!hideLabel)
+                {                    
+                    for (int i = 0; i < labels.Count; i++)
+                    {
+                        RectangleF rect = getLabelRectangle(labels[i].X_percent, labels[i].Y_percent, image);
+                        Font myFont = new System.Drawing.Font(new FontFamily("Arial"), LabelSideLength(image) / 1.5f, FontStyle.Bold);
 
-                    Brush myBrushRed = new SolidBrush(GlobalVar.CategoryColor[labels[i].Category]);
-                    Brush myBrushWhite = new SolidBrush(Color.White);
-                    Pen mySidePen = new Pen(myBrushRed, LabelSideLength(image) / 10f);
+                        Brush myBrushRed = new SolidBrush(GlobalVar.CategoryColor[labels[i].Category]);
+                        Brush myBrushWhite = new SolidBrush(Color.White);
+                        Pen mySidePen = new Pen(myBrushRed, LabelSideLength(image) / 10f);
 
-                    StringFormat sf = new StringFormat();
-                    sf.Alignment = StringAlignment.Center;
-                    sf.LineAlignment = StringAlignment.Center;
+                        StringFormat sf = new StringFormat();
+                        sf.Alignment = StringAlignment.Center;
+                        sf.LineAlignment = StringAlignment.Center;
 
-                    ////背发光
-                    //tmp.DrawString(i.ToString(), myFont, myBrushWhite, rect.X - LabelSideLength * 0.03f, rect.Y - LabelSideLength * 0.03f);
-                    //实体字
+                        ////背发光
+                        //tmp.DrawString(i.ToString(), myFont, myBrushWhite, rect.X - LabelSideLength * 0.03f, rect.Y - LabelSideLength * 0.03f);
+                        //实体字
 
-                    tmp.DrawString((i + 1).ToString(), myFont, myBrushRed, rect, sf);
-                    //外框                
-                    //tmp.DrawRectangle(mySidePen, rect.X, rect.Y, rect.Width, rect.Height);
-                    myFont.Dispose();
-                    myBrushRed.Dispose();
-                    myBrushWhite.Dispose();
-                    mySidePen.Dispose();
-                    sf.Dispose();                                        
+                        tmp.DrawString((i + 1).ToString(), myFont, myBrushRed, rect, sf);
+                        //外框                
+                        //tmp.DrawRectangle(mySidePen, rect.X, rect.Y, rect.Width, rect.Height);
+                        myFont.Dispose();
+                        myBrushRed.Dispose();
+                        myBrushWhite.Dispose();
+                        mySidePen.Dispose();
+                        sf.Dispose();
+                    }
                 }
 
                 Refresh();
@@ -461,6 +470,25 @@ namespace LabelPlus
             catch { }
         }
 
+        private void PicView_label_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.V)
+            {
+                hideLabel = true;
+                MakeImage(ref image, ref imageOriginal);
+            }
+        }
+
+        private void PicView_Label_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.V)
+            {
+                hideLabel = false;
+                MakeImage(ref image, ref imageOriginal);
+            }
+        }
+
+   
         #endregion
 
     }
