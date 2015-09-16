@@ -3,12 +3,7 @@
 <!-- By Noodlefighter-->
 <Resource>
   <Form>
-    <Name>OutputScriptFrm</Name>
-    <Controls>
-      <Control name="fileToolStripMenuItem" text="File(&amp;F)" />
-    </Controls>
-  </Form>
-  <Form>
+
     <Name>MainFrm</Name>
     <Controls>
       <!-- 菜单 -->
@@ -46,6 +41,7 @@
 
   <Form>
     <Name>OutputScriptFrm</Name>
+	<Text>Output Photoshop Script</Text>	
     <Controls>
       <Control name="LabelNumCheckBox" text="Output labels(1,2,3...)" />
       <Control name="notHeadFootSignCheckBox" text="Add the mark:start,end " />
@@ -59,6 +55,7 @@
 
   <Form>
     <Name>ImageOutputFrm</Name>
+	<Text>Output All Images</Text>	
     <Controls>
       <Control name="labelOutputFormat" text="File Format" />
       <Control name="labelZoom" text="Zoom" />
@@ -68,6 +65,7 @@
   </Form>
   <Form>
     <Name>ManageImageFrm</Name>
+	<Text>Image Manager</Text>	
     <Controls>
       <Control name="labelFolderFile" text="File in the same folder" />
       <Control name="labelIncludedFile" text="Included File" />

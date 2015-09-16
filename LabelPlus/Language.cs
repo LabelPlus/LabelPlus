@@ -91,6 +91,17 @@ namespace LabelPlus
 
             XmlNode root = doc.DocumentElement;
             XmlNodeList nodelist = root.SelectNodes("Form[Name='" + frmName + "']/Controls/Control");
+
+            //读窗口文本
+            try
+            {
+                XmlNode frmRoot = root.SelectSingleNode("Form[Name='" + frmName + "']/Text");
+                result.Add(frmName.ToLower(), frmRoot.InnerText);
+            }
+            catch {
+                Console.WriteLine("not found frm language resource: " + frmName);
+            }
+
             foreach (XmlNode node in nodelist)
             {
                 try
@@ -121,6 +132,7 @@ namespace LabelPlus
             try
             {
                 SetControlNames(form.Controls, table);
+                form.Text = (string)table[form.Name.ToLower()];     //若不存在 异常将被捕获
             }
             catch (Exception ex)
             {

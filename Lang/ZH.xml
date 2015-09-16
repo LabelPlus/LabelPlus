@@ -39,6 +39,7 @@
 
   <Form>
     <Name>OutputScriptFrm</Name>
+	<Text>导出PS脚本</Text>	
     <Controls>
       <Control name="LabelNumCheckBox" text="导出标号(1、2、3…)" />
       <Control name="notLabelNumCheckBox" text="添加头尾标志(start、end)" />
@@ -52,6 +53,7 @@
 
   <Form>
     <Name>ImageOutputFrm</Name>
+	<Text>导出带标记图片</Text>	
     <Controls>
       <Control name="labelOutputFormat" text="输出格式" />
       <Control name="labelZoom" text="缩放比例" />
@@ -62,6 +64,7 @@
 
   <Form>
     <Name>ManageImageFrm</Name>
+	<Text>图片管理</Text>	
     <Controls>
       <Control name="labelFolderFile" text="忽略文件" />
       <Control name="labelIncludedFile" text="包含文件" />
