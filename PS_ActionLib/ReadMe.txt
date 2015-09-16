@@ -28,3 +28,5 @@ LabelPlus中 部分流程自动化功能需要该动作库支持
 
 Tip:
 动作库中包含一个空动作"_VER_?_"用于表示动作库版本，若低于所需版本，请更新。
+
+LabelPlusActionDome.atn 为用户动作示例
