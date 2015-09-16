@@ -132,7 +132,8 @@ namespace LabelPlus
             try
             {
                 SetControlNames(form.Controls, table);
-                form.Text = (string)table[form.Name.ToLower()];     //若不存在 异常将被捕获
+                if(table.Contains(form.Name.ToLower()))
+                    form.Text = (string)table[form.Name.ToLower()];
             }
             catch (Exception ex)
             {
