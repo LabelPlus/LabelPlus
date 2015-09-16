@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AppConfig>
+  <QuickText>
+    <Item>
+        <Text>啊</Text>
+        <Key>A</Key>
+    </Item>
+    <Item>
+        <Text>嗯</Text>
+        <Key>E</Key>
+    </Item>
+    <Item>
+        <Text>呜</Text>
+        <Key>W</Key>
+    </Item>    
+    <Item>
+        <Text>❤</Text>
+        <Key>1</Key>
+    </Item>    
+    <Item>
+        <Text>♡</Text>
+        <Key>2</Key>
+    </Item>    
+    <Item>
+        <Text>♪</Text>
+        <Key>3</Key>
+    </Item>    
+  </QuickText>
+  
+  <AutoGroupActionGroupname>LabelPlusActionDome</AutoGroupActionGroupname>
+</AppConfig>
