@@ -35,7 +35,7 @@
 	  
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Next Label" />
-
+      <Control name="toolStripLabelTipSetCategory" text="Key1-4 for Setting Category" />	  
     </Controls>
   </Form>
 

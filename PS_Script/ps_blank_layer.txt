@@ -1,5 +1,5 @@
-
-/*Ö»ÓĞÃû×ÖµÄ¿Õ°×Í¼²ã*/
+ï»¿
+/*åªæœ‰åå­—çš„ç©ºç™½å›¾å±‚*/
 artLayerRef = bg.artLayers.add();
 artLayerRef.name = "{0}";
 

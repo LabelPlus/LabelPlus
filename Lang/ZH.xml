@@ -34,6 +34,7 @@
       
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter切换到下一条" />
+      <Control name="toolStripLabelTipSetCategory" text="1-4键设置分类" />	  
     </Controls>
   </Form>
 
