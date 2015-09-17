@@ -289,7 +289,7 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, toolStripButton_SetCategory1, toolStripButton_SetCategory2, toolStripButton_SetCategory3, toolStripButton_SetCategory4, contextMenuStripQuickText, wsp);
+            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, contextMenuStripQuickText,toolStrip, wsp);
             langComboxApt = new LangComboxAdaptor(langToolStripComboBox, this);
 
             SetLayout();
@@ -348,6 +348,7 @@ namespace LabelPlus
             }
         }
         #endregion
+         
 
     }
 

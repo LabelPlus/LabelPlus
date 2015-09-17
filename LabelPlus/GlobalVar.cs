@@ -9,7 +9,13 @@ namespace LabelPlus
 {
     static class GlobalVar
     {
-        public static Color[] CategoryColor;
+        public struct GroupDefineItem
+        {
+            public string Name;
+            public Color Color;
+        }
+        public static GroupDefineItem[] GroupDefineItems;
+
         public struct QuickTextItem
         {
             public string Text;
@@ -21,13 +27,6 @@ namespace LabelPlus
         public static bool Reload() {
             try
             {
-                CategoryColor = new Color[5];
-                CategoryColor[1] = Color.Black;
-                CategoryColor[1] = Color.Red;
-                CategoryColor[2] = Color.Blue;
-                CategoryColor[3] = Color.Green;
-                CategoryColor[4] = Color.DarkOrange;
-
                 /* 读配置文件 */
 
                 FileInfo fi = new FileInfo(@"labelplus_config.xml");
@@ -51,7 +50,29 @@ namespace LabelPlus
                 /* AutoGroupActionGroupname */
                 AutoGroupActionGroupname = doc.SelectSingleNode("AppConfig/AutoGroupActionGroupname").InnerText;
 
-                    return true;
+                /* GroupDefine */
+                XmlNodeList GroupDefine = doc.SelectNodes("AppConfig/GroupDefine/Group");
+                GroupDefineItems = new GroupDefineItem[GroupDefine.Count];
+
+                int gourpItemNum = 0;
+                foreach (XmlNode node in GroupDefine) {
+                    GroupDefineItem item;
+                    item.Name = node.SelectSingleNode("Name").InnerText;
+                    string rgbText = node.SelectSingleNode("RGB").InnerText;
+                    string[] rgbTexts = rgbText.Split(',');
+                                        
+                    item.Color = Color.FromArgb(Convert.ToInt16(rgbTexts[0]),
+                        Convert.ToInt16(rgbTexts[1]),
+                        Convert.ToInt16(rgbTexts[2]));
+
+                    GroupDefineItems[gourpItemNum] = item;
+
+                    gourpItemNum++;
+                    if (gourpItemNum == 10)
+                        return false;
+                }
+
+                return true;
             }
             catch {
                 return false;

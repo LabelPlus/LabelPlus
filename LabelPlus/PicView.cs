@@ -200,7 +200,7 @@ namespace LabelPlus
                         RectangleF rect = getLabelRectangle(labels[i].X_percent, labels[i].Y_percent, image);
                         Font myFont = new System.Drawing.Font(new FontFamily("Arial"), LabelSideLength(image) / 1.5f, FontStyle.Bold);
 
-                        Brush myBrushRed = new SolidBrush(GlobalVar.CategoryColor[labels[i].Category]);
+                        Brush myBrushRed = new SolidBrush(GlobalVar.GroupDefineItems[labels[i].Category-1].Color);
                         Brush myBrushWhite = new SolidBrush(Color.White);
                         Pen mySidePen = new Pen(myBrushRed, LabelSideLength(image) / 10f);
 

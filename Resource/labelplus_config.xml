@@ -28,4 +28,24 @@
   </QuickText>
   
   <AutoGroupActionGroupname>LabelPlusActionDome</AutoGroupActionGroupname>
+  
+  <GroupDefine>    
+    <Group>
+        <Name>框内普通</Name>
+        <RGB>255,0,0</RGB>
+    </Group>
+    <Group>
+        <Name>框内心理</Name>
+        <RGB>0,0,255</RGB>
+    </Group>
+    <Group>
+        <Name>框外</Name>
+        <RGB>0,255,0</RGB>
+    </Group>
+    <Group>
+        <Name>其他</Name>
+        <RGB>255,135,0</RGB>
+    </Group>   
+  </GroupDefine>
+  
 </AppConfig>

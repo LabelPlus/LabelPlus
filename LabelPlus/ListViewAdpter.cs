@@ -61,6 +61,12 @@ namespace LabelPlus
 
         #region Methods
 
+        string getCategoryName(int index) {
+            return (index).ToString() +
+                "_" +
+                GlobalVar.GroupDefineItems[index-1].Name;
+        }
+
         public bool ReloadItems(List<LabelItem> items)
         {
             try
@@ -88,19 +94,25 @@ namespace LabelPlus
                     if (lv.Items.Count >= number)
                     {
                         //edit the category                        
-                        lv.Items[number - 1].SubItems[2].Text = n.Category.ToString();
-                        lv.Items[number - 1].SubItems[2].ForeColor = GlobalVar.CategoryColor[n.Category];                        
+                        lv.Items[number - 1].SubItems[2].Text = getCategoryName(n.Category);
+
+                        lv.Items[number - 1].SubItems[2].ForeColor =
+                            GlobalVar.GroupDefineItems[n.Category-1].Color; 
+                    
                         //edit the Text                        
                         lv.Items[number - 1].SubItems[1].Text = n.Text;
-                        lv.Items[number - 1].SubItems[1].ForeColor = GlobalVar.CategoryColor[n.Category];                        
+                        //lv.Items[number - 1].SubItems[1].ForeColor = GlobalVar.CategoryColor[n.Category];                        
                     }
                     else
                     {
                         //Add item
                         lv.Items.Add(number.ToString());
                         lv.Items[number - 1].UseItemStyleForSubItems = false;
-                        lv.Items[number - 1].SubItems.Add(n.Text, GlobalVar.CategoryColor[n.Category],lv.BackColor,lv.Font);
-                        lv.Items[number - 1].SubItems.Add(n.Category.ToString(), GlobalVar.CategoryColor[n.Category], lv.BackColor, lv.Font);                        
+                        lv.Items[number - 1].SubItems.Add(n.Text);
+                        lv.Items[number - 1].SubItems.Add(getCategoryName(n.Category),
+                            GlobalVar.GroupDefineItems[n.Category-1].Color, 
+                            lv.BackColor, 
+                            lv.Font);                        
                     }
                     number++;
                 }
@@ -159,18 +171,13 @@ namespace LabelPlus
         private void lvClientSizeChanged(object sender, EventArgs e)
         {
             lv.Columns[0].Width =(int)lv.Font.SizeInPoints * 3;
-            lv.Columns[2].Width =(int)lv.Font.SizeInPoints * 2;
+            lv.Columns[2].Width =(int)lv.Font.SizeInPoints * 10;
             lv.Columns[1].Width = lv.ClientSize.Width - lv.Columns[0].Width - lv.Columns[2].Width - 10;
-        }
-
-        private void lvKeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void lvKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D4)
+            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
             {
                 foreach (int item in lv.SelectedIndices) {
                     UserSetCategory(sender, new UserSetCategoryEventArgs(item, e.KeyCode - Keys.D1 + 1));

@@ -15,21 +15,18 @@ namespace LabelPlus
 
         ToolStripButton editlabelbutton; 
         ToolStripComboBox combo;
-        TextBox textbox;
-        ListViewAdpter listviewapt;
-        PicView picview;
-        Workspace wsp;
+        TextBox textbox;       
+        PicView picview;        
         GroupBox textboxgroupbox;
-        ToolStripButton categorybutton1;
-        ToolStripButton categorybutton2;
-        ToolStripButton categorybutton3;
-        ToolStripButton categorybutton4;
         ContextMenuStrip menuquicktext;
+
+        ListViewAdpter listviewapt;
+        GroupButtonAdaptor groupbuttons;
+        Workspace wsp;
 
         bool editLabelMode = false;
         int itemIndex = -1;
         string fileName = "";
-        int newLabelCcategory = 1;
 
         #endregion
 
@@ -96,7 +93,7 @@ namespace LabelPlus
                     {
                         //add
                         wsp.Store.AddLabelItem(FileName,
-                            new LabelItem(e.X_percent, e.Y_percent, "", newLabelCcategory),
+                            new LabelItem(e.X_percent, e.Y_percent, "", groupbuttons.SelectIndex + 1),
                             listviewapt.SelectedIndex);
 
                         listviewapt.SelectedIndex = -1;
@@ -129,14 +126,15 @@ namespace LabelPlus
                 page_left();
             else if (e.KeyCode == Keys.Right)
                 page_right();
-            else if(e.KeyCode == Keys.D1)
-                SetCategoryButton_Click(categorybutton1,null);
-            else if(e.KeyCode == Keys.D2)
-                SetCategoryButton_Click(categorybutton2,null);
-            else if(e.KeyCode == Keys.D3)
-                SetCategoryButton_Click(categorybutton3, null);
-            else if(e.KeyCode == Keys.D4)
-                SetCategoryButton_Click(categorybutton4, null);
+            else if(e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9){
+                //SetCategoryButton_Click(categorybutton1,null);
+
+                int index = e.KeyCode - Keys.D1;
+                if (index <= GlobalVar.GroupDefineItems.Count())
+                {
+                    groupbuttons.SelectIndex = index;
+                }
+            }
 
             if (Control.ModifierKeys == Keys.Control && e.KeyCode == Keys.Tab)  
                 //Ctrl+Tab
@@ -324,32 +322,6 @@ namespace LabelPlus
             wsp.Store.UpdateLabelCategory(fileName, e.Index, e.Category);
         }
 
-        private void SetCategoryButton_Click(object sender, EventArgs e)
-        {
-            categorybutton1.Checked = false;
-            categorybutton2.Checked = false;
-            categorybutton3.Checked = false;
-            categorybutton4.Checked = false;
-
-            ((ToolStripButton)sender).Checked = true;
-
-            if (sender == categorybutton1)
-            {
-                newLabelCcategory = 1;
-            }
-            else if (sender == categorybutton2)
-            {
-                newLabelCcategory = 2;
-            }
-            else if (sender == categorybutton3)
-            {
-                newLabelCcategory = 3;
-            }
-            else if (sender == categorybutton4)
-            {
-                newLabelCcategory = 4;
-            }
-        }
 
         private void quickTextItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -359,7 +331,15 @@ namespace LabelPlus
         #endregion
 
         #region Constructors
-        public WorkspaceControlAdpter(ToolStripButton toolStripButtonEditLabelMode, ToolStripComboBox FileSelectComboBox, TextBox TranslateTextBox, GroupBox TextBoxGroupBox, ListViewAdpter LabelListViewAPT, PicView picView, ToolStripButton catebtn1, ToolStripButton catebtn2, ToolStripButton catebtn3, ToolStripButton catebtn4,ContextMenuStrip contextMenuQuictText , Workspace workspace)
+        public WorkspaceControlAdpter(ToolStripButton toolStripButtonEditLabelMode, 
+            ToolStripComboBox FileSelectComboBox, 
+            TextBox TranslateTextBox, 
+            GroupBox TextBoxGroupBox,
+            ListViewAdpter LabelListViewAPT, 
+            PicView picView, 
+            ContextMenuStrip contextMenuQuictText,
+            ToolStrip toolStrip,
+            Workspace workspace)
         {
 
             wsp = workspace;
@@ -396,20 +376,6 @@ namespace LabelPlus
             editlabelbutton = toolStripButtonEditLabelMode;
             editlabelbutton.Click += new EventHandler(editLabelButton_Click);
 
-            categorybutton1 = catebtn1;
-            categorybutton2 = catebtn2;
-            categorybutton3 = catebtn3;
-            categorybutton4 = catebtn4;
-            categorybutton1.Click += new EventHandler(SetCategoryButton_Click);
-            categorybutton2.Click += new EventHandler(SetCategoryButton_Click);
-            categorybutton3.Click += new EventHandler(SetCategoryButton_Click);
-            categorybutton4.Click += new EventHandler(SetCategoryButton_Click);
-            categorybutton1.ForeColor = GlobalVar.CategoryColor[1];
-            categorybutton2.ForeColor = GlobalVar.CategoryColor[2];
-            categorybutton3.ForeColor = GlobalVar.CategoryColor[3];
-            categorybutton4.ForeColor = GlobalVar.CategoryColor[4];
-            categorybutton1.Checked = true;           
-
             menuquicktext = contextMenuQuictText;
             foreach(GlobalVar.QuickTextItem item in GlobalVar.QuickTextItems){
                 string menuItemStr = item.Text + "(&" + item.Key + ")";
@@ -417,6 +383,8 @@ namespace LabelPlus
 
             }
             menuquicktext.ItemClicked += new ToolStripItemClickedEventHandler(quickTextItemClicked);
+
+            groupbuttons = new GroupButtonAdaptor(toolStrip);
 
             NewFile();
         }

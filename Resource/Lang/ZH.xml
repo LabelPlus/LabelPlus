@@ -33,8 +33,8 @@
       <Control name="toolStripButton_Clear" text="清空标签" />
       
       <!-- 其他 -->
-      <Control name="labelCtrlEnterTip" text="Ctrl+Enter切换到下一条" />
-      <Control name="toolStripLabelTipSetCategory" text="1-4键设置分类" />	  
+      <Control name="labelCtrlEnterTip" text="切换条目(Ctrl+Enter,↑↓←→),快捷短语(Alt+A)" />
+      <Control name="toolStripLabelTipSetCategory" text="数字键设置分类" />	  
     </Controls>
   </Form>
 

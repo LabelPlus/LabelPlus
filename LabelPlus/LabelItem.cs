@@ -10,7 +10,7 @@ namespace LabelPlus
         public int      Category;
 
         public LabelItem(float x_percent, float y_percent, string text, int category){
-            if (!(category >= 1 && category <= 4))
+            if (!(category >= 1 && category <= 9))
                 throw new Exception();
 
             X_percent = x_percent;
