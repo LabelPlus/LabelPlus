@@ -509,8 +509,9 @@
             // 
             // contextMenuStripQuickText
             // 
+            this.contextMenuStripQuickText.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.contextMenuStripQuickText.Name = "contextMenuStripQuickText";
-            this.contextMenuStripQuickText.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStripQuickText.Size = new System.Drawing.Size(153, 26);
             // 
             // labelCtrlEnterTip
             // 
