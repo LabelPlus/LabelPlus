@@ -62,9 +62,7 @@ namespace LabelPlus
         #region Methods
 
         string getCategoryName(int index) {
-            return (index).ToString() +
-                "_" +
-                GlobalVar.GroupDefineItems[index-1].Name;
+            return GlobalVar.GroupDefineItems[index-1].FullName;
         }
 
         public bool ReloadItems(List<LabelItem> items)

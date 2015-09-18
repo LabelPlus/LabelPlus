@@ -30,8 +30,8 @@ namespace LabelPlus
                 ToolStripButton button = new ToolStripButton();
                 button.Font = buttonFont;
                 button.ForeColor = item.Color;
-                button.Text = "G" + i++.ToString();
-                button.ToolTipText = item.Name;
+                button.Text = item.Name;
+                button.ToolTipText = "G" + i++.ToString();
                 myButtonGroup.AddButton(button);
             }
 

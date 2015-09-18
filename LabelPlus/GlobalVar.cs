@@ -12,6 +12,7 @@ namespace LabelPlus
         public struct GroupDefineItem
         {
             public string Name;
+            public string FullName;
             public Color Color;
         }
         public static GroupDefineItem[] GroupDefineItems;
@@ -57,7 +58,21 @@ namespace LabelPlus
                 int gourpItemNum = 0;
                 foreach (XmlNode node in GroupDefine) {
                     GroupDefineItem item;
-                    item.Name = node.SelectSingleNode("Name").InnerText;
+
+                    try
+                    {
+                        string name = node.SelectSingleNode("Name").InnerText;
+                        if (name == "")
+                            throw new XmlException();
+
+                        item.Name = name;
+                        item.FullName = "G" + (gourpItemNum + 1).ToString()  + name;                           
+                    }
+                    catch (XmlException) {
+                        item.Name = "G" + (gourpItemNum + 1).ToString();
+                        item.FullName = item.Name;
+                    }
+
                     string rgbText = node.SelectSingleNode("RGB").InnerText;
                     string[] rgbTexts = rgbText.Split(',');
                                         
