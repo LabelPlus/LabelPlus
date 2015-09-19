@@ -25,7 +25,6 @@
       <!-- 工具栏 -->
 	  <Control name="toolStripButton_EditLabelMode" text="Label Mod(&amp;E)" />
       <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
-      <Control name="toolStripButton_HideLabel" text="HideLabel(&amp;V)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
       <Control name="toolStripButton_Right" text="→" />
