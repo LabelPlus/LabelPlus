@@ -70,7 +70,7 @@ namespace LabelPlus.Properties {
         }
         
         /// <summary>
-        ///   查找类似 1.0 Preview 的本地化字符串。
+        ///   查找类似 1.0 的本地化字符串。
         /// </summary>
         internal static string AppVer {
             get {

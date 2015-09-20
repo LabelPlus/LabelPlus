@@ -143,7 +143,7 @@
     <value>LabelPlus</value>
   </data>
   <data name="AppVer" xml:space="preserve">
-    <value>1.0 Preview</value>
+    <value>1.0</value>
   </data>
   <data name="Hide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Hide.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
