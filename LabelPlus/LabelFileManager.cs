@@ -8,11 +8,25 @@ using System.IO;
 
 namespace LabelPlus
 {
-    public class LabelItemsManager
+    public class LabelFileManager
     {
+        // 主次版本号
+        // 主版本迭代一次 说明旧版本对新版本不兼容 可能无法正常读取 或导致丢失信息
+        // 次版本迭代一次 说明文件结构有变 但旧版本可以读取不支持某些特性 不会导致信息丢失
+        const int MY_FILE_VER_FIRST = 1;
+        const int MY_FILE_VER_LAST = 0;
+
+        // 文件头成员数
+        const int FILEHEAD_LENGHT = 2;
+
+        //
+        static readonly string[] FILEHEAD_DEFAULT = { 
+            MY_FILE_VER_FIRST.ToString(), 
+            MY_FILE_VER_LAST.ToString() };
+
         internal enum stateEnum
         {
-            none,   //无区块状态
+            start,   //文件头部区块
             file,   //文件区块
             label,  //标签区块
         }
@@ -20,8 +34,7 @@ namespace LabelPlus
         {
             normal,     //普通文本行
             fileHead,   //文件文本行
-            labelHead,  //标签文本行
-            tip,        //注释文本行
+            labelHead,  //标签文本行            
         }
         internal struct getStrlineTypeResult
         {
@@ -31,8 +44,14 @@ namespace LabelPlus
 
         #region Fields
 
-        Dictionary<string, List<LabelItem>> store = new Dictionary<string, List<LabelItem>>();
+        string[] fileHead = new string[FILEHEAD_LENGHT];   //文件头 0:主版本号 1:次版本号
+        List<string> groupStrings = new List<string>(); //分组名称定义
+        string comment; //用户注释
 
+        //标签信息
+        Dictionary<string, List<LabelItem>> store = new Dictionary<string, List<LabelItem>>();
+        
+        
         #endregion
 
         #region Events
@@ -82,6 +101,64 @@ namespace LabelPlus
         #endregion
 
         #region Methods
+
+        //
+        // 从文本中 获取首部区块
+        //
+        private void readLabelFileStartBlocks(string nowText)
+        {
+            string[] textBlocks = nowText.Trim().Split('-');
+            if (textBlocks.Length < 3)
+                throw new Exception();
+
+            string[] tmp;
+            //区块1 文件头
+            tmp = textBlocks[0].Split(',');
+            for (int i = 0; i < FILEHEAD_LENGHT; i++) {
+                if(i<tmp.Length)
+                    fileHead[i] = tmp[i];               //实际值
+                else
+                    fileHead[i] = FILEHEAD_DEFAULT[i];  //默认值
+            }
+
+            //区块2 分组信息
+            tmp = textBlocks[1].Trim().Split('\r');
+            foreach (string str in tmp) {
+                string t = str.Trim();
+                if(t!="")
+                    groupStrings.Add(t);
+            }
+
+            //最后区块 用户注释
+            comment = textBlocks[textBlocks.Length - 1].Trim();
+        }
+
+        //
+        // 从文本中 获取首部区块
+        //
+        private string getLabelFileStartBlocksString()
+        {
+            string result = "";
+
+            //区块1 文件头
+            foreach (string str in fileHead) {
+                result += str + ",";
+            }
+            result = result.Substring(0, result.Length - 1);    //去掉最后一个逗号
+            result += "\r\n-\r\n";
+
+            //区块2 分组信息
+            foreach (string str in groupStrings)
+            {
+                result += str + "\r\n";
+            }
+            result += "-\r\n";
+
+            //最后区块 用户备注
+            result += comment + "\r\n";
+
+            return result;
+        }
 
         internal bool addFile(string file) {
             try
@@ -199,7 +276,7 @@ namespace LabelPlus
         public bool FromFile(string path)
         {
             store = new Dictionary<string, List<LabelItem>>();
-            stateEnum state = stateEnum.none;
+            stateEnum state = stateEnum.start;
             string nowFilename = "";
             string nowText = "";
             string[] nowLabelResultValues = { };
@@ -214,13 +291,19 @@ namespace LabelPlus
                 {
                     switch (state)
                     {
-                        case stateEnum.none:
+                        case stateEnum.start:
                             if (result.type == strlineType.fileHead)
                             {
+                                //处理Label文件的文件头
+                                readLabelFileStartBlocks(nowText);
+
                                 state = stateEnum.file;
                                 nowFilename = result.value[0];
                                 //创建新文件项
                                 addFilenameToStore(nowFilename);
+                            }
+                            else if (result.type == strlineType.normal) {
+                                nowText += "\r\n" + result.value[0];
                             }
                             break;
                         case stateEnum.file:
@@ -236,7 +319,7 @@ namespace LabelPlus
                                 state = stateEnum.file;
                                 nowFilename = result.value[0];
                                 //创建新文件项
-                                if (!addFilenameToStore(nowFilename)) state = stateEnum.none;
+                                if (!addFilenameToStore(nowFilename)) state = stateEnum.start;
                             }
                             break;
                         case stateEnum.label:
@@ -258,11 +341,7 @@ namespace LabelPlus
 
                                     state = stateEnum.file;
                                     nowFilename = result.value[0];
-                                    if (!addFilenameToStore(nowFilename)) state = stateEnum.none;
-                                    break;
-                                case strlineType.tip:
-                                    nowText += "\r\n" + @"//" + result.value[0];
-
+                                    if (!addFilenameToStore(nowFilename)) state = stateEnum.start;
                                     break;
                             }
                             break;
@@ -281,6 +360,7 @@ namespace LabelPlus
             OnLabelItemListChanged();
             return true;
         }
+
         public bool ToFile(string path)
         {
             try
@@ -289,6 +369,8 @@ namespace LabelPlus
                 StreamWriter sr = new StreamWriter(fs, Encoding.Unicode);
 
                 var filenames = store.Keys;
+
+                sr.WriteLine(getLabelFileStartBlocksString());
 
                 foreach (var name in filenames)
                 {
@@ -323,13 +405,7 @@ namespace LabelPlus
             str = str.Trim();
 
             getStrlineTypeResult tmp = new getStrlineTypeResult();
-            if (str.StartsWith(@"//"))
-            {
-                tmp.type = strlineType.tip;
-                tmp.value = new string[1];
-                tmp.value[0] = str.Substring(2);   //返回余下文本
-            }
-            else if (str.StartsWith(">>>>>>>>[") && str.IndexOf("]<<<<<<<<") > 9)
+            if (str.StartsWith(">>>>>>>>[") && str.IndexOf("]<<<<<<<<") > 9)
             {
                 tmp.type = strlineType.fileHead;
                 tmp.value = new string[1];

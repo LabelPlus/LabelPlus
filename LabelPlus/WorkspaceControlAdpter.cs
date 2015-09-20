@@ -343,9 +343,9 @@ namespace LabelPlus
         {
 
             wsp = workspace;
-            LabelItemsManager.FileListChanged += new EventHandler(fileListChanged);
-            LabelItemsManager.LabelItemListChanged += new EventHandler(labelItemListChanged);
-            LabelItemsManager.LabelItemTextChanged += new EventHandler(labelItemTextChanged);
+            LabelFileManager.FileListChanged += new EventHandler(fileListChanged);
+            LabelFileManager.LabelItemListChanged += new EventHandler(labelItemListChanged);
+            LabelFileManager.LabelItemTextChanged += new EventHandler(labelItemTextChanged);
 
             textboxgroupbox = TextBoxGroupBox;
 

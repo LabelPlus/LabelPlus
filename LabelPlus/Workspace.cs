@@ -13,7 +13,7 @@ namespace LabelPlus
     {
 
         #region Fields
-        LabelItemsManager store;
+        LabelFileManager store;
 
         bool alter = false;
         bool alterNeedBak = false; 
@@ -29,7 +29,7 @@ namespace LabelPlus
         public string DirPath { get { return (new FileInfo(path)).DirectoryName; } }
         public string Filename { get { return (new FileInfo(path)).Name; } }
 
-        public LabelItemsManager Store { get{ return store;} }
+        public LabelFileManager Store { get{ return store;} }
 
         #endregion
 
@@ -88,11 +88,11 @@ namespace LabelPlus
         #region Constructors
         public Workspace()
         {
-            store = new LabelItemsManager();
+            store = new LabelFileManager();
 
-            LabelItemsManager.FileListChanged += new EventHandler(storeChanged);
-            LabelItemsManager.LabelItemListChanged += new EventHandler(storeChanged);
-            LabelItemsManager.LabelItemTextChanged += new EventHandler(storeChanged);
+            LabelFileManager.FileListChanged += new EventHandler(storeChanged);
+            LabelFileManager.LabelItemListChanged += new EventHandler(storeChanged);
+            LabelFileManager.LabelItemTextChanged += new EventHandler(storeChanged);
 
             NewFile();
         }

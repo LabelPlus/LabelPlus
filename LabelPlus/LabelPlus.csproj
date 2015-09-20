@@ -92,6 +92,8 @@
     </Compile>
     <Compile Include="GlobalVar.cs" />
     <Compile Include="GroupButtonAdaptor.cs" />
+    <Compile Include="GroupDefineItem.cs" />
+    <Compile Include="GroupDefineItemCollection.cs" />
     <Compile Include="ImageOutputFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,7 +101,7 @@
       <DependentUpon>ImageOutputFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="LabelItem.cs" />
-    <Compile Include="LabelItemsManager.cs" />
+    <Compile Include="LabelFileManager.cs" />
     <Compile Include="ListViewAdpter.cs" />
     <Compile Include="ManageImageFrm.cs">
       <SubType>Form</SubType>
