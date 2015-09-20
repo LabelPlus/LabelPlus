@@ -9,13 +9,7 @@ namespace LabelPlus
 {
     static class GlobalVar
     {
-        public struct GroupDefineItem
-        {
-            public string Name;
-            public string FullName;
-            public Color Color;
-        }
-        public static GroupDefineItem[] GroupDefineItems;
+        public static GroupDefineItem[] DefaultGroupDefineItems; 
 
         public struct QuickTextItem
         {
@@ -53,34 +47,25 @@ namespace LabelPlus
 
                 /* GroupDefine */
                 XmlNodeList GroupDefine = doc.SelectNodes("AppConfig/GroupDefine/Group");
-                GroupDefineItems = new GroupDefineItem[GroupDefine.Count];
+                List<GroupDefineItem> tmpItems = new List<GroupDefineItem>();
 
                 int gourpItemNum = 0;
-                foreach (XmlNode node in GroupDefine) {
-                    GroupDefineItem item;
-
+                foreach (XmlNode node in GroupDefine) {                    
+                    string name;
+                    string rgbText;
                     try
                     {
-                        string name = node.SelectSingleNode("Name").InnerText;
+                        name = node.SelectSingleNode("Name").InnerText;
                         if (name == "")
                             throw new XmlException();
-
-                        item.Name = name;
-                        item.FullName = "G" + (gourpItemNum + 1).ToString()  + name;                           
                     }
                     catch (XmlException) {
-                        item.Name = "G" + (gourpItemNum + 1).ToString();
-                        item.FullName = item.Name;
+                        name = "G" + (gourpItemNum + 1).ToString();
                     }
 
-                    string rgbText = node.SelectSingleNode("RGB").InnerText;
-                    string[] rgbTexts = rgbText.Split(',');
-                                        
-                    item.Color = Color.FromArgb(Convert.ToInt16(rgbTexts[0]),
-                        Convert.ToInt16(rgbTexts[1]),
-                        Convert.ToInt16(rgbTexts[2]));
+                    rgbText = node.SelectSingleNode("RGB").InnerText;
 
-                    GroupDefineItems[gourpItemNum] = item;
+                    tmpItems.Add(new GroupDefineItem(name, rgbText));
 
                     gourpItemNum++;
                     if (gourpItemNum == 10)
