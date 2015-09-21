@@ -433,9 +433,10 @@
             // 
             // toolStripButton_Clear
             // 
+            this.toolStripButton_Clear.Image = global::LabelPlus.Properties.Resources.del;
             this.toolStripButton_Clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Clear.Name = "toolStripButton_Clear";
-            this.toolStripButton_Clear.Size = new System.Drawing.Size(33, 22);
+            this.toolStripButton_Clear.Size = new System.Drawing.Size(49, 22);
             this.toolStripButton_Clear.Text = "text";
             this.toolStripButton_Clear.Click += new System.EventHandler(this.toolStripButton_Clear_Click);
             // 
