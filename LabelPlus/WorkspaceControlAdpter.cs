@@ -130,7 +130,7 @@ namespace LabelPlus
                 //SetCategoryButton_Click(categorybutton1,null);
 
                 int index = e.KeyCode - Keys.D1;
-                if (index <= GlobalVar.GroupDefineItems.Count())
+                if (index <= wsp.GroupDefine.UserGroupCount)
                 {
                     groupbuttons.SelectIndex = index;
                 }
@@ -178,12 +178,12 @@ namespace LabelPlus
                 if (wsp.Store.Filenames.Contains(fileName))
                 {
                     listviewapt.ReloadItems(wsp.Store[fileName]);
-                    picview.SetLabels(wsp.Store[fileName]);
+                    picview.SetLabels(wsp.Store[fileName], wsp.GroupDefine.GetColors());
                     listviewapt.SelectedIndex = -1;
                 }
                 else {
                     listviewapt.ReloadItems(null);
-                    picview.SetLabels(null);                    
+                    picview.SetLabels(null,null);                    
                 }
             }
             catch { }
@@ -384,7 +384,7 @@ namespace LabelPlus
             }
             menuquicktext.ItemClicked += new ToolStripItemClickedEventHandler(quickTextItemClicked);
 
-            groupbuttons = new GroupButtonAdaptor(toolStrip);
+            groupbuttons = new GroupButtonAdaptor(toolStrip, wsp.GroupDefine);
 
             NewFile();
         }

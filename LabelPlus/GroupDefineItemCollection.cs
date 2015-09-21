@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace LabelPlus
 {
-    class GroupDefineItemCollection
+    public class GroupDefineItemCollection
     { 
         GroupDefineItem[] defaultItems; 
         List<GroupDefineItem> items;
@@ -52,6 +52,15 @@ namespace LabelPlus
             return defaultItems[n - 1].Color;
         }
 
+        public Color[] GetColors() {
+            Color[] tmp = new Color[items.Count];
+            for (int i = 0; i < items.Count; i++) {
+                tmp[i] = items[i].Color;
+            }
+
+            return tmp;
+        }
+
         public int UserGroupCount { get { return items.Count; } }
         public int DefaultGroupCount { get { return defaultItems.Length; } }
 
@@ -64,8 +73,55 @@ namespace LabelPlus
             catch { return false; }
         }
 
+        public bool UseDefaultUserGroup()
+        {
+            try
+            {
+                items.Clear();
+
+                foreach (var item in defaultItems) {
+                    if (item.Name != "")
+                    {
+                        items.Add(new GroupDefineItem(item.Name));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                return true;
+            }
+            catch { return false; }
+        }
+        
+        public bool LoadUserGroup(List<string> strs)
+        {
+            try
+            {
+                items.Clear();
+
+                foreach (var str in strs) {
+                    if (str != "")
+                    {
+                        items.Add(new GroupDefineItem(str));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                return true;
+            }
+            catch { return false; }
+        }
+
+        public void ClearUserGroup() {
+            items = new List<GroupDefineItem>();
+        }
+
         public GroupDefineItemCollection(GroupDefineItem[] defaultDefine)
         {
+            items = new List<GroupDefineItem>();
             this.defaultItems = defaultDefine;
         }
     }

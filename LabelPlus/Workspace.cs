@@ -14,10 +14,13 @@ namespace LabelPlus
 
         #region Fields
         LabelFileManager store;
+        GroupDefineItemCollection groupDefine = new GroupDefineItemCollection(GlobalVar.DefaultGroupDefineItems);
 
         bool alter = false;
         bool alterNeedBak = false; 
         string path = "";
+        
+
         #endregion
 
         #region Properties
@@ -30,7 +33,7 @@ namespace LabelPlus
         public string Filename { get { return (new FileInfo(path)).Name; } }
 
         public LabelFileManager Store { get{ return store;} }
-
+        public GroupDefineItemCollection GroupDefine { get { return groupDefine; } }
         #endregion
 
         #region Methods
@@ -42,14 +45,20 @@ namespace LabelPlus
         public void readWorkspaceFromFile(string path) {
             this.path = path;
             store.FromFile(path);
+            groupDefine.ClearUserGroup();
+            groupDefine.LoadUserGroup(store.GroupList);
             alter = false;
         } 
+        
         public void NewFile()
         {
             path = "";
             store.DelAllFiles();
+            groupDefine.ClearUserGroup(); 
+            groupDefine.UseDefaultUserGroup();
             alter = false;
         }
+
         public Boolean Save() {
             if (HavePath){
                 bool tmp = writeFileFromWorkspace(path);

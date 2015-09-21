@@ -289,7 +289,7 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView), picView, contextMenuStripQuickText,toolStrip, wsp);
+            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView, wsp.GroupDefine), picView, contextMenuStripQuickText,toolStrip, wsp);
             langComboxApt = new LangComboxAdaptor(langToolStripComboBox, this);
 
             SetLayout();

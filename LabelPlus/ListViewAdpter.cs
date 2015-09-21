@@ -14,6 +14,7 @@ namespace LabelPlus
 
         ListView lv;
         bool lvSelectedIndexChangedEnable = true;   //SelectedIndexChanged Event Switch
+        GroupDefineItemCollection group;
 
         #endregion
 
@@ -62,7 +63,7 @@ namespace LabelPlus
         #region Methods
 
         string getCategoryName(int index) {
-            return GlobalVar.GroupDefineItems[index-1].FullName;
+            return group.GetFullViewName(index);
         }
 
         public bool ReloadItems(List<LabelItem> items)
@@ -95,7 +96,7 @@ namespace LabelPlus
                         lv.Items[number - 1].SubItems[2].Text = getCategoryName(n.Category);
 
                         lv.Items[number - 1].SubItems[2].ForeColor =
-                            GlobalVar.GroupDefineItems[n.Category-1].Color; 
+                            group.GetColor(number - 1); 
                     
                         //edit the Text                        
                         lv.Items[number - 1].SubItems[1].Text = n.Text;
@@ -108,7 +109,7 @@ namespace LabelPlus
                         lv.Items[number - 1].UseItemStyleForSubItems = false;
                         lv.Items[number - 1].SubItems.Add(n.Text);
                         lv.Items[number - 1].SubItems.Add(getCategoryName(n.Category),
-                            GlobalVar.GroupDefineItems[n.Category-1].Color, 
+                            group.GetColor(n.Category), 
                             lv.BackColor, 
                             lv.Font);                        
                     }
@@ -188,7 +189,7 @@ namespace LabelPlus
 
         #region Constructors
 
-        public ListViewAdpter(ListView listview)
+        public ListViewAdpter(ListView listview, GroupDefineItemCollection groupDefine)
         {
             lv = listview;
 
@@ -209,6 +210,8 @@ namespace LabelPlus
             lv.FontChanged += new EventHandler(lvFontChanged);
             lv.KeyDown += new KeyEventHandler(lvKeyDown);
             lvClientSizeChanged(this, new EventArgs());
+
+            this.group = groupDefine;
         }
 
         #endregion

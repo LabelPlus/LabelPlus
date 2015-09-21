@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 namespace LabelPlus
 {
-    class GroupDefineItem
+    public class GroupDefineItem
     {
         string name;
         Color color;

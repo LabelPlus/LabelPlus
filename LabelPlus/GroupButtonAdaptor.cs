@@ -18,23 +18,28 @@ namespace LabelPlus
 
         ToolStripButtonGroup myButtonGroup;
         public ToolStripButtonGroup Buttons{ get{return myButtonGroup; }}
+        GroupDefineItemCollection groups; 
 
         Font buttonFont;
 
-        public GroupButtonAdaptor(ToolStrip toolStrip) {
+        public GroupButtonAdaptor(ToolStrip toolStrip, GroupDefineItemCollection groupDefines) {
             myButtonGroup = new ToolStripButtonGroup(toolStrip);
             buttonFont = new Font(toolStrip.Font.FontFamily, 12, toolStrip.Font.Style);
+            groups = groupDefines;
 
-            int i = 1;
-            foreach(GlobalVar.GroupDefineItem item in GlobalVar.GroupDefineItems){
+            for(int i=1; i<=groups.UserGroupCount; i++){                
                 ToolStripButton button = new ToolStripButton();
+
+                string title = groups.GetViewName(i);
+                Color color = groups.GetColor(i);
+
                 button.Font = buttonFont;
-                button.ForeColor = item.Color;
-                button.Text = item.Name;
-                button.ToolTipText = "G" + i++.ToString();
+                button.ForeColor = color;
+                button.Text = title;
+                button.ToolTipText = "G" + i.ToString();
                 myButtonGroup.AddButton(button);
             }
-
+             
             myButtonGroup[0].Checked = true;
 
             myButtonGroup.Click += new EventHandler(buttonGroupClick);

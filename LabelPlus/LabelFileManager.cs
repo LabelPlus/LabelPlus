@@ -98,6 +98,9 @@ namespace LabelPlus
             }
         }
 
+        public List<string> GroupList { get { return groupStrings; } }
+        public string Comment { get { return comment; } }
+
         #endregion
 
         #region Methods

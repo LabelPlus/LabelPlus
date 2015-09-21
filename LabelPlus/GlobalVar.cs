@@ -19,64 +19,60 @@ namespace LabelPlus
         public static QuickTextItem[] QuickTextItems;
         public static string AutoGroupActionGroupname;
 
-        public static bool Reload() {
-            try
+        public static void Reload() {
+ 
+            /* 读配置文件 */
+
+            FileInfo fi = new FileInfo(@"labelplus_config.xml");
+            if (!fi.Exists)
+                throw new Exception("Not found config file.");
+
+            XmlReader reader = new XmlTextReader(fi.FullName);
+            XmlDocument doc = new XmlDocument();
+            doc.Load(reader);
+
+            /* QuickText */
+            XmlNodeList QuickText = doc.SelectNodes("AppConfig/QuickText/Item");
+            QuickTextItems = new QuickTextItem[QuickText.Count];
+            for (int i=0; i < QuickText.Count; i++)
             {
-                /* 读配置文件 */
-
-                FileInfo fi = new FileInfo(@"labelplus_config.xml");
-                if (!fi.Exists)
-                    return false;
-                XmlReader reader = new XmlTextReader(fi.FullName);
-                XmlDocument doc = new XmlDocument();
-                doc.Load(reader);
-
-                /* QuickText */
-                XmlNodeList QuickText = doc.SelectNodes("AppConfig/QuickText/Item");
-                QuickTextItems = new QuickTextItem[QuickText.Count];
-                for (int i=0; i < QuickText.Count; i++)
-                {
-                    QuickTextItem item;
-                    item.Text = QuickText[i].SelectSingleNode("Text").InnerText;
-                    item.Key = QuickText[i].SelectSingleNode("Key").InnerText;
-                    QuickTextItems[i] = item;
-                }
-
-                /* AutoGroupActionGroupname */
-                AutoGroupActionGroupname = doc.SelectSingleNode("AppConfig/AutoGroupActionGroupname").InnerText;
-
-                /* GroupDefine */
-                XmlNodeList GroupDefine = doc.SelectNodes("AppConfig/GroupDefine/Group");
-                List<GroupDefineItem> tmpItems = new List<GroupDefineItem>();
-
-                int gourpItemNum = 0;
-                foreach (XmlNode node in GroupDefine) {                    
-                    string name;
-                    string rgbText;
-                    try
-                    {
-                        name = node.SelectSingleNode("Name").InnerText;
-                        if (name == "")
-                            throw new XmlException();
-                    }
-                    catch (XmlException) {
-                        name = "G" + (gourpItemNum + 1).ToString();
-                    }
-
-                    rgbText = node.SelectSingleNode("RGB").InnerText;
-
-                    tmpItems.Add(new GroupDefineItem(name, rgbText));
-
-                    gourpItemNum++;
-                    if (gourpItemNum == 10)
-                        return false;
-                }
-
-                return true;
+                QuickTextItem item;
+                item.Text = QuickText[i].SelectSingleNode("Text").InnerText;
+                item.Key = QuickText[i].SelectSingleNode("Key").InnerText;
+                QuickTextItems[i] = item;
             }
-            catch {
-                return false;
+
+            /* AutoGroupActionGroupname */
+            AutoGroupActionGroupname = doc.SelectSingleNode("AppConfig/AutoGroupActionGroupname").InnerText;
+
+            /* GroupDefine */
+            XmlNodeList GroupDefine = doc.SelectNodes("AppConfig/GroupDefine/Group");
+            List<GroupDefineItem> tmpItems = new List<GroupDefineItem>();
+
+            int gourpItemNum = 0;
+            bool noName = false;    
+            foreach (XmlNode node in GroupDefine) {                    
+                string name;
+                string rgbText;
+                 
+                name = node.SelectSingleNode("Name").InnerText;
+
+                //存在命名的项目必须从头开始并连续
+                if (noName && name != "")                                                   
+                    throw new Exception("GroupDefine Error: \r\n" + node.InnerXml);
+                if (name == "")
+                    noName = true;
+
+                rgbText = node.SelectSingleNode("RGB").InnerText;
+                tmpItems.Add(new GroupDefineItem(name, rgbText));
+
+                gourpItemNum++;
+                if (gourpItemNum == 10)
+                    throw new Exception("gourpItemNum > 9");
             }
+
+            DefaultGroupDefineItems = tmpItems.ToArray();
+            
         }
 
     }
