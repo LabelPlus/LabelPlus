@@ -83,13 +83,7 @@ namespace LabelPlus
 
             wsp.NewFile();
 
-            this.Text = FROM_TITLE;
-
-            FileInfo misakiLock = new FileInfo(Application.StartupPath + "\\kcolikasim.db");
-            if (!misakiLock.Exists)
-            {
-                outputPhotoshopScriptToolStripMenuItem.Visible = false;
-            }
+            this.Text = FROM_TITLE; 
         }
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
