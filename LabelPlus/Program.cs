@@ -31,15 +31,18 @@ namespace LabelPlus
                 loadPsScript("ps_run_action");
                 loadPsScript("ps_del_group_sign");
             }
-            catch
+            catch(Exception e)
             {
-                MessageBox.Show("PS_Script Definition Error.");
+                MessageBox.Show("PS_Script Definition Error. \r\n"+ e.ToString());
                 Environment.Exit(1);
             }
 
-            if (GlobalVar.Reload() == false)
-            {
-                MessageBox.Show("Read \"labelplus_config.xml\" Error!");
+            
+            try{
+                GlobalVar.Reload(); 
+            }
+            catch(Exception e){
+                MessageBox.Show("Read \"labelplus_config.xml\" Error! \r\n" + e.ToString());
                 Environment.Exit(1);
             }
 
