@@ -132,9 +132,16 @@ namespace LabelPlus
             {
                 if (wsp.NeedSave)
                     alter_and_save();
+                try
+                {
+                    wsp.readWorkspaceFromFile(openFileDialog.FileName);
+                }
+                catch (Exception exp){
+                    MessageBox.Show(StringResources.GetValue("error_openfilefail") 
+                        + "\r\n" + exp.ToString());
 
-                wsp.readWorkspaceFromFile(openFileDialog.FileName);
-
+                    return;
+                }
                 this.Text = FROM_TITLE + new FileInfo(openFileDialog.FileName).Name;
 
                 toolStripComboBox_File.DroppedDown = true;

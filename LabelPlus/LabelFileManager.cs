@@ -128,7 +128,7 @@ namespace LabelPlus
         {
             string[] textBlocks = nowText.Trim().Split('-');
             if (textBlocks.Length < 3)
-                throw new Exception();
+                throw new Exception(StringResources.GetValue("error_file_startblocks_lost"));
 
             string[] tmp;
             //区块1 文件头
@@ -137,8 +137,12 @@ namespace LabelPlus
                 if(i<tmp.Length)
                     fileHead[i] = tmp[i].Trim();               //实际值
                 else
-                    fileHead[i] = FILEHEAD_DEFAULT[i];  //默认值
+                    fileHead[i] = FILEHEAD_DEFAULT[i];      //默认值
             }
+            
+            //检查版本信息
+            if (Convert.ToInt16(fileHead[0]) > MY_FILE_VER_FIRST)
+                throw new Exception(StringResources.GetValue("error_file_version_over"));
 
             //区块2 分组信息
             tmp = textBlocks[1].Trim().Split('\r');
@@ -310,6 +314,7 @@ namespace LabelPlus
         {
             //错误信息
             int error_lineNum = 0;
+            string error_state = "";
 
             try
             {
@@ -327,6 +332,7 @@ namespace LabelPlus
                 {
                     string str = sr.ReadLine();
                     error_lineNum++;
+                    error_state = "imageFile=" + nowFilename + ", nowState=" + state.ToString();
                     result = getStrlineType(str);
 
                     switch (state)
@@ -403,6 +409,7 @@ namespace LabelPlus
             catch(Exception e) 
             {
                 throw new Exception("ReadFromFileError in line" + error_lineNum.ToString()
+                    + "\r\n" + error_state
                     + "\r\n\r\n" + e.ToString());
             }
         }
