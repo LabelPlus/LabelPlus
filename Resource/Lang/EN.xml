@@ -23,7 +23,9 @@
       <Control name="aboutAToolStripMenuItem" text="About(&amp;A)" />
 
       <!-- 工具栏 -->
-	  <Control name="toolStripButton_EditLabelMode" text="Label Mod(&amp;E)" />
+      <Control name="toolStripButton_EditLabelMode" text="LabelMode(&amp;E)" />
+      <Control name="toolStripButton_TranslateMode" text="InputMode(&amp;T)" />
+      <Control name="toolStripButton_CheckMode" text="CheckMode(&amp;G)" />
       <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
