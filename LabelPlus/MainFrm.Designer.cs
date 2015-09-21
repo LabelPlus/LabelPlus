@@ -41,7 +41,6 @@
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outputPhotoshopScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.langToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -173,8 +172,7 @@
             // outputPToolStripMenuItem
             // 
             this.outputPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.outputAllToolStripMenuItem,
-            this.outputPhotoshopScriptToolStripMenuItem});
+            this.outputAllToolStripMenuItem});
             this.outputPToolStripMenuItem.Name = "outputPToolStripMenuItem";
             this.outputPToolStripMenuItem.Size = new System.Drawing.Size(75, 25);
             this.outputPToolStripMenuItem.Text = "Output(&P)";
@@ -182,16 +180,9 @@
             // outputAllToolStripMenuItem
             // 
             this.outputAllToolStripMenuItem.Name = "outputAllToolStripMenuItem";
-            this.outputAllToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.outputAllToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.outputAllToolStripMenuItem.Text = "OutputAllImage(&O)";
             this.outputAllToolStripMenuItem.Click += new System.EventHandler(this.outputAllToolStripMenuItem_Click);
-            // 
-            // outputPhotoshopScriptToolStripMenuItem
-            // 
-            this.outputPhotoshopScriptToolStripMenuItem.Name = "outputPhotoshopScriptToolStripMenuItem";
-            this.outputPhotoshopScriptToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.outputPhotoshopScriptToolStripMenuItem.Text = "OutputPhotoshopScript(&P)";
-            this.outputPhotoshopScriptToolStripMenuItem.Click += new System.EventHandler(this.outputPhotoshopScriptToolStripMenuItem_Click);
             // 
             // aboutAToolStripMenuItem
             // 
@@ -612,7 +603,6 @@
         private System.Windows.Forms.SplitContainer splitContainer;
         private PicView picView;
         private System.Windows.Forms.ToolStripMenuItem aboutAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem outputPhotoshopScriptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitEToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
