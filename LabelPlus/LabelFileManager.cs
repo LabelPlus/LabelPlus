@@ -10,6 +10,7 @@ namespace LabelPlus
 {
     public class LabelFileManager
     {
+        #region Const
         // 主次版本号
         // 主版本迭代一次 说明旧版本对新版本不兼容 可能无法正常读取 或导致丢失信息
         // 次版本迭代一次 说明文件结构有变 但旧版本可以读取不支持某些特性 不会导致信息丢失
@@ -23,6 +24,8 @@ namespace LabelPlus
         static readonly string[] FILEHEAD_DEFAULT = { 
             MY_FILE_VER_FIRST.ToString(), 
             MY_FILE_VER_LAST.ToString() };
+
+        #endregion
 
         internal enum stateEnum
         {
@@ -44,14 +47,23 @@ namespace LabelPlus
 
         #region Fields
 
-        string[] fileHead = new string[FILEHEAD_LENGHT];   //文件头 0:主版本号 1:次版本号
-        List<string> groupStrings = new List<string>(); //分组名称定义
+        string[] fileHead;   //文件头 0:主版本号 1:次版本号
+        List<string> groupStringList; //分组名称定义
         string comment; //用户注释
 
         //标签信息
-        Dictionary<string, List<LabelItem>> store = new Dictionary<string, List<LabelItem>>();
+        Dictionary<string, List<LabelItem>> store;        
         
-        
+        #endregion
+
+        #region Constructors
+        public LabelFileManager(){
+            fileHead = FILEHEAD_DEFAULT;
+            groupStringList = new List<string>();
+            comment = "";
+            store = new Dictionary<string, List<LabelItem>>();
+
+        }
         #endregion
 
         #region Events
@@ -59,6 +71,7 @@ namespace LabelPlus
         static public EventHandler FileListChanged;
         static public EventHandler LabelItemListChanged;
         static public EventHandler LabelItemTextChanged;
+        static public EventHandler GroupListChanged;
 
         internal void OnFileListChanged()
         {
@@ -72,7 +85,10 @@ namespace LabelPlus
         {
             if (LabelItemTextChanged != null) LabelItemTextChanged(this, new EventArgs());
         }
-
+        internal void OnGroupListChanged() 
+        {
+            if (GroupListChanged != null) GroupListChanged(this, new EventArgs());
+        }
         #endregion
 
         #region Properties
@@ -98,7 +114,7 @@ namespace LabelPlus
             }
         }
 
-        public List<string> GroupList { get { return groupStrings; } }
+        public List<string> GroupList { get { return groupStringList; } }
         public string Comment { get { return comment; } }
 
         #endregion
@@ -119,7 +135,7 @@ namespace LabelPlus
             tmp = textBlocks[0].Split(',');
             for (int i = 0; i < FILEHEAD_LENGHT; i++) {
                 if(i<tmp.Length)
-                    fileHead[i] = tmp[i];               //实际值
+                    fileHead[i] = tmp[i].Trim();               //实际值
                 else
                     fileHead[i] = FILEHEAD_DEFAULT[i];  //默认值
             }
@@ -129,7 +145,7 @@ namespace LabelPlus
             foreach (string str in tmp) {
                 string t = str.Trim();
                 if(t!="")
-                    groupStrings.Add(t);
+                    groupStringList.Add(t);
             }
 
             //最后区块 用户注释
@@ -151,7 +167,7 @@ namespace LabelPlus
             result += "\r\n-\r\n";
 
             //区块2 分组信息
-            foreach (string str in groupStrings)
+            foreach (string str in groupStringList)
             {
                 result += str + "\r\n";
             }
@@ -244,17 +260,31 @@ namespace LabelPlus
             }
             catch { return false; }
         }
-        public bool DelAllFiles()
+        //public bool DelAllFiles()
+        //{
+        //    try
+        //    {
+        //        store.Clear();
+        //        OnFileListChanged();
+        //        OnLabelItemListChanged();
+        //        return true;
+        //    }
+        //    catch { return false; }
+        //}
+
+        public bool NewLabelFile(string[] groups) 
         {
-            try
-            {
-                store.Clear();
-                OnFileListChanged();
-                OnLabelItemListChanged();
-                return true;
-            }
-            catch { return false; }
+            fileHead = FILEHEAD_DEFAULT;
+            comment = "";
+            groupStringList = groups.ToList();
+            store.Clear();
+
+            OnFileListChanged();
+            OnLabelItemListChanged();
+            OnGroupListChanged();
+            return true;
         }
+
         public bool DelLabelItem(string file, int index)
         {
             try
@@ -276,22 +306,29 @@ namespace LabelPlus
             catch { return false; }
         }
 
-        public bool FromFile(string path)
+        public void FromFile(string path)
         {
-            store = new Dictionary<string, List<LabelItem>>();
-            stateEnum state = stateEnum.start;
-            string nowFilename = "";
-            string nowText = "";
-            string[] nowLabelResultValues = { };
-            getStrlineTypeResult result = new getStrlineTypeResult();
+            //错误信息
+            int error_lineNum = 0;
 
-            StreamReader sr = new StreamReader(path, Encoding.Unicode);
-            while (!sr.EndOfStream)
+            try
             {
-                string str = sr.ReadLine();
-                result = getStrlineType(str);
-                try
+                store = new Dictionary<string, List<LabelItem>>();
+                groupStringList = new List<string>();
+
+                stateEnum state = stateEnum.start;
+                string nowFilename = "";
+                string nowText = "";
+                string[] nowLabelResultValues = { };
+                getStrlineTypeResult result = new getStrlineTypeResult();
+
+                StreamReader sr = new StreamReader(path, Encoding.Unicode);
+                while (!sr.EndOfStream)
                 {
+                    string str = sr.ReadLine();
+                    error_lineNum++;
+                    result = getStrlineType(str);
+
                     switch (state)
                     {
                         case stateEnum.start:
@@ -302,10 +339,12 @@ namespace LabelPlus
 
                                 state = stateEnum.file;
                                 nowFilename = result.value[0];
+
                                 //创建新文件项
                                 addFilenameToStore(nowFilename);
                             }
-                            else if (result.type == strlineType.normal) {
+                            else if (result.type == strlineType.normal)
+                            {
                                 nowText += "\r\n" + result.value[0];
                             }
                             break;
@@ -349,19 +388,23 @@ namespace LabelPlus
                             }
                             break;
 
-                    }
+                    }   //switch (state)
+                }   //while (!sr.EndOfStream)
+
+                if (state == stateEnum.label)
+                {
+                    addLabelToStore(nowText, nowLabelResultValues, nowFilename);
                 }
-                catch { return false; }
-            }
 
-            if (state == stateEnum.label)
+                OnFileListChanged();
+                OnLabelItemListChanged();
+                OnGroupListChanged();
+            }
+            catch(Exception e) 
             {
-                addLabelToStore(nowText, nowLabelResultValues, nowFilename);
+                throw new Exception("ReadFromFileError in line" + error_lineNum.ToString()
+                    + "\r\n\r\n" + e.ToString());
             }
-
-            OnFileListChanged();
-            OnLabelItemListChanged();
-            return true;
         }
 
         public bool ToFile(string path)

@@ -22,6 +22,7 @@ namespace LabelPlus
 
         ListViewAdpter listviewapt;
         GroupButtonAdaptor groupbuttons;
+        ToolStrip toolstrip;
         Workspace wsp;
 
         bool editLabelMode = false;
@@ -290,6 +291,11 @@ namespace LabelPlus
 
         }
 
+        private void userGroupChanged(object sender, EventArgs e)
+        {
+            groupbuttons.Refresh(wsp.GroupDefine);
+        }
+
         private void editLabelButton_Click(object sender, EventArgs e)
         {
             editLabelMode = editlabelbutton.Checked;
@@ -319,7 +325,8 @@ namespace LabelPlus
 
         private void listViewUserSetCategory(object sender, ListViewAdpter.UserSetCategoryEventArgs e)
         {
-            wsp.Store.UpdateLabelCategory(fileName, e.Index, e.Category);
+            if (e.Category <= wsp.GroupDefine.UserGroupCount)
+                wsp.Store.UpdateLabelCategory(fileName, e.Index, e.Category);
         }
 
 
@@ -328,6 +335,15 @@ namespace LabelPlus
             textbox.AppendText(e.ClickedItem.ToolTipText);
         }
 
+        private void quickTextClosed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            textbox.ImeMode = ImeMode.NoControl;
+        }
+
+        private void quickTextOpened(object sender, EventArgs e)
+        {
+            textbox.ImeMode = ImeMode.Off;
+        }
         #endregion
 
         #region Constructors
@@ -343,10 +359,11 @@ namespace LabelPlus
         {
 
             wsp = workspace;
+            wsp.UserGroupDefineChanged += new EventHandler(userGroupChanged);
+
             LabelFileManager.FileListChanged += new EventHandler(fileListChanged);
             LabelFileManager.LabelItemListChanged += new EventHandler(labelItemListChanged);
             LabelFileManager.LabelItemTextChanged += new EventHandler(labelItemTextChanged);
-
             textboxgroupbox = TextBoxGroupBox;
 
             picview = picView;
@@ -383,11 +400,15 @@ namespace LabelPlus
 
             }
             menuquicktext.ItemClicked += new ToolStripItemClickedEventHandler(quickTextItemClicked);
+            menuquicktext.Opened += new EventHandler(quickTextOpened);
+            menuquicktext.Closed += new  ToolStripDropDownClosedEventHandler(quickTextClosed);
 
             groupbuttons = new GroupButtonAdaptor(toolStrip, wsp.GroupDefine);
 
+            toolstrip = toolStrip;
             NewFile();
         }
+
         #endregion
 
     }

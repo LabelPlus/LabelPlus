@@ -37,7 +37,7 @@ namespace LabelPlus
 
         public string GetFullViewName(int n)
         {
-            if (n - 1 > items.Count) 
+            if (n > items.Count) 
             {
                 //不存在用户分组
                 return "G" + n.ToString();
@@ -53,9 +53,10 @@ namespace LabelPlus
         }
 
         public Color[] GetColors() {
-            Color[] tmp = new Color[items.Count];
-            for (int i = 0; i < items.Count; i++) {
-                tmp[i] = items[i].Color;
+            Color[] tmp = new Color[defaultItems.Length];
+            for (int i = 0; i < defaultItems.Length; i++)
+            {
+                tmp[i] = defaultItems[i].Color;
             }
 
             return tmp;
@@ -113,6 +114,28 @@ namespace LabelPlus
                 return true;
             }
             catch { return false; }
+        }
+
+        public string[] GetUserGroupNameArray() 
+        {
+            List<string> tmp = new List<string>();
+            foreach (var item in items) {
+                tmp.Add(item.Name);
+            }
+            return tmp.ToArray();
+        }
+
+        public string[] GetDefaultGroupNameArray()
+        {
+            List<string> tmp = new List<string>();
+            foreach (var item in defaultItems)
+            {
+                if (item.Name != "")
+                    tmp.Add(item.Name);
+                else
+                    break;
+            }
+            return tmp.ToArray();
         }
 
         public void ClearUserGroup() {

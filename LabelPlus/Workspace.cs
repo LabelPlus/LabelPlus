@@ -23,6 +23,12 @@ namespace LabelPlus
 
         #endregion
 
+        public EventHandler UserGroupDefineChanged;
+        internal void OnUserGroupDefineChanged()
+        {
+            if (UserGroupDefineChanged != null) UserGroupDefineChanged(this, new EventArgs());
+        }
+
         #region Properties
 
         public Boolean Alter { get { return alter; } }
@@ -45,17 +51,13 @@ namespace LabelPlus
         public void readWorkspaceFromFile(string path) {
             this.path = path;
             store.FromFile(path);
-            groupDefine.ClearUserGroup();
-            groupDefine.LoadUserGroup(store.GroupList);
             alter = false;
         } 
         
         public void NewFile()
         {
             path = "";
-            store.DelAllFiles();
-            groupDefine.ClearUserGroup(); 
-            groupDefine.UseDefaultUserGroup();
+            store.NewLabelFile(groupDefine.GetDefaultGroupNameArray());
             alter = false;
         }
 
@@ -92,6 +94,14 @@ namespace LabelPlus
             alter = true;
             alterNeedBak = true;
         }
+
+        private void groupListChanged(object sender, EventArgs e)
+        {
+            groupDefine.ClearUserGroup();
+            groupDefine.LoadUserGroup(store.GroupList);
+
+            OnUserGroupDefineChanged();
+        }
         #endregion
 
         #region Constructors
@@ -102,9 +112,11 @@ namespace LabelPlus
             LabelFileManager.FileListChanged += new EventHandler(storeChanged);
             LabelFileManager.LabelItemListChanged += new EventHandler(storeChanged);
             LabelFileManager.LabelItemTextChanged += new EventHandler(storeChanged);
-
+            LabelFileManager.GroupListChanged += new EventHandler(storeChanged);
+            LabelFileManager.GroupListChanged += new EventHandler(groupListChanged);
             NewFile();
         }
+
         #endregion
 
     }

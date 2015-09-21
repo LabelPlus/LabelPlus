@@ -96,7 +96,7 @@ namespace LabelPlus
                         lv.Items[number - 1].SubItems[2].Text = getCategoryName(n.Category);
 
                         lv.Items[number - 1].SubItems[2].ForeColor =
-                            group.GetColor(number - 1); 
+                            group.GetColor(n.Category); 
                     
                         //edit the Text                        
                         lv.Items[number - 1].SubItems[1].Text = n.Text;

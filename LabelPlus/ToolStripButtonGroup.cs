@@ -25,6 +25,13 @@ namespace LabelPlus
             myToolStrip = toolStrip;
         }
 
+        public void DelAllButtons() { 
+            foreach(var btn in myToolStripButtonList){
+                myToolStrip.Items.Remove(btn);
+            }
+            myToolStripButtonList.Clear();
+        }
+
         public bool AddButton(ToolStripButton button) {
             try
             {
