@@ -95,7 +95,7 @@ namespace LabelPlus
                         //add
                         wsp.Store.AddLabelItem(FileName,
                             new LabelItem(e.X_percent, e.Y_percent, "", groupbuttons.SelectIndex + 1),
-                            listviewapt.Count - 1);
+                            listviewapt.Count);
 
                         listviewapt.SelectedIndex = listviewapt.Count -1;
                     }
