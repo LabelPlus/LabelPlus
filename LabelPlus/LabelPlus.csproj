@@ -180,13 +180,17 @@
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
     <Content Include="Resources\bitbug_favicon.ico" />
-    <Content Include="Resources\clear.png" />
-    <Content Include="Resources\Hide.png" />
-    <Content Include="Resources\LabelMode.png" />
+    <Content Include="Resources\del.png" />
+    <Content Include="Resources\font_minus.png" />
+    <Content Include="Resources\font_plus.png" />
+    <Content Include="Resources\G.png" />
+    <Content Include="Resources\hide.png" />
+    <Content Include="Resources\L.png" />
     <Content Include="Resources\left.png" />
-    <Content Include="Resources\minis.png" />
-    <Content Include="Resources\plus.png" />
     <Content Include="Resources\right.png" />
+    <Content Include="Resources\T.png" />
+    <Content Include="Resources\zoom_minus.png" />
+    <Content Include="Resources\zoom_plus.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

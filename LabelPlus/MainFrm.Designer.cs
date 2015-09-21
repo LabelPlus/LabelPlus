@@ -57,6 +57,7 @@
             this.toolStripButton_ZoomPlus = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_ZoomMiuns = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_Zoom = new System.Windows.Forms.ToolStripComboBox();
+            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripLabels = new System.Windows.Forms.ToolStrip();
@@ -79,7 +80,6 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -213,7 +213,7 @@
             // toolStripButton_EditLabelMode
             // 
             this.toolStripButton_EditLabelMode.CheckOnClick = true;
-            this.toolStripButton_EditLabelMode.Image = global::LabelPlus.Properties.Resources.LabelMode;
+            this.toolStripButton_EditLabelMode.Image = global::LabelPlus.Properties.Resources.L;
             this.toolStripButton_EditLabelMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_EditLabelMode.Name = "toolStripButton_EditLabelMode";
             this.toolStripButton_EditLabelMode.Size = new System.Drawing.Size(64, 22);
@@ -222,7 +222,7 @@
             // toolStripButton_TranslateMode
             // 
             this.toolStripButton_TranslateMode.CheckOnClick = true;
-            this.toolStripButton_TranslateMode.Image = global::LabelPlus.Properties.Resources.LabelMode;
+            this.toolStripButton_TranslateMode.Image = global::LabelPlus.Properties.Resources.T;
             this.toolStripButton_TranslateMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_TranslateMode.Name = "toolStripButton_TranslateMode";
             this.toolStripButton_TranslateMode.Size = new System.Drawing.Size(64, 22);
@@ -230,7 +230,7 @@
             // 
             // toolStripButton_HideWindow
             // 
-            this.toolStripButton_HideWindow.Image = global::LabelPlus.Properties.Resources.Hide;
+            this.toolStripButton_HideWindow.Image = global::LabelPlus.Properties.Resources.hide;
             this.toolStripButton_HideWindow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_HideWindow.Name = "toolStripButton_HideWindow";
             this.toolStripButton_HideWindow.Size = new System.Drawing.Size(67, 22);
@@ -294,7 +294,7 @@
             // 
             this.toolStripButton_Right.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton_Right.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_Right.Image = global::LabelPlus.Properties.Resources.right;
+            this.toolStripButton_Right.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_Right.Image")));
             this.toolStripButton_Right.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Right.Name = "toolStripButton_Right";
             this.toolStripButton_Right.Size = new System.Drawing.Size(23, 22);
@@ -305,7 +305,7 @@
             // 
             this.toolStripButton_Left.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton_Left.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_Left.Image = global::LabelPlus.Properties.Resources.left;
+            this.toolStripButton_Left.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_Left.Image")));
             this.toolStripButton_Left.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Left.Name = "toolStripButton_Left";
             this.toolStripButton_Left.Size = new System.Drawing.Size(23, 22);
@@ -324,7 +324,7 @@
             // toolStripButton_ZoomPlus
             // 
             this.toolStripButton_ZoomPlus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_ZoomPlus.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_ZoomPlus.Image")));
+            this.toolStripButton_ZoomPlus.Image = global::LabelPlus.Properties.Resources.zoom_plus;
             this.toolStripButton_ZoomPlus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_ZoomPlus.Name = "toolStripButton_ZoomPlus";
             this.toolStripButton_ZoomPlus.Size = new System.Drawing.Size(23, 22);
@@ -332,7 +332,7 @@
             // toolStripButton_ZoomMiuns
             // 
             this.toolStripButton_ZoomMiuns.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_ZoomMiuns.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_ZoomMiuns.Image")));
+            this.toolStripButton_ZoomMiuns.Image = global::LabelPlus.Properties.Resources.zoom_minus;
             this.toolStripButton_ZoomMiuns.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_ZoomMiuns.Name = "toolStripButton_ZoomMiuns";
             this.toolStripButton_ZoomMiuns.Size = new System.Drawing.Size(23, 22);
@@ -346,6 +346,15 @@
             this.toolStripComboBox_Zoom.IntegralHeight = false;
             this.toolStripComboBox_Zoom.Name = "toolStripComboBox_Zoom";
             this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(50, 25);
+            // 
+            // picView
+            // 
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.Location = new System.Drawing.Point(3, 3);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(434, 369);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
             // 
             // splitContainer1
             // 
@@ -399,7 +408,7 @@
             // toolStripButton_EditBig
             // 
             this.toolStripButton_EditBig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_EditBig.Image = global::LabelPlus.Properties.Resources.plus;
+            this.toolStripButton_EditBig.Image = global::LabelPlus.Properties.Resources.font_plus;
             this.toolStripButton_EditBig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_EditBig.Name = "toolStripButton_EditBig";
             this.toolStripButton_EditBig.Size = new System.Drawing.Size(23, 22);
@@ -410,7 +419,7 @@
             // toolStripButton_EditSmall
             // 
             this.toolStripButton_EditSmall.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_EditSmall.Image = global::LabelPlus.Properties.Resources.minis;
+            this.toolStripButton_EditSmall.Image = global::LabelPlus.Properties.Resources.font_minus;
             this.toolStripButton_EditSmall.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_EditSmall.Name = "toolStripButton_EditSmall";
             this.toolStripButton_EditSmall.Size = new System.Drawing.Size(23, 22);
@@ -424,10 +433,9 @@
             // 
             // toolStripButton_Clear
             // 
-            this.toolStripButton_Clear.Image = global::LabelPlus.Properties.Resources.clear;
             this.toolStripButton_Clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Clear.Name = "toolStripButton_Clear";
-            this.toolStripButton_Clear.Size = new System.Drawing.Size(49, 22);
+            this.toolStripButton_Clear.Size = new System.Drawing.Size(33, 22);
             this.toolStripButton_Clear.Text = "text";
             this.toolStripButton_Clear.Click += new System.EventHandler(this.toolStripButton_Clear_Click);
             // 
@@ -541,15 +549,6 @@
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
-            // 
-            // picView
-            // 
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.Location = new System.Drawing.Point(3, 3);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(434, 369);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
             // 
             // MainFrm
             // 
