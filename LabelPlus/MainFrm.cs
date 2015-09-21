@@ -150,10 +150,12 @@ namespace LabelPlus
         {
             if (wsp.NeedSave)
             {
-                if (alter_and_save() == System.Windows.Forms.DialogResult.Cancel)
-                    return;
-                else
+                var saveResult = alter_and_save();
+                if (saveResult == System.Windows.Forms.DialogResult.Yes)
                     MessageBox.Show(StringResources.GetValue("save_complete"));
+                else if (saveResult == System.Windows.Forms.DialogResult.Cancel)
+                    return;
+                    
             }
 
             wsp_control_apt.NewFile();
