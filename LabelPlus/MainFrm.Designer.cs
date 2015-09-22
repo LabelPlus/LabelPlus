@@ -46,18 +46,18 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_EditLabelMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_TranslateMode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_CheckMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_HideWindow = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelPicView = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripPicView = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_Right = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_Left = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_File = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton_ZoomPlus = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_ZoomMiuns = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_ZoomMinus = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_Zoom = new System.Windows.Forms.ToolStripComboBox();
-            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripLabels = new System.Windows.Forms.ToolStrip();
@@ -80,14 +80,14 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStripButton_CheckMode = new System.Windows.Forms.ToolStripButton();
+            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.tableLayoutPanelPicView.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripPicView.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -126,40 +126,40 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.newToolStripMenuItem.Text = "New(&N)";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.openToolStripMenuItem.Text = "Open(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveProjectSToolStripMenuItem
             // 
             this.saveProjectSToolStripMenuItem.Name = "saveProjectSToolStripMenuItem";
-            this.saveProjectSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveProjectSToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveProjectSToolStripMenuItem.Text = "Save(&S)";
             this.saveProjectSToolStripMenuItem.Click += new System.EventHandler(this.saveSToolStripMenuItem_Click);
             // 
             // saveAsDToolStripMenuItem
             // 
             this.saveAsDToolStripMenuItem.Name = "saveAsDToolStripMenuItem";
-            this.saveAsDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsDToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveAsDToolStripMenuItem.Text = "Save As(&S)";
             this.saveAsDToolStripMenuItem.Click += new System.EventHandler(this.saveAsDToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 6);
             // 
             // exitEToolStripMenuItem
             // 
             this.exitEToolStripMenuItem.Name = "exitEToolStripMenuItem";
-            this.exitEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitEToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.exitEToolStripMenuItem.Text = "Exit(&E)";
             this.exitEToolStripMenuItem.Click += new System.EventHandler(this.exitEToolStripMenuItem_Click);
             // 
@@ -230,6 +230,15 @@
             this.toolStripButton_TranslateMode.Size = new System.Drawing.Size(64, 22);
             this.toolStripButton_TranslateMode.Text = "text(&T)";
             // 
+            // toolStripButton_CheckMode
+            // 
+            this.toolStripButton_CheckMode.CheckOnClick = true;
+            this.toolStripButton_CheckMode.Image = global::LabelPlus.Properties.Resources.G;
+            this.toolStripButton_CheckMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_CheckMode.Name = "toolStripButton_CheckMode";
+            this.toolStripButton_CheckMode.Size = new System.Drawing.Size(66, 22);
+            this.toolStripButton_CheckMode.Text = "text(&G)";
+            // 
             // toolStripButton_HideWindow
             // 
             this.toolStripButton_HideWindow.Image = global::LabelPlus.Properties.Resources.hide;
@@ -266,7 +275,7 @@
             // 
             this.tableLayoutPanelPicView.ColumnCount = 1;
             this.tableLayoutPanelPicView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelPicView.Controls.Add(this.toolStrip1, 0, 1);
+            this.tableLayoutPanelPicView.Controls.Add(this.toolStripPicView, 0, 1);
             this.tableLayoutPanelPicView.Controls.Add(this.picView, 0, 0);
             this.tableLayoutPanelPicView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelPicView.Location = new System.Drawing.Point(0, 0);
@@ -277,20 +286,21 @@
             this.tableLayoutPanelPicView.Size = new System.Drawing.Size(440, 400);
             this.tableLayoutPanelPicView.TabIndex = 6;
             // 
-            // toolStrip1
+            // toolStripPicView
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripPicView.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStripPicView.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripPicView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton_Right,
             this.toolStripButton_Left,
             this.toolStripComboBox_File,
             this.toolStripButton_ZoomPlus,
-            this.toolStripButton_ZoomMiuns,
+            this.toolStripButton_ZoomMinus,
             this.toolStripComboBox_Zoom});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 375);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(440, 25);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripPicView.Location = new System.Drawing.Point(0, 375);
+            this.toolStripPicView.Name = "toolStripPicView";
+            this.toolStripPicView.Size = new System.Drawing.Size(440, 25);
+            this.toolStripPicView.TabIndex = 8;
             // 
             // toolStripButton_Right
             // 
@@ -318,6 +328,7 @@
             // toolStripComboBox_File
             // 
             this.toolStripComboBox_File.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripComboBox_File.AutoSize = false;
             this.toolStripComboBox_File.DropDownWidth = 250;
             this.toolStripComboBox_File.MaxDropDownItems = 15;
             this.toolStripComboBox_File.Name = "toolStripComboBox_File";
@@ -331,14 +342,13 @@
             this.toolStripButton_ZoomPlus.Name = "toolStripButton_ZoomPlus";
             this.toolStripButton_ZoomPlus.Size = new System.Drawing.Size(23, 22);
             // 
-            // toolStripButton_ZoomMiuns
+            // toolStripButton_ZoomMinus
             // 
-            this.toolStripButton_ZoomMiuns.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_ZoomMiuns.Image = global::LabelPlus.Properties.Resources.zoom_minus;
-            this.toolStripButton_ZoomMiuns.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_ZoomMiuns.Name = "toolStripButton_ZoomMiuns";
-            this.toolStripButton_ZoomMiuns.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton_ZoomMiuns.Text = "toolStripButton2";
+            this.toolStripButton_ZoomMinus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_ZoomMinus.Image = global::LabelPlus.Properties.Resources.zoom_minus;
+            this.toolStripButton_ZoomMinus.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_ZoomMinus.Name = "toolStripButton_ZoomMinus";
+            this.toolStripButton_ZoomMinus.Size = new System.Drawing.Size(23, 22);
             // 
             // toolStripComboBox_Zoom
             // 
@@ -347,16 +357,7 @@
             this.toolStripComboBox_Zoom.DropDownWidth = 30;
             this.toolStripComboBox_Zoom.IntegralHeight = false;
             this.toolStripComboBox_Zoom.Name = "toolStripComboBox_Zoom";
-            this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(50, 25);
-            // 
-            // picView
-            // 
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.Location = new System.Drawing.Point(3, 3);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(434, 369);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
+            this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(60, 25);
             // 
             // splitContainer1
             // 
@@ -553,14 +554,14 @@
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
-            // toolStripButton_CheckMode
+            // picView
             // 
-            this.toolStripButton_CheckMode.CheckOnClick = true;
-            this.toolStripButton_CheckMode.Image = global::LabelPlus.Properties.Resources.G;
-            this.toolStripButton_CheckMode.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_CheckMode.Name = "toolStripButton_CheckMode";
-            this.toolStripButton_CheckMode.Size = new System.Drawing.Size(66, 22);
-            this.toolStripButton_CheckMode.Text = "text(&G)";
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.Location = new System.Drawing.Point(3, 3);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(434, 369);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
             // 
             // MainFrm
             // 
@@ -570,6 +571,7 @@
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainFrm";
@@ -586,8 +588,8 @@
             this.splitContainer.ResumeLayout(false);
             this.tableLayoutPanelPicView.ResumeLayout(false);
             this.tableLayoutPanelPicView.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripPicView.ResumeLayout(false);
+            this.toolStripPicView.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
@@ -646,13 +648,13 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabelTipSetCategory;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripQuickText;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPicView;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripPicView;
         private System.Windows.Forms.ToolStripButton toolStripButton_Right;
         private System.Windows.Forms.ToolStripButton toolStripButton_Left;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_File;
         private System.Windows.Forms.ToolStripButton toolStripButton_TranslateMode;
         private System.Windows.Forms.ToolStripButton toolStripButton_ZoomPlus;
-        private System.Windows.Forms.ToolStripButton toolStripButton_ZoomMiuns;
+        private System.Windows.Forms.ToolStripButton toolStripButton_ZoomMinus;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_Zoom;
         private System.Windows.Forms.ToolStripButton toolStripButton_CheckMode;
 

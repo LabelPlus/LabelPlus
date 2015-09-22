@@ -40,8 +40,13 @@ namespace LabelPlus
         private Color[] colorList;
         private bool hideLabel = false;
         public UserActionEventHandler LabelUserClickAction;
-        //public UserActionEventHandler LabelUserAddAction;
-        //public UserActionEventHandler LabelUserDelAction;
+
+        public EventHandler ZoomChanged;
+        internal void OnZoomChanged(){
+            if(ZoomChanged != null)
+                ZoomChanged(this, new EventArgs());
+        }
+
         /*图像相关*/
         private Image imageOriginal;
         private Image image;
@@ -105,8 +110,14 @@ namespace LabelPlus
                 else if (value > 1.0) zoom = 1.0f;
                 else zoom = value;
 
+                MakeImage(ref image, ref imageOriginal);
+
+                OnZoomChanged();
+
             }
-            get { return zoom; }
+            get {                
+                return zoom;                
+            }
         }
 
         /**

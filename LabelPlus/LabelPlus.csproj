@@ -140,6 +140,7 @@
     <Compile Include="ToolStripButtonGroup.cs" />
     <Compile Include="Workspace.cs" />
     <Compile Include="WorkspaceControlAdpter.cs" />
+    <Compile Include="ZoomAdaptor.cs" />
     <EmbeddedResource Include="AboutFrm.resx">
       <DependentUpon>AboutFrm.cs</DependentUpon>
     </EmbeddedResource>

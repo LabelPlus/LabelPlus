@@ -23,6 +23,7 @@ namespace LabelPlus
 
         Workspace wsp = new Workspace();
         WorkspaceControlAdpter wsp_control_apt;
+        ZoomAdaptor zoomAdaptor;
         LangComboxAdaptor langComboxApt;
 
         #endregion
@@ -292,7 +293,21 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode, toolStripComboBox_File, TranslateTextBox, TextBox_GroupBox, new ListViewAdpter(listView, wsp.GroupDefine), picView, contextMenuStripQuickText,toolStrip, wsp);
+            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode,
+                toolStripComboBox_File,
+                TranslateTextBox, 
+                TextBox_GroupBox,
+                new ListViewAdpter(listView, wsp.GroupDefine), 
+                picView,
+                contextMenuStripQuickText,
+                toolStrip, 
+                wsp);
+
+            zoomAdaptor = new ZoomAdaptor(picView,
+                toolStripButton_ZoomPlus,
+                toolStripButton_ZoomMinus,
+                toolStripComboBox_Zoom);
+
             langComboxApt = new LangComboxAdaptor(langToolStripComboBox, this);
 
             SetLayout();
