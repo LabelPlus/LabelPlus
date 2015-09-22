@@ -126,6 +126,35 @@ namespace LabelPlus
         //
         private void readLabelFileStartBlocks(string nowText)
         {
+            //老版本 无start blocks 特殊处理
+            if (nowText.Trim() == "") { 
+
+                //block1
+                for (int i = 0; i < FILEHEAD_LENGHT; i++)
+                {
+                    fileHead[i] = FILEHEAD_DEFAULT[i];      //默认值
+                }
+
+                //block2
+                groupStringList = new List<string>();
+                for (int i = 0; i < GlobalVar.DefaultGroupDefineItems.Length; i++)
+                {
+                    if (GlobalVar.DefaultGroupDefineItems[i].Name != "")
+                    {
+                        groupStringList.Add(GlobalVar.DefaultGroupDefineItems[i].Name);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                
+                //block end
+                comment = "";
+
+                return;
+            }
+
             string[] textBlocks = nowText.Trim().Split('-');
             if (textBlocks.Length < 3)
                 throw new Exception(StringResources.GetValue("error_file_startblocks_lost"));
