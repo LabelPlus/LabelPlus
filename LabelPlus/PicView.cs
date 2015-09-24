@@ -48,13 +48,15 @@ namespace LabelPlus
         }
 
         /*图像相关*/
-        private Image imageOriginal;
-        private Image image;
+        Image imageOriginal;
+        Image imageZoomed;
+        float imageZoomedZoomValue;
+        Image image;
         Rectangle clientRect;
-        private float zoom = 0;
-        private PointF startP;
+        float zoom = 0;
+        PointF startP;
 
-        private PointF StartP{
+        PointF StartP{
             get{
                 if(startP==null) startP =new PointF(0,0);
                 return startP;
@@ -95,6 +97,18 @@ namespace LabelPlus
                 }               
                     
                 StartP = new PointF(0, 0);
+
+                //清除缓存
+                if (imageZoomed != null)
+                {
+                    imageZoomed.Dispose();
+                    imageZoomed = null;
+                }
+                if (image != null)
+                {
+                    image.Dispose();
+                    image = null;
+                }
                 MakeImageNow();
                 Refresh();
             } 
@@ -176,6 +190,7 @@ namespace LabelPlus
         #region 绘图操作
         /**
          * imageOriginal为原始图片
+         * imageZoomed为缩放后图片缓存
          * image为将整幅图片缩放、标号后的缓存，
          * MakeImage函数对其进行绘制
          * PicView_Paint函数为重画事件，将image中的一部分截取出来，绘制到用户界面上
@@ -214,9 +229,19 @@ namespace LabelPlus
                     return false;
 
                 //缩图
-                if (image != null) image.Dispose();
-                image = new Bitmap(imageOriginal, (int)(imageOriginal.Size.Width * zoom), (int)(imageOriginal.Size.Height * zoom));
+                if ( (imageZoomed == null) || 
+                    !(Math.Abs(imageZoomedZoomValue - zoom)<0.001))
+                {
+                    imageZoomedZoomValue = zoom;
+                    imageZoomed = new Bitmap(imageOriginal, (int)(imageOriginal.Size.Width * zoom), (int)(imageOriginal.Size.Height * zoom));
+                }
+
+                //释放缓存
+                if (image != null)
+                    image.Dispose();
+
                 //贴上标签
+                image = new Bitmap(imageZoomed);
                 Graphics tmp = Graphics.FromImage(image);
                 if (!hideLabel)
                 {                    
