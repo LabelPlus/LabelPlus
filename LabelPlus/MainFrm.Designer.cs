@@ -46,6 +46,7 @@
             this.aboutAToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.langToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton_BrowseMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_EditLabelMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_InputMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_CheckMode = new System.Windows.Forms.ToolStripButton();
@@ -60,6 +61,7 @@
             this.toolStripButton_ZoomPlus = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_ZoomMinus = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_Zoom = new System.Windows.Forms.ToolStripComboBox();
+            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripLabels = new System.Windows.Forms.ToolStrip();
@@ -84,8 +86,6 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStripButton_BrowseMode = new System.Windows.Forms.ToolStripButton();
-            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -234,10 +234,19 @@
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "text";
             // 
+            // toolStripButton_BrowseMode
+            // 
+            this.toolStripButton_BrowseMode.CheckOnClick = true;
+            this.toolStripButton_BrowseMode.Image = global::LabelPlus.Properties.Resources.Browse;
+            this.toolStripButton_BrowseMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_BrowseMode.Name = "toolStripButton_BrowseMode";
+            this.toolStripButton_BrowseMode.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButton_BrowseMode.Text = "Browse(&W)";
+            // 
             // toolStripButton_EditLabelMode
             // 
             this.toolStripButton_EditLabelMode.CheckOnClick = true;
-            this.toolStripButton_EditLabelMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_EditLabelMode.Image")));
+            this.toolStripButton_EditLabelMode.Image = global::LabelPlus.Properties.Resources.L;
             this.toolStripButton_EditLabelMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_EditLabelMode.Name = "toolStripButton_EditLabelMode";
             this.toolStripButton_EditLabelMode.Size = new System.Drawing.Size(73, 22);
@@ -246,7 +255,7 @@
             // toolStripButton_InputMode
             // 
             this.toolStripButton_InputMode.CheckOnClick = true;
-            this.toolStripButton_InputMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_InputMode.Image")));
+            this.toolStripButton_InputMode.Image = global::LabelPlus.Properties.Resources.Input;
             this.toolStripButton_InputMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_InputMode.Name = "toolStripButton_InputMode";
             this.toolStripButton_InputMode.Size = new System.Drawing.Size(74, 22);
@@ -255,7 +264,7 @@
             // toolStripButton_CheckMode
             // 
             this.toolStripButton_CheckMode.CheckOnClick = true;
-            this.toolStripButton_CheckMode.Image = global::LabelPlus.Properties.Resources.C;
+            this.toolStripButton_CheckMode.Image = global::LabelPlus.Properties.Resources.Check;
             this.toolStripButton_CheckMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_CheckMode.Name = "toolStripButton_CheckMode";
             this.toolStripButton_CheckMode.Size = new System.Drawing.Size(78, 22);
@@ -380,6 +389,16 @@
             this.toolStripComboBox_Zoom.IntegralHeight = false;
             this.toolStripComboBox_Zoom.Name = "toolStripComboBox_Zoom";
             this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(60, 25);
+            // 
+            // picView
+            // 
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.EnableMakeImage = true;
+            this.picView.Location = new System.Drawing.Point(3, 3);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(434, 369);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
             // 
             // splitContainer1
             // 
@@ -592,25 +611,6 @@
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
-            // 
-            // toolStripButton_BrowseMode
-            // 
-            this.toolStripButton_BrowseMode.CheckOnClick = true;
-            this.toolStripButton_BrowseMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_BrowseMode.Image")));
-            this.toolStripButton_BrowseMode.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_BrowseMode.Name = "toolStripButton_BrowseMode";
-            this.toolStripButton_BrowseMode.Size = new System.Drawing.Size(91, 22);
-            this.toolStripButton_BrowseMode.Text = "Browse(&W)";
-            // 
-            // picView
-            // 
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.EnableMakeImage = true;
-            this.picView.Location = new System.Drawing.Point(3, 3);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(434, 369);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
             // 
             // MainFrm
             // 
