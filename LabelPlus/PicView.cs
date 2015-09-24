@@ -167,6 +167,8 @@ namespace LabelPlus
             toolTip.UseAnimation = false;
             toolTip.BackColor = Color.Black;
             toolTip.ForeColor = Color.White;
+
+            EnableMakeImage = true;
         }
 
 
@@ -186,9 +188,13 @@ namespace LabelPlus
                 return true;
             }
             catch { return false; }
-        }        
+        }
+
+        public bool EnableMakeImage { get; set; }
+
         public bool MakeImage(ref Image image,ref Image imageOriginal, float zoom = 0, List<LabelItem> labels = null)
-        {
+        {       
+
             try
             {
                 if (zoom == 0) zoom = this.Zoom;
@@ -200,6 +206,11 @@ namespace LabelPlus
                     image = null;
                     return false;
                 }
+
+                //判断有没有必要生成
+                if (Math.Abs(this.Zoom - zoom) < 0.001f && !EnableMakeImage) 
+                    return false;
+
                 //缩图
                 if (image != null) image.Dispose();
                 image = new Bitmap(imageOriginal, (int)(imageOriginal.Size.Width * zoom), (int)(imageOriginal.Size.Height * zoom));

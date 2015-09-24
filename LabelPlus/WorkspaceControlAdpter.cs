@@ -286,9 +286,10 @@ namespace LabelPlus
         private void comboSelectedIndexChanged(object sender, EventArgs e)
         {
             fileName = combo.Text;
+            picview.EnableMakeImage = false;
             picview.LoadImage(wsp.DirPath + @"\" + combo.Text);
-            labelItemListChanged(null, null);
-
+            picview.EnableMakeImage = true;
+            labelItemListChanged(null, null);            
         }
 
         private void userGroupChanged(object sender, EventArgs e)
@@ -312,6 +313,7 @@ namespace LabelPlus
             {
                 picview.Cursor = Cursors.Default;
             }
+
         }
 
         private void picView_MosueClick(object sender, MouseEventArgs e)
