@@ -233,6 +233,10 @@ namespace LabelPlus
                     !(Math.Abs(imageZoomedZoomValue - zoom)<0.001))
                 {
                     imageZoomedZoomValue = zoom;
+
+                    if (imageZoomed != null)
+                        imageZoomed.Dispose();
+
                     imageZoomed = new Bitmap(imageOriginal, (int)(imageOriginal.Size.Width * zoom), (int)(imageOriginal.Size.Height * zoom));
                 }
 
