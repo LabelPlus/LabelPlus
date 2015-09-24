@@ -327,8 +327,14 @@ namespace LabelPlus
 
         private void listViewUserSetCategory(object sender, ListViewAdpter.UserSetCategoryEventArgs e)
         {
+            picview.EnableMakeImage = false;
             if (e.Category <= wsp.GroupDefine.UserGroupCount)
-                wsp.Store.UpdateLabelCategory(fileName, e.Index, e.Category);
+            {
+                foreach(int index in e.Index)
+                wsp.Store.UpdateLabelCategory(fileName, index, e.Category);
+            }
+            picview.EnableMakeImage = true;
+            picview.MakeImageNow();
         }
 
 

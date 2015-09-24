@@ -328,7 +328,7 @@ namespace LabelPlus
 
         private void MainFrm_SizeChanged(object sender, EventArgs e)
         {
-            SetLayout();
+            SetLayout(); 
         }
 
         #region SetLayout
@@ -371,6 +371,7 @@ namespace LabelPlus
         {
             new GroupSettingFrm(wsp).ShowDialog();
         }
+         
 
 
 

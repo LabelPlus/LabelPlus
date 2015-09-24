@@ -58,7 +58,6 @@
             this.toolStripButton_ZoomPlus = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_ZoomMinus = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_Zoom = new System.Windows.Forms.ToolStripComboBox();
-            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripLabels = new System.Windows.Forms.ToolStrip();
@@ -83,6 +82,7 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -361,15 +361,6 @@
             this.toolStripComboBox_Zoom.Name = "toolStripComboBox_Zoom";
             this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(60, 25);
             // 
-            // picView
-            // 
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.Location = new System.Drawing.Point(3, 3);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(434, 369);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.SystemColors.Window;
@@ -581,6 +572,16 @@
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // picView
+            // 
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.EnableMakeImage = true;
+            this.picView.Location = new System.Drawing.Point(3, 3);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(434, 369);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
             // 
             // MainFrm
             // 

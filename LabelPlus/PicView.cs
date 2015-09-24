@@ -95,7 +95,7 @@ namespace LabelPlus
                 }               
                     
                 StartP = new PointF(0, 0);
-                MakeImage(ref image, ref imageOriginal);
+                MakeImageNow();
                 Refresh();
             } 
         }        
@@ -110,7 +110,7 @@ namespace LabelPlus
                 else if (value > 1.0) zoom = 1.0f;
                 else zoom = value;
 
-                MakeImage(ref image, ref imageOriginal);
+                MakeImageNow();
 
                 OnZoomChanged();
 
@@ -189,6 +189,8 @@ namespace LabelPlus
             }
             catch { return false; }
         }
+
+        public void MakeImageNow() { MakeImage(ref image, ref imageOriginal); }
 
         public bool EnableMakeImage { get; set; }
 
@@ -367,7 +369,7 @@ namespace LabelPlus
                 zooming_thread = null;
             }
             else {
-                MakeImage(ref image, ref imageOriginal);
+                MakeImageNow();
             }
             
         }
@@ -393,7 +395,7 @@ namespace LabelPlus
         {
             labels = items;
             colorList = colors;
-            MakeImage(ref image, ref imageOriginal);
+            MakeImageNow();
         }
 
         int getLabelIndex(int x, int y) {
@@ -499,7 +501,7 @@ namespace LabelPlus
             if (e.KeyCode == Keys.V)
             {
                 hideLabel = true;
-                MakeImage(ref image, ref imageOriginal);
+                MakeImageNow();
             }
         }
 
@@ -508,7 +510,7 @@ namespace LabelPlus
             if (e.KeyCode == Keys.V)
             {
                 hideLabel = false;
-                MakeImage(ref image, ref imageOriginal);
+                MakeImageNow();
             }
         }
 

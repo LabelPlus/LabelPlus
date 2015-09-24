@@ -22,16 +22,16 @@ namespace LabelPlus
         public EventHandler ListViewSelectedIndexChanged;
 
         public class UserSetCategoryEventArgs : EventArgs{
-            int index;
+            int[] index;
             int category; 
 
-            public UserSetCategoryEventArgs(int n, int setCategory)
+            public UserSetCategoryEventArgs(int[] index, int category)
             {
-                index = n;
-                category = setCategory;
+                this.index = index;
+                this.category = category;
             }
 
-            public int Index { get{return index;} }
+            public int[] Index { get{return index;} }
             public int Category { get { return category; } } 
         }
         public delegate void UserActionEventHandler(object sender, UserSetCategoryEventArgs e);
@@ -178,10 +178,13 @@ namespace LabelPlus
         {
             if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
             {
+                List<int> tmp = new List<int>();
                 foreach (int item in lv.SelectedIndices) {
-                    UserSetCategory(sender, new UserSetCategoryEventArgs(item, e.KeyCode - Keys.D1 + 1));
+                    tmp.Add(item);
                 }
 
+                UserSetCategory(sender,
+                    new UserSetCategoryEventArgs(tmp.ToArray(), e.KeyCode - Keys.D1 + 1));
             }
             e.SuppressKeyPress = true;
         }
