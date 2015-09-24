@@ -23,9 +23,9 @@
       <Control name="aboutAToolStripMenuItem" text="About(&amp;A)" />
 
       <!-- 工具栏 -->
-      <Control name="toolStripButton_EditLabelMode" text="LabelMode(&amp;E)" />
-      <Control name="toolStripButton_TranslateMode" text="InputMode(&amp;T)" />
-      <Control name="toolStripButton_CheckMode" text="CheckMode(&amp;G)" />
+      <Control name="toolStripButton_EditLabelMode" text="LabelMode(&amp;W)" />
+      <Control name="toolStripButton_TranslateMode" text="InputMode(&amp;E)" />
+      <Control name="toolStripButton_CheckMode" text="CheckMode(&amp;R)" />
       <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
@@ -92,8 +92,10 @@
     <String name="ps_output_complete" text="auto_label_for_photoshop.jsx is you script file \n Method to use it：1.drag it into Photoshop \n2.Select the Dir of images"/>
     <String name="tip_chose_photo_dir" text="Plase choose directory of images。\nProgram will create a text file in this directory。"/>
     <String name="tip_new_file_be_saved" text="New file saved:{0}"/>
+    <String name="tip_setting_group" text="请以正确的格式设置分组，每行一组，分组数量为1-9组"/> 
     <String name="default_file_name" text="translation"/>
     <String name="error_openfilefail" text="打开文件失败"/>
     <String name="error_file_version_over" text="文件版本太高，无法使用本版本编辑！"/>
+    <String name="error_file_startblocks_lost" text="文件StartBlocks丢失"/> 
   </Strings>
 </Resource>

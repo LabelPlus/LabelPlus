@@ -367,6 +367,11 @@ namespace LabelPlus
         }
         #endregion
 
+        private void toolStripButton_GroupSetting_Click(object sender, EventArgs e)
+        {
+            new GroupSettingFrm(wsp).ShowDialog();
+        }
+
 
 
     }
