@@ -20,8 +20,9 @@
       <Control name="outputAllToolStripMenuItem" text="All Image(&amp;O)" />
       <Control name="outputPhotoshopScriptToolStripMenuItem" text="Photoshop Script(&amp;P)" />
 
+      <Control name="helpAToolStripMenuItem" text="Help(&amp;H)" />
+      <Control name="viewHelpHToolStripMenuItem" text="View Help(&amp;H)" />
       <Control name="aboutAToolStripMenuItem" text="About(&amp;A)" />
-
       <!-- 工具栏 -->
       <Control name="toolStripButton_EditLabelMode" text="LabelMode(&amp;W)" />
       <Control name="toolStripButton_TranslateMode" text="InputMode(&amp;E)" />

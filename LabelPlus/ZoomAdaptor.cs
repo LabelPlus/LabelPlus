@@ -8,7 +8,7 @@ namespace LabelPlus
     class ZoomAdaptor
     {
         PicView picView;
-        Form form;
+        //Form form;
         ToolStripButton plusBtn;
         ToolStripButton minusBtn;
         ToolStripComboBox combox;

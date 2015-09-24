@@ -118,10 +118,6 @@ namespace LabelPlus
             Properties.Settings.Default.Save();
         }
 
-        private void aboutAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new AboutFrm().ShowDialog(this);
-        }
         private void exitEToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -370,6 +366,16 @@ namespace LabelPlus
         private void toolStripButton_GroupSetting_Click(object sender, EventArgs e)
         {
             new GroupSettingFrm(wsp).ShowDialog();
+        }
+
+        private void aboutAToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new AboutFrm().ShowDialog(this);
+        }
+
+        private void viewHelpHToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://noodlefighter.com/label_plus");
         }
          
 

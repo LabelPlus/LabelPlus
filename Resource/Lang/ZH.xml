@@ -19,6 +19,8 @@
       <Control name="outputAllToolStripMenuItem" text="导出带标记图片(&amp;O)" />
       <Control name="outputPhotoshopScriptToolStripMenuItem" text="导出Photoshop脚本(&amp;P)" />
 
+      <Control name="helpAToolStripMenuItem" text="帮助(&amp;H)" />
+      <Control name="viewHelpHToolStripMenuItem" text="显示帮助(&amp;H)" />
       <Control name="aboutAToolStripMenuItem" text="关于(&amp;A)" />
 
       <!-- 工具栏 -->
