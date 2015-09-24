@@ -47,7 +47,7 @@
             this.langToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_EditLabelMode = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_TranslateMode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_InputMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_CheckMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_HideWindow = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -60,7 +60,6 @@
             this.toolStripButton_ZoomPlus = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_ZoomMinus = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_Zoom = new System.Windows.Forms.ToolStripComboBox();
-            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripLabels = new System.Windows.Forms.ToolStrip();
@@ -85,6 +84,8 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.toolStripButton_BrowseMode = new System.Windows.Forms.ToolStripButton();
+            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -201,14 +202,14 @@
             // viewHelpHToolStripMenuItem
             // 
             this.viewHelpHToolStripMenuItem.Name = "viewHelpHToolStripMenuItem";
-            this.viewHelpHToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewHelpHToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.viewHelpHToolStripMenuItem.Text = "View Help(&H)";
             this.viewHelpHToolStripMenuItem.Click += new System.EventHandler(this.viewHelpHToolStripMenuItem_Click);
             // 
             // aboutAToolStripMenuItem1
             // 
             this.aboutAToolStripMenuItem1.Name = "aboutAToolStripMenuItem1";
-            this.aboutAToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutAToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.aboutAToolStripMenuItem1.Text = "About(&A)";
             this.aboutAToolStripMenuItem1.Click += new System.EventHandler(this.aboutAToolStripMenuItem1_Click);
             // 
@@ -221,8 +222,9 @@
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton_BrowseMode,
             this.toolStripButton_EditLabelMode,
-            this.toolStripButton_TranslateMode,
+            this.toolStripButton_InputMode,
             this.toolStripButton_CheckMode,
             this.toolStripButton_HideWindow,
             this.toolStripSeparator3});
@@ -238,17 +240,17 @@
             this.toolStripButton_EditLabelMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_EditLabelMode.Image")));
             this.toolStripButton_EditLabelMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_EditLabelMode.Name = "toolStripButton_EditLabelMode";
-            this.toolStripButton_EditLabelMode.Size = new System.Drawing.Size(69, 22);
-            this.toolStripButton_EditLabelMode.Text = "text(&W)";
+            this.toolStripButton_EditLabelMode.Size = new System.Drawing.Size(73, 22);
+            this.toolStripButton_EditLabelMode.Text = "Label(&L)";
             // 
-            // toolStripButton_TranslateMode
+            // toolStripButton_InputMode
             // 
-            this.toolStripButton_TranslateMode.CheckOnClick = true;
-            this.toolStripButton_TranslateMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_TranslateMode.Image")));
-            this.toolStripButton_TranslateMode.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_TranslateMode.Name = "toolStripButton_TranslateMode";
-            this.toolStripButton_TranslateMode.Size = new System.Drawing.Size(64, 22);
-            this.toolStripButton_TranslateMode.Text = "text(&E)";
+            this.toolStripButton_InputMode.CheckOnClick = true;
+            this.toolStripButton_InputMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_InputMode.Image")));
+            this.toolStripButton_InputMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_InputMode.Name = "toolStripButton_InputMode";
+            this.toolStripButton_InputMode.Size = new System.Drawing.Size(74, 22);
+            this.toolStripButton_InputMode.Text = "Input(&R)";
             // 
             // toolStripButton_CheckMode
             // 
@@ -256,16 +258,16 @@
             this.toolStripButton_CheckMode.Image = global::LabelPlus.Properties.Resources.C;
             this.toolStripButton_CheckMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_CheckMode.Name = "toolStripButton_CheckMode";
-            this.toolStripButton_CheckMode.Size = new System.Drawing.Size(65, 22);
-            this.toolStripButton_CheckMode.Text = "text(&R)";
+            this.toolStripButton_CheckMode.Size = new System.Drawing.Size(78, 22);
+            this.toolStripButton_CheckMode.Text = "Check(&T)";
             // 
             // toolStripButton_HideWindow
             // 
             this.toolStripButton_HideWindow.Image = global::LabelPlus.Properties.Resources.hide;
             this.toolStripButton_HideWindow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_HideWindow.Name = "toolStripButton_HideWindow";
-            this.toolStripButton_HideWindow.Size = new System.Drawing.Size(67, 22);
-            this.toolStripButton_HideWindow.Text = "text(&Q)";
+            this.toolStripButton_HideWindow.Size = new System.Drawing.Size(73, 22);
+            this.toolStripButton_HideWindow.Text = "Hide(&Q)";
             this.toolStripButton_HideWindow.Click += new System.EventHandler(this.toolStripButton_HideWindow_Click);
             // 
             // toolStripSeparator3
@@ -379,16 +381,6 @@
             this.toolStripComboBox_Zoom.Name = "toolStripComboBox_Zoom";
             this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(60, 25);
             // 
-            // picView
-            // 
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.EnableMakeImage = true;
-            this.picView.Location = new System.Drawing.Point(3, 3);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(434, 369);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.SystemColors.Window;
@@ -483,11 +475,11 @@
             // 
             // toolStripButton_Clear
             // 
+            this.toolStripButton_Clear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton_Clear.Image = global::LabelPlus.Properties.Resources.del;
             this.toolStripButton_Clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Clear.Name = "toolStripButton_Clear";
-            this.toolStripButton_Clear.Size = new System.Drawing.Size(49, 22);
-            this.toolStripButton_Clear.Text = "text";
+            this.toolStripButton_Clear.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton_Clear.Click += new System.EventHandler(this.toolStripButton_Clear_Click);
             // 
             // toolStripSeparator4
@@ -601,6 +593,25 @@
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
+            // toolStripButton_BrowseMode
+            // 
+            this.toolStripButton_BrowseMode.CheckOnClick = true;
+            this.toolStripButton_BrowseMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_BrowseMode.Image")));
+            this.toolStripButton_BrowseMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_BrowseMode.Name = "toolStripButton_BrowseMode";
+            this.toolStripButton_BrowseMode.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButton_BrowseMode.Text = "Browse(&W)";
+            // 
+            // picView
+            // 
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.EnableMakeImage = true;
+            this.picView.Location = new System.Drawing.Point(3, 3);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(434, 369);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -690,7 +701,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_Right;
         private System.Windows.Forms.ToolStripButton toolStripButton_Left;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_File;
-        private System.Windows.Forms.ToolStripButton toolStripButton_TranslateMode;
+        private System.Windows.Forms.ToolStripButton toolStripButton_InputMode;
         private System.Windows.Forms.ToolStripButton toolStripButton_ZoomPlus;
         private System.Windows.Forms.ToolStripButton toolStripButton_ZoomMinus;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_Zoom;
@@ -699,6 +710,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_GroupSetting;
         private System.Windows.Forms.ToolStripMenuItem viewHelpHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutAToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripButton toolStripButton_BrowseMode;
 
     }
 }

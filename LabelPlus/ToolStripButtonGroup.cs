@@ -6,9 +6,15 @@ using System.Windows.Forms;
 
 namespace LabelPlus
 {
-    class ToolStripButtonGroup
+    public class ToolStripButtonGroup
     {
         public EventHandler Click;
+        int selectedButtonIndex = -1;
+
+        public int SelectedButtonIndex {
+            get { return selectedButtonIndex; }
+            set { setButtonCheck(myToolStripButtonList[value]); }
+        }
 
         ToolStrip myToolStrip;
         List<ToolStripButton> myToolStripButtonList = new List<ToolStripButton>();
@@ -42,6 +48,11 @@ namespace LabelPlus
                 if (!myToolStrip.Items.Contains(button))
                     myToolStrip.Items.Add(button);
 
+                if (GetButtonIndex(button) == 0) {
+                    button.Checked = true;
+                    selectedButtonIndex = 0;
+                }
+
                 button.Click += new EventHandler(button_click);
                 
                 return true;
@@ -51,16 +62,23 @@ namespace LabelPlus
             }
         }
 
+        internal void setButtonCheck(ToolStripButton btn) {
+            foreach (ToolStripButton buttonN in myToolStripButtonList)
+            {
+                buttonN.Checked = false;
+            }
+
+            btn.Checked = true;
+
+            selectedButtonIndex = GetButtonIndex(btn);
+        }
+
         private void button_click(object sender, EventArgs e)
         {
             try
             {
                 ToolStripButton button = (ToolStripButton)sender;
-                foreach (ToolStripButton buttonN in myToolStripButtonList) { 
-                    buttonN.Checked = false;
-                }
-
-                button.Checked = true;
+                setButtonCheck(button);               
 
                 if (Click != null)
                     Click(sender, e);
@@ -89,5 +107,7 @@ namespace LabelPlus
             }
             catch { return false; }
         }
+
+        
     }
 }

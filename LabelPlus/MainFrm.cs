@@ -279,7 +279,38 @@ namespace LabelPlus
             if (wsp.NeedSave && wsp.HavePath)
                 wsp.SaveBAK();
         }
+        private void toolStripButton_HideWindow_Click(object sender, EventArgs e)
+        {
+            notifyIcon.Visible = true;
+            this.Visible = false;
+        }
 
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            notifyIcon.Visible = false;
+            this.Visible = true;
+        }
+
+        private void MainFrm_SizeChanged(object sender, EventArgs e)
+        {
+            SetLayout();
+        }
+
+        private void toolStripButton_GroupSetting_Click(object sender, EventArgs e)
+        {
+            new GroupSettingFrm(wsp).ShowDialog();
+        }
+
+        private void aboutAToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new AboutFrm().ShowDialog(this);
+        }
+
+        private void viewHelpHToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://noodlefighter.com/label_plus");
+        }
+         
         #endregion
 
         #region Constructors
@@ -289,7 +320,14 @@ namespace LabelPlus
 
             Language.InitFormLanguage(this, StringResources.GetValue("lang"));
 
-            wsp_control_apt = new WorkspaceControlAdpter(toolStripButton_EditLabelMode,
+            ToolStripButtonGroup modeBtnGroup = new ToolStripButtonGroup(toolStrip);
+            modeBtnGroup.AddButton(toolStripButton_BrowseMode);
+            modeBtnGroup.AddButton(toolStripButton_EditLabelMode);
+            modeBtnGroup.AddButton(toolStripButton_InputMode);
+            modeBtnGroup.AddButton(toolStripButton_CheckMode);
+
+            wsp_control_apt = new WorkspaceControlAdpter(
+                modeBtnGroup,
                 toolStripComboBox_File,
                 TranslateTextBox, 
                 TextBox_GroupBox,
@@ -309,23 +347,6 @@ namespace LabelPlus
             SetLayout();
         }
         #endregion
-
-        private void toolStripButton_HideWindow_Click(object sender, EventArgs e)
-        {
-            notifyIcon.Visible = true;
-            this.Visible = false;
-        }
-
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            notifyIcon.Visible = false;
-            this.Visible = true;
-        }
-
-        private void MainFrm_SizeChanged(object sender, EventArgs e)
-        {
-            SetLayout(); 
-        }
 
         #region SetLayout
         enum LayoutStatus { Horizontal, Vertical };
@@ -362,22 +383,6 @@ namespace LabelPlus
             }
         }
         #endregion
-
-        private void toolStripButton_GroupSetting_Click(object sender, EventArgs e)
-        {
-            new GroupSettingFrm(wsp).ShowDialog();
-        }
-
-        private void aboutAToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            new AboutFrm().ShowDialog(this);
-        }
-
-        private void viewHelpHToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://noodlefighter.com/label_plus");
-        }
-         
 
 
 

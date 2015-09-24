@@ -13,7 +13,7 @@ namespace LabelPlus
 
         #region Fields
 
-        ToolStripButton editlabelbutton; 
+        ToolStripButtonGroup modebuttons;
         ToolStripComboBox combo;
         TextBox textbox;       
         PicView picview;        
@@ -25,7 +25,14 @@ namespace LabelPlus
         ToolStrip toolstrip;
         Workspace wsp;
 
-        bool editLabelMode = false;
+        enum WorkMode { 
+            Browse,
+            Label,
+            Input,
+            Check,
+        }
+
+        WorkMode workMode;
         int itemIndex = -1;
         string fileName = "";
 
@@ -86,7 +93,7 @@ namespace LabelPlus
 
         private void picView_UserClickAction(object sender, PicView.LabelUserActionEventArgs e)
         {
-            bool ctrlBePush = editLabelMode || Control.ModifierKeys == Keys.Control ;
+            bool ctrlBePush = workMode==WorkMode.Label || Control.ModifierKeys == Keys.Control ;
 
             switch (e.Type) { 
                 case PicView.LabelUserActionEventArgs.ClickType.left:
@@ -297,15 +304,16 @@ namespace LabelPlus
             groupbuttons.Refresh(wsp.GroupDefine);
         }
 
-        private void editLabelButton_Click(object sender, EventArgs e)
+        private void modeButtons_Click(object sender, EventArgs e)
         {
-            editLabelMode = editlabelbutton.Checked;
+            workMode = (WorkMode)(modebuttons.SelectedButtonIndex);
+            Console.WriteLine(workMode);
         }
 
         private void picView_MouseMove(object sender, MouseEventArgs e)
         {
             //鼠标样式
-            if (Control.ModifierKeys == Keys.Control || editLabelMode)
+            if (Control.ModifierKeys == Keys.Control || workMode == WorkMode.Label)
             {
                 picview.Cursor = Cursors.Cross;
             }
@@ -355,7 +363,8 @@ namespace LabelPlus
         #endregion
 
         #region Constructors
-        public WorkspaceControlAdpter(ToolStripButton toolStripButtonEditLabelMode, 
+        public WorkspaceControlAdpter(
+            ToolStripButtonGroup ModeButtons, 
             ToolStripComboBox FileSelectComboBox, 
             TextBox TranslateTextBox, 
             GroupBox TextBoxGroupBox,
@@ -399,8 +408,8 @@ namespace LabelPlus
             listviewapt.ListViewSelectedIndexChanged += new EventHandler(listViewSelectedIndexChanged);
             listviewapt.UserSetCategory += new ListViewAdpter.UserActionEventHandler(listViewUserSetCategory);
 
-            editlabelbutton = toolStripButtonEditLabelMode;
-            editlabelbutton.Click += new EventHandler(editLabelButton_Click);
+            this.modebuttons = ModeButtons;
+            this.modebuttons.Click += new EventHandler(modeButtons_Click);
 
             menuquicktext = contextMenuQuictText;
             foreach(GlobalVar.QuickTextItem item in GlobalVar.QuickTextItems){

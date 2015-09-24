@@ -24,9 +24,10 @@
       <Control name="viewHelpHToolStripMenuItem" text="View Help(&amp;H)" />
       <Control name="aboutAToolStripMenuItem" text="About(&amp;A)" />
       <!-- 工具栏 -->
-      <Control name="toolStripButton_EditLabelMode" text="LabelMode(&amp;W)" />
-      <Control name="toolStripButton_TranslateMode" text="InputMode(&amp;E)" />
-      <Control name="toolStripButton_CheckMode" text="CheckMode(&amp;R)" />
+      <Control name="toolStripButton_BrowseMode" text="Browse(&amp;W)" />
+      <Control name="toolStripButton_EditLabelMode" text="Label(&amp;E)" />
+      <Control name="toolStripButton_InputMode" text="Input(&amp;R)" />
+      <Control name="toolStripButton_CheckMode" text="Check(&amp;T)" />
       <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
@@ -34,7 +35,8 @@
       <Control name="toolStripButton_EditBig" text="Font Size" />
       <Control name="toolStripButton_EditSmall" text="" />
       <Control name="toolStripButton_Clear" text="Clear Labels" />
-	  
+      <Control name="toolStripButton_GroupSetting" text="Group Setting" />
+      
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Next Label" />
       <Control name="toolStripLabelTipSetCategory" text="Key1-4 for Setting Category" />	  
