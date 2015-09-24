@@ -364,6 +364,7 @@ namespace LabelPlus
             LabelFileManager.FileListChanged += new EventHandler(fileListChanged);
             LabelFileManager.LabelItemListChanged += new EventHandler(labelItemListChanged);
             LabelFileManager.LabelItemTextChanged += new EventHandler(labelItemTextChanged);
+            LabelFileManager.GroupListChanged += new EventHandler(labelItemTextChanged);
             textboxgroupbox = TextBoxGroupBox;
 
             picview = picView;

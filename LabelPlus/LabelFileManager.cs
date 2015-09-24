@@ -114,7 +114,13 @@ namespace LabelPlus
             }
         }
 
-        public List<string> GroupList { get { return groupStringList; } }
+        public List<string> GroupList { 
+            get { return groupStringList; }
+            set {
+                groupStringList = value;
+                OnGroupListChanged();
+            }
+        }
         public string Comment { get { return comment; } }
 
         #endregion

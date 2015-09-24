@@ -94,6 +94,12 @@
     <Compile Include="GroupButtonAdaptor.cs" />
     <Compile Include="GroupDefineItem.cs" />
     <Compile Include="GroupDefineItemCollection.cs" />
+    <Compile Include="GroupSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupSettingFrm.Designer.cs">
+      <DependentUpon>GroupSettingFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageOutputFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     <EmbeddedResource Include="AboutFrm.resx">
       <DependentUpon>AboutFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GroupSettingFrm.resx">
+      <DependentUpon>GroupSettingFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageOutputFrm.resx">
       <DependentUpon>ImageOutputFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,15 +190,16 @@
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
     <Content Include="Resources\bitbug_favicon.ico" />
+    <None Include="Resources\C.png" />
     <Content Include="Resources\del.png" />
-    <Content Include="Resources\font_minus.png" />
-    <Content Include="Resources\font_plus.png" />
-    <Content Include="Resources\G.png" />
+    <None Include="Resources\font_minus.png" />
+    <None Include="Resources\G.png" />
+    <None Include="Resources\font_plus.png" />
     <Content Include="Resources\hide.png" />
-    <Content Include="Resources\L.png" />
+    <None Include="Resources\L.png" />
     <Content Include="Resources\left.png" />
     <Content Include="Resources\right.png" />
-    <Content Include="Resources\T.png" />
+    <None Include="Resources\T.png" />
     <Content Include="Resources\zoom_minus.png" />
     <Content Include="Resources\zoom_plus.png" />
   </ItemGroup>
