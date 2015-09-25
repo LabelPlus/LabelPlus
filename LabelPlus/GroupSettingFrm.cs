@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace LabelPlus
 {
-    public partial class GroupSettingFrm : Form
+    public partial class FileSettingFrm : Form
     {
         Workspace wsp;
 
-        public GroupSettingFrm(Workspace wsp)
+        public FileSettingFrm(Workspace wsp)
         {
             InitializeComponent();
 
@@ -25,14 +25,19 @@ namespace LabelPlus
                 text += str + "\r\n";
             }
 
-            textBox.Text = text.Trim();
-            textBox.SelectionStart = 0;
-            textBox.SelectionLength = 0;
+            textBoxGroup.Text = text.Trim();
+            textBoxGroup.SelectionStart = 0;
+            textBoxGroup.SelectionLength = 0;
+
+            textBoxComment.Text = wsp.Store.Comment;
+            textBoxComment.SelectionStart = 0;
+            textBoxComment.SelectionLength = 0;
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            string inputText = textBox.Text;
+            //Group
+            string inputText = textBoxGroup.Text;
             if (inputText.Trim() == "") {
                 MessageBox.Show(StringResources.GetValue("tip_setting_group"));
                 return;            
@@ -54,6 +59,18 @@ namespace LabelPlus
             }
 
             wsp.Store.GroupList = tmpList;
+
+
+
+            //Comment
+            foreach (string line in textBoxComment.Lines) {
+                if (line == "-") {
+                    MessageBox.Show(StringResources.GetValue("tip_setting_comment"));
+                    return;
+                }
+            }
+            wsp.Store.Comment = textBoxComment.Text;
+
 
             this.Close();
 

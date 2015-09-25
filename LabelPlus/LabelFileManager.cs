@@ -60,7 +60,7 @@ namespace LabelPlus
         public LabelFileManager(){
             fileHead = FILEHEAD_DEFAULT;
             groupStringList = new List<string>();
-            comment = "";
+            comment = GlobalVar.DefaultComment;
             store = new Dictionary<string, List<LabelItem>>();
 
         }
@@ -121,7 +121,12 @@ namespace LabelPlus
                 OnGroupListChanged();
             }
         }
-        public string Comment { get { return comment; } }
+        public string Comment { 
+            get { return comment; }
+            set {
+                comment = value;
+            }
+        }
 
         #endregion
 
@@ -156,7 +161,7 @@ namespace LabelPlus
                 }
                 
                 //block end
-                comment = "";
+                comment = GlobalVar.DefaultComment;
 
                 return;
             }
@@ -314,7 +319,7 @@ namespace LabelPlus
         public bool NewLabelFile(string[] groups) 
         {
             fileHead = FILEHEAD_DEFAULT;
-            comment = "";
+            comment = GlobalVar.DefaultComment;
             groupStringList = groups.ToList();
             store.Clear();
 

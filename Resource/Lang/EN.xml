@@ -83,6 +83,17 @@
       <Control name="buttonCancel" text="Cancel" />
     </Controls>
   </Form>
+  
+  <Form>
+    <Name>FileSettingFrm</Name>
+	<Text>文件设置</Text>	
+    <Controls>
+      <Control name="labelGroup" text="分组设置" />
+      <Control name="labelComment" text="备注" />
+      <Control name="buttonOK" text="确认" />
+    </Controls>
+  </Form>  
+  
   <Strings>
     <String name="save_question" text="File changed, save？"/>
     <String name="save complete" text="Save Complete!"/>
@@ -97,6 +108,7 @@
     <String name="tip_new_file_be_saved" text="New file saved:{0}"/>
     <String name="tip_setting_group" text="请以正确的格式设置分组，每行一组，分组数量为1-9组"/> 
     <String name="tip_sure_del_label" text="确认删除选中的标签吗?"/> 
+    <String name="tip_setting_comment" text="备注里不能以'-'作为单独一行"/> 
     <String name="default_file_name" text="translation"/>
     <String name="error_openfilefail" text="打开文件失败"/>
     <String name="error_file_version_over" text="文件版本太高，无法使用本版本编辑！"/>

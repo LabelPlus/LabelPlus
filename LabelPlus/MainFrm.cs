@@ -296,9 +296,9 @@ namespace LabelPlus
             SetLayout();
         }
 
-        private void toolStripButton_GroupSetting_Click(object sender, EventArgs e)
+        private void toolStripButton_FileSetting_Click(object sender, EventArgs e)
         {
-            new GroupSettingFrm(wsp).ShowDialog();
+            new FileSettingFrm(wsp).ShowDialog();
         }
 
         private void aboutAToolStripMenuItem1_Click(object sender, EventArgs e)

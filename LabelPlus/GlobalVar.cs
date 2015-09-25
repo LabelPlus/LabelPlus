@@ -20,7 +20,9 @@ namespace LabelPlus
         public static string AutoGroupActionGroupname;
 
         public static float SetLabelVisualRatioX;
-        public static float SetLabelVisualRatioY; 
+        public static float SetLabelVisualRatioY;
+
+        public static string DefaultComment;
 
         public static void Reload() {
  
@@ -80,6 +82,9 @@ namespace LabelPlus
             //SetLabelVisualRatioX Y
             SetLabelVisualRatioX = 0.5f;
             SetLabelVisualRatioY = 0.2f;
+
+            //DefaultComment
+            DefaultComment = "DefaultComment";
         }
 
     }
