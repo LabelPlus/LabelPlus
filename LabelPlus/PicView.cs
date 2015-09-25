@@ -125,6 +125,21 @@ namespace LabelPlus
         }        
 
         /*共用*/
+
+        //客户端界面坐标->百分比坐标
+        public PointF ClientToPercentPoint(PointF poi) 
+        {
+            float x,y;
+            float startX = startP.X * zoom;
+            float startY = startP.Y * zoom;
+
+            x = (startX + poi.X) / zoom / imageOriginal.Size.Width;
+            y = (startY + poi.Y) / zoom / imageOriginal.Size.Height;
+            
+            return new PointF(x, y);
+        }
+
+
         public float Zoom
         {            
             set {

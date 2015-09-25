@@ -3,6 +3,7 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 #endregion
 
@@ -35,6 +36,8 @@ namespace LabelPlus
         WorkMode workMode;
         int itemIndex = -1;
         string fileName = "";
+
+        Point picViewMousePosition;
 
         #endregion
 
@@ -135,38 +138,45 @@ namespace LabelPlus
                     }
                     break;
             }
-        } 
- 
-        private void picView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        }  
+
+        private void picViewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
                 page_left();
             else if (e.KeyCode == Keys.Right)
                 page_right();
             else if (e.KeyCode == Keys.Tab)
-                page_right();               
-            else if(e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9){
+                page_right();
+            else if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
+            {
                 int index = e.KeyCode - Keys.D1;
                 if (index <= wsp.GroupDefine.UserGroupCount)
                 {
                     groupbuttons.SelectIndex = index;
                 }
             }
-            else if (e.KeyCode == Keys.Q) {
+            else if (e.KeyCode == Keys.Q)
+            {
                 modebuttons.SelectedButtonIndex = 0;
             }
-            else if (e.KeyCode == Keys.W) {
+            else if (e.KeyCode == Keys.W)
+            {
                 modebuttons.SelectedButtonIndex = 1;
             }
-            else if (e.KeyCode == Keys.E) {
+            else if (e.KeyCode == Keys.E)
+            {
                 modebuttons.SelectedButtonIndex = 2;
             }
-            else if (e.KeyCode == Keys.R) {
+            else if (e.KeyCode == Keys.R)
+            {
                 modebuttons.SelectedButtonIndex = 3;
             }
-            else if (e.KeyCode == Keys.A) {
-                menuquicktext.Show();
-                e.IsInputKey = true;
+            else if (e.KeyCode == Keys.A)
+            {
+                menuquicktext.Show(Control.MousePosition);
+                e.SuppressKeyPress = true;
+
             }   
         }
 
@@ -297,7 +307,8 @@ namespace LabelPlus
                     e.SuppressKeyPress = true;
                 }
             }
-        }    
+        }
+
         private void textboxPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.Control)
@@ -352,8 +363,12 @@ namespace LabelPlus
             Console.WriteLine(workMode);
         }
 
+        
         private void picView_MouseMove(object sender, MouseEventArgs e)
         {
+            //记录位置
+            picViewMousePosition = e.Location;            
+            
             //鼠标样式
             if (Control.ModifierKeys == Keys.Control || workMode == WorkMode.Label)
             {
@@ -407,7 +422,26 @@ namespace LabelPlus
 
         private void quickTextItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            textbox.AppendText(e.ClickedItem.ToolTipText);
+            if(textbox.Focused)
+                textbox.AppendText(e.ClickedItem.ToolTipText);
+
+            if (picview.Focused)
+            {
+                //百分比坐标转换
+                PointF poi = picview.ClientToPercentPoint(picViewMousePosition);
+                if (poi.X >= 1.0f || poi.X <= 0 || poi.Y >= 1.0f || poi.Y <= 0)
+                    return;
+
+                wsp.Store.AddLabelItem(FileName,
+                    new LabelItem(
+                        poi.X, 
+                        poi.Y,
+                        e.ClickedItem.ToolTipText,
+                        groupbuttons.SelectIndex + 1),
+                    listviewapt.Count);
+
+                listviewapt.SelectedIndex = listviewapt.Count - 1;
+            }
         }
 
         private void quickTextClosed(object sender, ToolStripDropDownClosedEventArgs e)
@@ -446,12 +480,10 @@ namespace LabelPlus
             picview = picView;
             picview.Image = null;
             picview.Refresh();
-            //picview.LabelUserAddAction += new PicView.UserActionEventHandler(picView_UserActionEventAdd);
-            //picview.LabelUserDelAction += new PicView.UserActionEventHandler(picView_UserActionEventDel);            
             picview.LabelUserAction += new PicView.UserActionEventHandler(picView_UserClickAction);
-            picView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(picView_PreviewKeyDown);
             picview.MouseMove += new MouseEventHandler(picView_MouseMove);
             picview.MouseClick += new MouseEventHandler(picView_MosueClick);
+            picview.KeyDown += new KeyEventHandler(picViewKeyDown);
             
             combo = FileSelectComboBox;
             combo.Items.Clear();
@@ -485,6 +517,7 @@ namespace LabelPlus
             toolstrip = toolStrip;
             NewFile();
         }
+
 
         #endregion
 

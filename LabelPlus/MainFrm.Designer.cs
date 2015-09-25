@@ -61,7 +61,6 @@
             this.toolStripButton_ZoomPlus = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_ZoomMinus = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox_Zoom = new System.Windows.Forms.ToolStripComboBox();
-            this.picView = new LabelPlus.PicView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripLabels = new System.Windows.Forms.ToolStrip();
@@ -85,6 +84,7 @@
             this.timerAutoSave = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.picView = new LabelPlus.PicView();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.splitContainer.Panel1.SuspendLayout();
@@ -130,40 +130,40 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.newToolStripMenuItem.Text = "New(&N)";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.openToolStripMenuItem.Text = "Open(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveProjectSToolStripMenuItem
             // 
             this.saveProjectSToolStripMenuItem.Name = "saveProjectSToolStripMenuItem";
-            this.saveProjectSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveProjectSToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveProjectSToolStripMenuItem.Text = "Save(&S)";
             this.saveProjectSToolStripMenuItem.Click += new System.EventHandler(this.saveSToolStripMenuItem_Click);
             // 
             // saveAsDToolStripMenuItem
             // 
             this.saveAsDToolStripMenuItem.Name = "saveAsDToolStripMenuItem";
-            this.saveAsDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsDToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveAsDToolStripMenuItem.Text = "Save As(&S)";
             this.saveAsDToolStripMenuItem.Click += new System.EventHandler(this.saveAsDToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 6);
             // 
             // exitEToolStripMenuItem
             // 
             this.exitEToolStripMenuItem.Name = "exitEToolStripMenuItem";
-            this.exitEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitEToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.exitEToolStripMenuItem.Text = "Exit(&E)";
             this.exitEToolStripMenuItem.Click += new System.EventHandler(this.exitEToolStripMenuItem_Click);
             // 
@@ -201,14 +201,14 @@
             // viewHelpHToolStripMenuItem
             // 
             this.viewHelpHToolStripMenuItem.Name = "viewHelpHToolStripMenuItem";
-            this.viewHelpHToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewHelpHToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.viewHelpHToolStripMenuItem.Text = "View Help(&H)";
             this.viewHelpHToolStripMenuItem.Click += new System.EventHandler(this.viewHelpHToolStripMenuItem_Click);
             // 
             // aboutAToolStripMenuItem1
             // 
             this.aboutAToolStripMenuItem1.Name = "aboutAToolStripMenuItem1";
-            this.aboutAToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutAToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.aboutAToolStripMenuItem1.Text = "About(&A)";
             this.aboutAToolStripMenuItem1.Click += new System.EventHandler(this.aboutAToolStripMenuItem1_Click);
             // 
@@ -388,18 +388,6 @@
             this.toolStripComboBox_Zoom.IntegralHeight = false;
             this.toolStripComboBox_Zoom.Name = "toolStripComboBox_Zoom";
             this.toolStripComboBox_Zoom.Size = new System.Drawing.Size(60, 25);
-            // 
-            // picView
-            // 
-            this.picView.AlwaysShowGroup = false;
-            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picView.EnableMakeImage = true;
-            this.picView.Location = new System.Drawing.Point(3, 3);
-            this.picView.Name = "picView";
-            this.picView.Size = new System.Drawing.Size(434, 369);
-            this.picView.TabIndex = 5;
-            this.picView.Zoom = 0.05F;
-            this.picView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.picView_PreviewKeyDown);
             // 
             // splitContainer1
             // 
@@ -606,6 +594,17 @@
             this.notifyIcon.Text = "LabelPlus";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
+            // picView
+            // 
+            this.picView.AlwaysShowGroup = false;
+            this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picView.EnableMakeImage = true;
+            this.picView.Location = new System.Drawing.Point(3, 3);
+            this.picView.Name = "picView";
+            this.picView.Size = new System.Drawing.Size(434, 369);
+            this.picView.TabIndex = 5;
+            this.picView.Zoom = 0.05F;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -616,6 +615,7 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainFrm";
             this.Text = "LabelPlus";
