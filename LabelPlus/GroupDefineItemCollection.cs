@@ -25,7 +25,7 @@ namespace LabelPlus
         }
 
         public string GetViewName(int n){
-            if (n - 1 > items.Count)
+            if (n - 1 >= items.Count)
             {
                 //不存在用户分组
                 return "G" + n.ToString();
@@ -34,7 +34,14 @@ namespace LabelPlus
                 return items[n - 1].Name;
             }
         }
+        public string[] GetViewNames()
+        {
+            List<string> tmp = new List<string>();
+            for (int i = 1; i <= 9; i++)
+                tmp.Add(GetViewName(i));
 
+            return tmp.ToArray();
+        }
         public string GetFullViewName(int n)
         {
             if (n > items.Count) 

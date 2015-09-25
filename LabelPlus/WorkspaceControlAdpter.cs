@@ -194,12 +194,12 @@ namespace LabelPlus
                 if (wsp.Store.Filenames.Contains(fileName))
                 {
                     listviewapt.ReloadItems(wsp.Store[fileName]);
-                    picview.SetLabels(wsp.Store[fileName], wsp.GroupDefine.GetColors());
+                    picview.SetLabels(wsp.Store[fileName],wsp.GroupDefine.GetViewNames() , wsp.GroupDefine.GetColors());
                     //listviewapt.SelectedIndex = -1;
                 }
                 else {
                     listviewapt.ReloadItems(null);
-                    picview.SetLabels(null,null);                    
+                    picview.SetLabels(null,null,null);                    
                 }
             }
             catch { }

@@ -39,6 +39,7 @@ namespace LabelPlus
         /*Label相关*/
         private Color[] colorList;
         private bool hideLabel = false;
+        private bool showGroup = false;
         public UserActionEventHandler LabelUserClickAction;
 
         public EventHandler ZoomChanged;
@@ -237,7 +238,7 @@ namespace LabelPlus
                 }
 
                 //判断有没有必要生成
-                if (Math.Abs(this.Zoom - zoom) < 0.001f && !EnableMakeImage) 
+                if (imageZoomed != null && Math.Abs(this.Zoom - zoom) < 0.001f && !EnableMakeImage) 
                     return false;
 
                 //缩图
@@ -259,12 +260,14 @@ namespace LabelPlus
                 //贴上标签
                 image = new Bitmap(imageZoomed);
                 Graphics tmp = Graphics.FromImage(image);
-                if (!hideLabel)
+                if (!hideLabel && labels!=null)
                 {                    
+                    float labelFontSize =  LabelSideLength(image) / 1.6f;
+
                     for (int i = 0; i < labels.Count; i++)
                     {
                         RectangleF rect = getLabelRectangle(labels[i].X_percent, labels[i].Y_percent, image);
-                        Font myFont = new System.Drawing.Font(new FontFamily("Arial"), LabelSideLength(image) / 1.5f, FontStyle.Bold);
+                        Font myFont = new System.Drawing.Font(new FontFamily("Arial"), labelFontSize, FontStyle.Bold);
 
                         Brush myBrushRed = new SolidBrush(colorList[labels[i].Category - 1]);
                         Brush myBrushWhite = new SolidBrush(Color.White);
@@ -272,15 +275,29 @@ namespace LabelPlus
 
                         StringFormat sf = new StringFormat();
                         sf.Alignment = StringAlignment.Center;
-                        sf.LineAlignment = StringAlignment.Center;
-
-                        ////背发光
-                        //tmp.DrawString(i.ToString(), myFont, myBrushWhite, rect.X - LabelSideLength * 0.03f, rect.Y - LabelSideLength * 0.03f);
+                        sf.LineAlignment = StringAlignment.Center;                        
+                        
                         //实体字
-
                         tmp.DrawString((i + 1).ToString(), myFont, myBrushRed, rect, sf);
+
                         //外框                
                         //tmp.DrawRectangle(mySidePen, rect.X, rect.Y, rect.Width, rect.Height);
+
+                        //显示Group
+                        if (showGroup) {
+                            Font groupFont = new System.Drawing.Font(new FontFamily("simsun"), labelFontSize / 1.5f, FontStyle.Regular);
+                            float myWidth = labelFontSize * 10;
+                            RectangleF groupRect = new RectangleF(
+                                rect.X + rect.Width / 2 - myWidth / 2,
+                                rect.Y - labelFontSize,
+                                myWidth,
+                                rect.Height);
+
+                            tmp.DrawString(groupString[labels[i].Category - 1], groupFont, myBrushRed, groupRect, sf);
+
+                            groupFont.Dispose();
+                        }
+
                         myFont.Dispose();
                         myBrushRed.Dispose();
                         myBrushWhite.Dispose();
@@ -418,8 +435,8 @@ namespace LabelPlus
         #endregion
 
         #region Label操作
-        List<LabelItem> labels = new List<LabelItem>(); 
-
+        List<LabelItem> labels = new List<LabelItem>();
+        string[] groupString;
         public void ClearLabels(){
             labels = new List<LabelItem>();
         }
@@ -432,10 +449,11 @@ namespace LabelPlus
         //    labels.Add(tmp);
         //}
 
-        public void SetLabels(List<LabelItem> items, Color[] colors)
+        public void SetLabels(List<LabelItem> items, string[] groupString , Color[] colors)
         {
-            labels = items;
-            colorList = colors;
+            this.labels = items;
+            this.colorList = colors;
+            this.groupString = groupString;
             MakeImageNow();
         }
 
@@ -544,6 +562,11 @@ namespace LabelPlus
                 hideLabel = true;
                 MakeImageNow();
             }
+            else if (e.KeyCode == Keys.C) 
+            {
+                showGroup = true;
+                MakeImageNow();
+            }
         }
 
         private void PicView_Label_KeyUp(object sender, KeyEventArgs e)
@@ -551,6 +574,11 @@ namespace LabelPlus
             if (e.KeyCode == Keys.V)
             {
                 hideLabel = false;
+                MakeImageNow();
+            }
+            else if (e.KeyCode == Keys.C)
+            {
+                showGroup = false;
                 MakeImageNow();
             }
         }
