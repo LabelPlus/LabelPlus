@@ -84,11 +84,11 @@
   
   <Form>
     <Name>FileSettingFrm</Name>
-	<Text>文件设置</Text>	
+	<Text>File Setting</Text>	
     <Controls>
-      <Control name="labelGroup" text="分组设置" />
-      <Control name="labelComment" text="备注" />
-      <Control name="buttonOK" text="确认" />
+      <Control name="labelGroup" text="Groups" />
+      <Control name="labelComment" text="Comment" />
+      <Control name="buttonOK" text="OK" />
     </Controls>
   </Form>  
   
@@ -102,14 +102,14 @@
     <String name="output_fail" text="Failed to output the file!"/>
     <String name="output_aborted" text="Output progress is aborted"/>
     <String name="ps_output_complete" text="auto_label_for_photoshop.jsx is you script file \n Method to use it：1.drag it into Photoshop \n2.Select the Dir of images"/>
-    <String name="tip_chose_photo_dir" text="Plase choose directory of images。\nProgram will create a text file in this directory。"/>
+    <String name="tip_chose_photo_dir" text="Plase choose directory of images。\nProgram will create a text file in this directory."/>
     <String name="tip_new_file_be_saved" text="New file saved:{0}"/>
-    <String name="tip_setting_group" text="请以正确的格式设置分组，每行一组，分组数量为1-9组"/> 
-    <String name="tip_sure_del_label" text="确认删除选中的标签吗?"/> 
-    <String name="tip_setting_comment" text="备注里不能以'-'作为单独一行"/> 
+    <String name="tip_setting_group" text="Please set the group with correct format，each group write in one line, 1 to 9 groups"/> 
+    <String name="tip_sure_del_label" text="Sure to delete the selected labels?"/> 
+    <String name="tip_setting_comment" text="'-' cannot be alone a line in the comment."/> 
     <String name="default_file_name" text="translation"/>
-    <String name="error_openfilefail" text="打开文件失败"/>
-    <String name="error_file_version_over" text="文件版本太高，无法使用本版本编辑！"/>
-    <String name="error_file_startblocks_lost" text="文件StartBlocks丢失"/> 
+    <String name="error_openfilefail" text="Fail to open the file."/>
+    <String name="error_file_version_over" text="Version too high!"/>
+    <String name="error_file_startblocks_lost" text="Start Blocks lost."/> 
   </Strings>
 </Resource>

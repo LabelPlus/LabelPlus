@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <AppConfig>
+
+  <DefaultComment>Default Comment\n You can edit me</DefaultComment>
+  <SetLabelVisualRatio>0.5,0.2</SetLabelVisualRatio>  
+  
   <QuickText>
     <Item>
         <Text>啊</Text>
@@ -14,6 +18,30 @@
         <Key>W</Key>
     </Item>    
     <Item>
+        <Text>唔</Text>
+        <Key>W</Key>
+    </Item>          
+    <Item>
+        <Text>咕</Text>
+        <Key>G</Key>
+    </Item>      
+    <Item>
+        <Text>咿</Text>
+        <Key>Y</Key>
+    </Item>            
+    <Item>
+        <Text>呀</Text>
+        <Key>Y</Key>
+    </Item>   
+    <Item>
+        <Text>啾</Text>
+        <Key>J</Key>
+    </Item>
+    <Item>
+        <Text>噗</Text>
+        <Key>P</Key>
+    </Item>    
+    <Item>
         <Text>❤</Text>
         <Key>1</Key>
     </Item>    
@@ -26,26 +54,44 @@
         <Key>3</Key>
     </Item>    
   </QuickText>
-  
-  <AutoGroupActionGroupname>LabelPlusActionDome</AutoGroupActionGroupname>
-  <SetLabelVisualRatio>0.5,0.2</SetLabelVisualRatio>
+    
   <GroupDefine>    
     <Group>
-        <Name></Name>
-        <RGB>255,0,0</RGB>
+        <Name>分组1</Name>
+        <RGB>237,28,36</RGB>
     </Group>
     <Group>
-        <Name></Name>
-        <RGB>0,0,255</RGB>
+        <Name>分组2</Name>
+        <RGB>48,57,177</RGB>
     </Group>
     <Group>
-        <Name></Name>
-        <RGB>0,200,0</RGB>
+        <Name>分组3</Name>
+        <RGB>34,177,76</RGB>
     </Group>
     <Group>
-        <Name></Name>
-        <RGB>235,135,0</RGB>
+        <Name>分组4</Name>
+        <RGB>0,162,232</RGB>
     </Group>   
+    <Group>
+        <Name></Name>
+        <RGB>163,73,164</RGB>
+    </Group>
+    <Group>
+        <Name></Name>
+        <RGB>240,228,0</RGB>
+    </Group>
+    <Group>
+        <Name></Name>
+        <RGB>255,135,0</RGB>
+    </Group>
+    <Group>
+        <Name></Name>
+        <RGB>255,32,104</RGB>
+    </Group>    
+    <Group>
+        <Name></Name>
+        <RGB>184,133,37</RGB>
+    </Group>        
   </GroupDefine>
   
 </AppConfig>
