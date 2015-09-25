@@ -191,12 +191,15 @@
     <Content Include="bitbug_favicon.ico" />
     <Content Include="Resources\bitbug_favicon.ico" />
     <None Include="Resources\C.png" />
+    <None Include="Resources\Browse.png" />
+    <None Include="Resources\Check.png" />
     <Content Include="Resources\del.png" />
     <None Include="Resources\font_minus.png" />
     <None Include="Resources\G.png" />
     <None Include="Resources\font_plus.png" />
-    <Content Include="Resources\hide.png" />
     <None Include="Resources\L.png" />
+    <None Include="Resources\hide.png" />
+    <None Include="Resources\Input.png" />
     <Content Include="Resources\left.png" />
     <Content Include="Resources\right.png" />
     <None Include="Resources\T.png" />

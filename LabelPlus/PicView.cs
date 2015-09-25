@@ -217,11 +217,23 @@ namespace LabelPlus
                 if (zoom == 0) zoom = this.Zoom;
                 if (labels == null) labels = this.labels;
 
+                //若无东西 就清空image
                 if (imageOriginal == null)
                 {
-                    //若无东西 就清空image
-                    image = null;
+                    if (image != null)
+                    {
+                        image.Dispose();
+                        image = null;
+                    }
                     return false;
+                }
+
+                //图像来自外部 清除内部缓存
+                if (imageOriginal != this.imageOriginal) {
+                    if (imageZoomed != null) {
+                        imageZoomed.Dispose();
+                        imageZoomed = null; 
+                    }
                 }
 
                 //判断有没有必要生成
