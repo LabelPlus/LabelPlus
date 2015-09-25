@@ -17,7 +17,7 @@ namespace LabelPlus
             public string Key;
         }
         public static QuickTextItem[] QuickTextItems;
-        public static string AutoGroupActionGroupname;
+        //public static string AutoGroupActionGroupname;
 
         public static float SetLabelVisualRatioX;
         public static float SetLabelVisualRatioY;
@@ -47,8 +47,8 @@ namespace LabelPlus
                 QuickTextItems[i] = item;
             }
 
-            /* AutoGroupActionGroupname */
-            AutoGroupActionGroupname = doc.SelectSingleNode("AppConfig/AutoGroupActionGroupname").InnerText;
+            ///* AutoGroupActionGroupname */
+            //AutoGroupActionGroupname = doc.SelectSingleNode("AppConfig/AutoGroupActionGroupname").InnerText;
 
             /* GroupDefine */
             XmlNodeList GroupDefine = doc.SelectNodes("AppConfig/GroupDefine/Group");
@@ -80,11 +80,15 @@ namespace LabelPlus
 
 
             //SetLabelVisualRatioX Y
-            SetLabelVisualRatioX = 0.5f;
-            SetLabelVisualRatioY = 0.2f;
+            string[] setLabelVisualRatioStrs; 
+            setLabelVisualRatioStrs = doc.SelectSingleNode("AppConfig/SetLabelVisualRatio").InnerText.Split(',');
+
+            SetLabelVisualRatioX = Convert.ToSingle(setLabelVisualRatioStrs[0]);
+            SetLabelVisualRatioY = Convert.ToSingle(setLabelVisualRatioStrs[1]);
 
             //DefaultComment
-            DefaultComment = "DefaultComment";
+            DefaultComment = doc.SelectSingleNode("AppConfig/DefaultComment").InnerText;
+            DefaultComment = DefaultComment.Replace(@"\n", "\r\n");
         }
 
     }

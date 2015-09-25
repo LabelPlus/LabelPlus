@@ -442,6 +442,15 @@ namespace LabelPlus
                     addLabelToStore(nowText, nowLabelResultValues, nowFilename);
                 }
 
+                if (state == stateEnum.start)
+                {
+                    //处理Label文件的文件头
+                    readLabelFileStartBlocks(nowText);
+
+                    state = stateEnum.file;
+                    nowFilename = result.value[0];
+                }
+
                 OnFileListChanged();
                 OnLabelItemListChanged();
                 OnGroupListChanged();

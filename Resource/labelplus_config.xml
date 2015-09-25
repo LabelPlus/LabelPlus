@@ -28,7 +28,7 @@
   </QuickText>
   
   <AutoGroupActionGroupname>LabelPlusActionDome</AutoGroupActionGroupname>
-  
+  <SetLabelVisualRatio>0.5,0.2</SetLabelVisualRatio>
   <GroupDefine>    
     <Group>
         <Name></Name>

@@ -214,16 +214,16 @@ namespace LabelPlus
 
             new ImageOutputFrm(wsp, picView).ShowDialog();
         }
-        private void outputPhotoshopScriptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!wsp.HavePath)
-            {
-                MessageBox.Show(StringResources.GetValue("input_images_need_save"));
-                return;
-            }
+        //private void outputPhotoshopScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (!wsp.HavePath)
+        //    {
+        //        MessageBox.Show(StringResources.GetValue("input_images_need_save"));
+        //        return;
+        //    }
 
-            new OutputScriptFrm(wsp).ShowDialog();
-        }
+        //    new OutputScriptFrm(wsp).ShowDialog();
+        //}
         private void imageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (wsp.HavePath)

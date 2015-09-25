@@ -115,12 +115,6 @@
     <Compile Include="ManageImageFrm.Designer.cs">
       <DependentUpon>ManageImageFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OutputScriptFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OutputScriptFrm.Designer.cs">
-      <DependentUpon>OutputScriptFrm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,9 +155,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageImageFrm.resx">
       <DependentUpon>ManageImageFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutputScriptFrm.resx">
-      <DependentUpon>OutputScriptFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PicView.resx">
       <DependentUpon>PicView.cs</DependentUpon>

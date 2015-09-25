@@ -138,9 +138,9 @@ namespace LabelPlus
                     }
                     break;
             }
-        }  
+        }
 
-        private void picViewKeyDown(object sender, KeyEventArgs e)
+        private void picView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
                 page_left();
@@ -148,7 +148,11 @@ namespace LabelPlus
                 page_right();
             else if (e.KeyCode == Keys.Tab)
                 page_right();
-            else if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
+        }
+
+        private void picViewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
             {
                 int index = e.KeyCode - Keys.D1;
                 if (index <= wsp.GroupDefine.UserGroupCount)
@@ -484,6 +488,7 @@ namespace LabelPlus
             picview.MouseMove += new MouseEventHandler(picView_MouseMove);
             picview.MouseClick += new MouseEventHandler(picView_MosueClick);
             picview.KeyDown += new KeyEventHandler(picViewKeyDown);
+            picview.PreviewKeyDown += new PreviewKeyDownEventHandler(picView_PreviewKeyDown);
             
             combo = FileSelectComboBox;
             combo.Items.Clear();

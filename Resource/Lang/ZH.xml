@@ -30,8 +30,6 @@
       <Control name="toolStripButton_CheckMode" text="审校模式(&amp;R)" />
       <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;T)" />
       <Control name="fileToolStripLabel" text="图片" />
-      <Control name="toolStripButton_Left" text="前页(←)" />
-      <Control name="toolStripButton_Right" text="后页(→)" />
       <Control name="toolStripButton_EditBig" text="字体增大" />
       <Control name="toolStripButton_EditSmall" text="字体减小" />
       <Control name="toolStripButton_Clear" text="清空标签" />

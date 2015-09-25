@@ -30,12 +30,10 @@
       <Control name="toolStripButton_CheckMode" text="Check(&amp;R)" />
       <Control name="toolStripButton_HideWindow" text="Hide(&amp;T)" />
       <Control name="fileToolStripLabel" text="Image" />
-      <Control name="toolStripButton_Left" text="←" />
-      <Control name="toolStripButton_Right" text="→" />
       <Control name="toolStripButton_EditBig" text="Font Size" />
       <Control name="toolStripButton_EditSmall" text="" />
       <Control name="toolStripButton_Clear" text="Clear Labels" />
-      <Control name="toolStripButton_GroupSetting" text="Group Setting" />
+      <Control name="toolStripButton_GroupSetting" text="File Setting" />
       
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Next Label" />
