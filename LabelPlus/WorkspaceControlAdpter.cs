@@ -134,9 +134,9 @@ namespace LabelPlus
                 page_left();
             else if (e.KeyCode == Keys.Right)
                 page_right();
+            else if (e.KeyCode == Keys.Tab)
+                page_right();               
             else if(e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9){
-                //SetCategoryButton_Click(categorybutton1,null);
-
                 int index = e.KeyCode - Keys.D1;
                 if (index <= wsp.GroupDefine.UserGroupCount)
                 {
@@ -155,12 +155,6 @@ namespace LabelPlus
             else if (e.KeyCode == Keys.R) {
                 modebuttons.SelectedButtonIndex = 3;
             }
-
-                
-
-            if (Control.ModifierKeys == Keys.Control && e.KeyCode == Keys.Tab)  
-                //Ctrl+Tab
-                page_right();               
             
         }
 
