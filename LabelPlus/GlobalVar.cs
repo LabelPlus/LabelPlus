@@ -19,6 +19,9 @@ namespace LabelPlus
         public static QuickTextItem[] QuickTextItems;
         public static string AutoGroupActionGroupname;
 
+        public static float SetLabelVisualRatioX;
+        public static float SetLabelVisualRatioY; 
+
         public static void Reload() {
  
             /* 读配置文件 */
@@ -72,7 +75,11 @@ namespace LabelPlus
             }
 
             DefaultGroupDefineItems = tmpItems.ToArray();
-            
+
+
+            //SetLabelVisualRatioX Y
+            SetLabelVisualRatioX = 0.5f;
+            SetLabelVisualRatioY = 0.2f;
         }
 
     }

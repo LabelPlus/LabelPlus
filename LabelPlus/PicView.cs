@@ -14,14 +14,15 @@ namespace LabelPlus
             int index;
             float x_percent;
             float y_percent;
-            public enum ClickType
+            public enum ActionType
             {
-                left,
-                right,
+                leftClick,
+                rightClick,
+                mouseIndexChanged,
             }
-            ClickType type;
+            ActionType type;
 
-            public LabelUserActionEventArgs(int n, float X_percent, float Y_percent, ClickType Type)
+            public LabelUserActionEventArgs(int n, float X_percent, float Y_percent, ActionType Type)
             {
                 index = n;
                 x_percent = X_percent;
@@ -32,7 +33,7 @@ namespace LabelPlus
             public int Index { get{return index;} }
             public float X_percent { get { return x_percent; } }
             public float Y_percent { get { return y_percent; } }
-            public ClickType Type { get { return type; } }
+            public ActionType Type { get { return type; } }
         }
 
         public delegate void UserActionEventHandler(object sender, LabelUserActionEventArgs e);
@@ -40,7 +41,15 @@ namespace LabelPlus
         private Color[] colorList;
         private bool hideLabel = false;
         private bool showGroup = false;
-        public UserActionEventHandler LabelUserClickAction;
+        private bool alwaysShowGroup;
+        public bool AlwaysShowGroup {
+            get { return alwaysShowGroup; }
+            set { 
+                alwaysShowGroup = value;
+                MakeImageNow();
+            }
+        }
+        public UserActionEventHandler LabelUserAction;
 
         public EventHandler ZoomChanged;
         internal void OnZoomChanged(){
@@ -184,6 +193,7 @@ namespace LabelPlus
             toolTip.ForeColor = Color.White;
 
             EnableMakeImage = true;
+            AlwaysShowGroup = false;
         }
 
 
@@ -211,8 +221,7 @@ namespace LabelPlus
         public bool EnableMakeImage { get; set; }
 
         public bool MakeImage(ref Image image,ref Image imageOriginal, float zoom = 0, List<LabelItem> labels = null)
-        {       
-
+        {
             try
             {
                 if (zoom == 0) zoom = this.Zoom;
@@ -284,7 +293,8 @@ namespace LabelPlus
                         //tmp.DrawRectangle(mySidePen, rect.X, rect.Y, rect.Width, rect.Height);
 
                         //显示Group
-                        if (showGroup) {
+                        if (AlwaysShowGroup || showGroup)
+                        {
                             Font groupFont = new System.Drawing.Font(new FontFamily("simsun"), labelFontSize / 1.5f, FontStyle.Bold);
                             float myWidth = labelFontSize * 10;
                             RectangleF groupRect = new RectangleF(
@@ -457,6 +467,27 @@ namespace LabelPlus
             MakeImageNow();
         }
 
+        // 使标签可见 Input模式使用
+        public void SetLabelVisual(int index) {
+            if (index < labels.Count) {
+                float x = labels[index].X_percent * image.Size.Width;
+                float y = labels[index].Y_percent * image.Size.Height;
+                float startX = x - clientRect.Width * GlobalVar.SetLabelVisualRatioX;
+                float startY = y - clientRect.Height * GlobalVar.SetLabelVisualRatioY;
+ 
+                //startX Y转换到原始尺寸坐标
+                float ratio = (float)image.Size.Width / imageOriginal.Size.Width;
+                startX = startX / ratio;
+                startY = startY / ratio;
+
+                StartP = new PointF(startX,startY);
+                MakeImageNow();
+            }
+
+        }
+        
+
+
         int getLabelIndex(int x, int y) {
             if (labels == null) return -1;
 
@@ -491,8 +522,8 @@ namespace LabelPlus
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 //左键
-                if (LabelUserClickAction != null)
-                    LabelUserClickAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ClickType.left));
+                if (LabelUserAction != null)
+                    LabelUserAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ActionType.leftClick));
                 
                 ////添加
                 //var referRect = getLabelRectangle(0, 0); //参考矩形
@@ -505,8 +536,8 @@ namespace LabelPlus
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 //右键
-                if (LabelUserClickAction != null)
-                    LabelUserClickAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ClickType.right));
+                if (LabelUserAction != null)
+                    LabelUserAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ActionType.rightClick));
 
                 ////删除
                 //if (index == -1) return;                
@@ -528,13 +559,22 @@ namespace LabelPlus
         }
 
         bool tooltop_showing = false;
+        int lastMouseIndex = -1;
         private void PicView_MouseMove(object sender, MouseEventArgs e)
         {
             try
             {
-                //提示文本
-
+                
                 int index = getLabelIndex(e.X, e.Y);
+
+                if (index != lastMouseIndex) { 
+                    if(LabelUserAction!=null)
+                        LabelUserAction(this,new LabelUserActionEventArgs(index,e.X,e.Y, LabelUserActionEventArgs.ActionType.mouseIndexChanged));
+                }
+                lastMouseIndex = index;
+                
+
+                //提示文本
                 if (index != -1)
                 {
                     if (!tooltop_showing)

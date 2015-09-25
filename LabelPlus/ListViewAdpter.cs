@@ -58,6 +58,8 @@ namespace LabelPlus
                 setLvSelectItem(value);
             }
         }
+
+        public ListView ListView { get { return lv; } }
         #endregion
 
         #region Methods

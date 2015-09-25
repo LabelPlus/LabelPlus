@@ -96,7 +96,7 @@ namespace LabelPlus
             bool ctrlBePush = workMode==WorkMode.Label || Control.ModifierKeys == Keys.Control ;
 
             switch (e.Type) { 
-                case PicView.LabelUserActionEventArgs.ClickType.left:
+                case PicView.LabelUserActionEventArgs.ActionType.leftClick:
                     if (ctrlBePush)
                     {
                         //add
@@ -116,13 +116,22 @@ namespace LabelPlus
                         textbox.Focus();
                     }
                     break;
-                case PicView.LabelUserActionEventArgs.ClickType.right:
+                case PicView.LabelUserActionEventArgs.ActionType.rightClick:
                     if (ctrlBePush)
                     {
                         //del
                         wsp.Store.DelLabelItem(FileName, e.Index);
 
                         listviewapt.SelectedIndex = -1;
+                    }
+                    break;
+                case PicView.LabelUserActionEventArgs.ActionType.mouseIndexChanged:
+
+                    if (workMode == WorkMode.Check) 
+                    {
+                        if (e.Index == -1)
+                            return;
+                        listviewapt.SelectedIndex = e.Index;
                     }
                     break;
             }
@@ -174,6 +183,18 @@ namespace LabelPlus
                     itemIndex = listviewapt.SelectedIndex;
                     setTextboxText(wsp.Store[fileName][itemIndex].Text);
                     textboxgroupbox.Text = (itemIndex + 1).ToString();
+
+                    if (workMode == WorkMode.Input) {
+                        if (picview.Focused)
+                            return;
+
+                        picview.SetLabelVisual(listviewapt.SelectedIndex);
+                    }
+                    else if (workMode == WorkMode.Check)
+                    {
+                        if (listviewapt.ListView.Focused == true)
+                            picview.SetLabelVisual(listviewapt.SelectedIndex);                        
+                    }
                 }
             }
             catch { }
@@ -315,6 +336,12 @@ namespace LabelPlus
         private void modeButtons_IndexChanged(object sender, EventArgs e)
         {
             workMode = (WorkMode)(modebuttons.SelectedButtonIndex);
+
+            if (workMode == WorkMode.Check)
+                picview.AlwaysShowGroup = true;
+            else
+                picview.AlwaysShowGroup = false;
+
             Console.WriteLine(workMode);
         }
 
@@ -397,7 +424,7 @@ namespace LabelPlus
             picview.Refresh();
             //picview.LabelUserAddAction += new PicView.UserActionEventHandler(picView_UserActionEventAdd);
             //picview.LabelUserDelAction += new PicView.UserActionEventHandler(picView_UserActionEventDel);            
-            picview.LabelUserClickAction += new PicView.UserActionEventHandler(picView_UserClickAction);
+            picview.LabelUserAction += new PicView.UserActionEventHandler(picView_UserClickAction);
             picView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(picView_PreviewKeyDown);
             picview.MouseMove += new MouseEventHandler(picView_MouseMove);
             picview.MouseClick += new MouseEventHandler(picView_MosueClick);
