@@ -10,9 +10,9 @@ namespace LabelPlus
 {
     class GroupButtonAdaptor
     {
-        int selectedButtonIndex;
+        //int selectedButtonIndex;
         public int SelectIndex {
-            get { return selectedButtonIndex; }
+            get { return myButtonGroup.SelectedButtonIndex; }
             set { myButtonGroup.ClickButton(value); }
         }
 
@@ -26,7 +26,7 @@ namespace LabelPlus
         public GroupButtonAdaptor(ToolStrip toolStrip, GroupDefineItemCollection groupDefines) {
             this.toolStrip = toolStrip;
             myButtonGroup = new ToolStripButtonGroup(toolStrip);
-            myButtonGroup.IndexChanged += new EventHandler(buttonGroupClick);
+            //myButtonGroup.IndexChanged += new EventHandler(buttonGroupSelectChanged);
 
             Refresh(groupDefines);
         }
@@ -58,13 +58,6 @@ namespace LabelPlus
                         
         }
 
-        private void buttonGroupClick(object sender, EventArgs e)
-        {
-            int index = myButtonGroup.GetButtonIndex(sender);
-            if (index != -1) {
-                selectedButtonIndex = index;
-            }
-        }
 
         
     }

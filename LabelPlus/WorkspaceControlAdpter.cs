@@ -142,7 +142,14 @@ namespace LabelPlus
 
         private void picView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
+            {
+                int index = e.KeyCode - Keys.D1;
+                if (index <= wsp.GroupDefine.UserGroupCount)
+                {
+                    groupbuttons.SelectIndex = index;
+                }
+            }else if (e.KeyCode == Keys.Left)
                 page_left();
             else if (e.KeyCode == Keys.Right)
                 page_right();
@@ -152,15 +159,7 @@ namespace LabelPlus
 
         private void picViewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
-            {
-                int index = e.KeyCode - Keys.D1;
-                if (index <= wsp.GroupDefine.UserGroupCount)
-                {
-                    groupbuttons.SelectIndex = index;
-                }
-            }
-            else if (e.KeyCode == Keys.Q)
+            if (e.KeyCode == Keys.Q)
             {
                 modebuttons.SelectedButtonIndex = 0;
             }
