@@ -261,7 +261,7 @@ namespace LabelPlus
             Font newFont = new Font(oldFont.FontFamily, oldFont.Size + 1, oldFont.Style);
 
             TranslateTextBox.Font = newFont;
-            listView.Font = newFont;
+            //listView.Font = newFont;
 
         }
         private void toolStripButton_EditSmall_Click(object sender, EventArgs e)
@@ -270,7 +270,7 @@ namespace LabelPlus
             Font newFont = new Font(oldFont.FontFamily, oldFont.Size - 1, oldFont.Style);
 
             TranslateTextBox.Font = newFont;
-            listView.Font = newFont;
+            //listView.Font = newFont;
 
         }
 
