@@ -19,23 +19,23 @@ namespace LabelPlus
             StringResources.SetValue("lang", Language.ReadDefaultLanguage());
             Language.InitStringResouce(StringResources.GetValue("lang"));
             
-            try{
-                loadPsScript("ps_blank_layer");
-                loadPsScript("ps_close_file");
-                loadPsScript("ps_file_footer");
-                loadPsScript("ps_file_header");
-                loadPsScript("ps_header");
-                loadPsScript("ps_labelnum");
-                loadPsScript("ps_labeltext");
-                loadPsScript("ps_add_group");
-                loadPsScript("ps_run_action");
-                loadPsScript("ps_del_group_sign");
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show("PS_Script Definition Error. \r\n"+ e.ToString());
-                Environment.Exit(1);
-            }
+            //try{
+            //    loadPsScript("ps_blank_layer");
+            //    loadPsScript("ps_close_file");
+            //    loadPsScript("ps_file_footer");
+            //    loadPsScript("ps_file_header");
+            //    loadPsScript("ps_header");
+            //    loadPsScript("ps_labelnum");
+            //    loadPsScript("ps_labeltext");
+            //    loadPsScript("ps_add_group");
+            //    loadPsScript("ps_run_action");
+            //    loadPsScript("ps_del_group_sign");
+            //}
+            //catch(Exception e)
+            //{
+            //    MessageBox.Show("PS_Script Definition Error. \r\n"+ e.ToString());
+            //    Environment.Exit(1);
+            //}
 
             
             try{

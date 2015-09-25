@@ -1,6 +1,0 @@
-﻿
-/*选中分组内文本图层*/
-app.doAction("select_g{0}","_LabelplusActionLib.ATN");
-
-/*执行对应动作*/
-app.doAction("Group{0}","{1}.ATN");

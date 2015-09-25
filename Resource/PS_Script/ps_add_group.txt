@@ -1,4 +1,0 @@
-﻿
-/*添加图层分组*/
-var group{0} = bg.layerSets.add();
-group{0}.name = "g{0}";
