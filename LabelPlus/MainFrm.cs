@@ -384,7 +384,12 @@ namespace LabelPlus
         }
         #endregion
 
-
+        private void picView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.T) {
+                toolStripButton_HideWindow_Click(this, null);
+            }
+        }
 
     }
 

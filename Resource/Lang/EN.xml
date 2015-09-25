@@ -24,11 +24,11 @@
       <Control name="viewHelpHToolStripMenuItem" text="View Help(&amp;H)" />
       <Control name="aboutAToolStripMenuItem" text="About(&amp;A)" />
       <!-- 工具栏 -->
-      <Control name="toolStripButton_BrowseMode" text="Browse(&amp;W)" />
-      <Control name="toolStripButton_EditLabelMode" text="Label(&amp;E)" />
-      <Control name="toolStripButton_InputMode" text="Input(&amp;R)" />
-      <Control name="toolStripButton_CheckMode" text="Check(&amp;T)" />
-      <Control name="toolStripButton_HideWindow" text="Hide(&amp;Q)" />
+      <Control name="toolStripButton_BrowseMode" text="Browse(&amp;Q)" />
+      <Control name="toolStripButton_EditLabelMode" text="Label(&amp;W)" />
+      <Control name="toolStripButton_InputMode" text="Input(&amp;E)" />
+      <Control name="toolStripButton_CheckMode" text="Check(&amp;R)" />
+      <Control name="toolStripButton_HideWindow" text="Hide(&amp;T)" />
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_Left" text="←" />
       <Control name="toolStripButton_Right" text="→" />

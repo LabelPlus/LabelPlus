@@ -143,6 +143,20 @@ namespace LabelPlus
                     groupbuttons.SelectIndex = index;
                 }
             }
+            else if (e.KeyCode == Keys.Q) {
+                modebuttons.SelectedButtonIndex = 0;
+            }
+            else if (e.KeyCode == Keys.W) {
+                modebuttons.SelectedButtonIndex = 1;
+            }
+            else if (e.KeyCode == Keys.E) {
+                modebuttons.SelectedButtonIndex = 2;
+            }
+            else if (e.KeyCode == Keys.R) {
+                modebuttons.SelectedButtonIndex = 3;
+            }
+
+                
 
             if (Control.ModifierKeys == Keys.Control && e.KeyCode == Keys.Tab)  
                 //Ctrl+Tab
@@ -187,7 +201,7 @@ namespace LabelPlus
                 {
                     listviewapt.ReloadItems(wsp.Store[fileName]);
                     picview.SetLabels(wsp.Store[fileName], wsp.GroupDefine.GetColors());
-                    listviewapt.SelectedIndex = -1;
+                    //listviewapt.SelectedIndex = -1;
                 }
                 else {
                     listviewapt.ReloadItems(null);

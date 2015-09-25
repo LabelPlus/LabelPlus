@@ -24,11 +24,11 @@
       <Control name="aboutAToolStripMenuItem" text="关于(&amp;A)" />
 
       <!-- 工具栏 -->
-      <Control name="toolStripButton_BrowseMode" text="浏览模式(&amp;W)" />
-      <Control name="toolStripButton_EditLabelMode" text="Label模式(&amp;E)" />
-      <Control name="toolStripButton_InputMode" text="录入模式(&amp;R)" />
-      <Control name="toolStripButton_CheckMode" text="审校模式(&amp;T)" />
-      <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;Q)" />
+      <Control name="toolStripButton_BrowseMode" text="浏览模式(&amp;Q)" />
+      <Control name="toolStripButton_EditLabelMode" text="Label模式(&amp;W)" />
+      <Control name="toolStripButton_InputMode" text="录入模式(&amp;E)" />
+      <Control name="toolStripButton_CheckMode" text="审校模式(&amp;R)" />
+      <Control name="toolStripButton_HideWindow" text="隐藏窗口(&amp;T)" />
       <Control name="fileToolStripLabel" text="图片" />
       <Control name="toolStripButton_Left" text="前页(←)" />
       <Control name="toolStripButton_Right" text="后页(→)" />
