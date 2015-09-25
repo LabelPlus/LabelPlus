@@ -285,7 +285,7 @@ namespace LabelPlus
 
                         //显示Group
                         if (showGroup) {
-                            Font groupFont = new System.Drawing.Font(new FontFamily("simsun"), labelFontSize / 1.5f, FontStyle.Regular);
+                            Font groupFont = new System.Drawing.Font(new FontFamily("simsun"), labelFontSize / 1.5f, FontStyle.Bold);
                             float myWidth = labelFontSize * 10;
                             RectangleF groupRect = new RectangleF(
                                 rect.X + rect.Width / 2 - myWidth / 2,

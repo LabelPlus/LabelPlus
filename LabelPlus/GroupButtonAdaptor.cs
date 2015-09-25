@@ -26,7 +26,7 @@ namespace LabelPlus
         public GroupButtonAdaptor(ToolStrip toolStrip, GroupDefineItemCollection groupDefines) {
             this.toolStrip = toolStrip;
             myButtonGroup = new ToolStripButtonGroup(toolStrip);
-            myButtonGroup.Click += new EventHandler(buttonGroupClick);
+            myButtonGroup.IndexChanged += new EventHandler(buttonGroupClick);
 
             Refresh(groupDefines);
         }

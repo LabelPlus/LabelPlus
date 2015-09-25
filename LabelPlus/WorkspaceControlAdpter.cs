@@ -312,7 +312,7 @@ namespace LabelPlus
             groupbuttons.Refresh(wsp.GroupDefine);
         }
 
-        private void modeButtons_Click(object sender, EventArgs e)
+        private void modeButtons_IndexChanged(object sender, EventArgs e)
         {
             workMode = (WorkMode)(modebuttons.SelectedButtonIndex);
             Console.WriteLine(workMode);
@@ -417,7 +417,7 @@ namespace LabelPlus
             listviewapt.UserSetCategory += new ListViewAdpter.UserActionEventHandler(listViewUserSetCategory);
 
             this.modebuttons = ModeButtons;
-            this.modebuttons.Click += new EventHandler(modeButtons_Click);
+            this.modebuttons.IndexChanged += new EventHandler(modeButtons_IndexChanged);
 
             menuquicktext = contextMenuQuictText;
             foreach(GlobalVar.QuickTextItem item in GlobalVar.QuickTextItems){

@@ -8,12 +8,17 @@ namespace LabelPlus
 {
     public class ToolStripButtonGroup
     {
-        public EventHandler Click;
+        public EventHandler IndexChanged;
+        internal void OnIndexChanged() {
+            if (IndexChanged != null)
+                IndexChanged(this,new EventArgs());        
+        }
+
         int selectedButtonIndex = -1;
 
         public int SelectedButtonIndex {
             get { return selectedButtonIndex; }
-            set { setButtonCheck(myToolStripButtonList[value]); }
+            set { setButtonChecked(myToolStripButtonList[value]); }
         }
 
         ToolStrip myToolStrip;
@@ -62,15 +67,16 @@ namespace LabelPlus
             }
         }
 
-        internal void setButtonCheck(ToolStripButton btn) {
+        internal void setButtonChecked(ToolStripButton btn) {
             foreach (ToolStripButton buttonN in myToolStripButtonList)
             {
                 buttonN.Checked = false;
             }
 
             btn.Checked = true;
-
             selectedButtonIndex = GetButtonIndex(btn);
+
+            OnIndexChanged();
         }
 
         private void button_click(object sender, EventArgs e)
@@ -78,10 +84,9 @@ namespace LabelPlus
             try
             {
                 ToolStripButton button = (ToolStripButton)sender;
-                setButtonCheck(button);               
+                setButtonChecked(button);
 
-                if (Click != null)
-                    Click(sender, e);
+                OnIndexChanged();
             }
             catch {
                 Console.WriteLine("ToolStripButtonGroup.cs button_click() Fault.");
