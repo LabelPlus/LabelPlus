@@ -375,13 +375,30 @@ namespace LabelPlus
             }
         }
 
-        private void listViewUserSetCategory(object sender, ListViewAdpter.UserSetCategoryEventArgs e)
+        private void listViewUserAction(object sender, ListViewAdpter.UserActionEventArgs e)
         {
+            if (e.Action == ListViewAdpter.UserActionEventArgs.ActionType.del){
+                if(MessageBox.Show(
+                    StringResources.GetValue("tip_sure_del_label"),
+                    "warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
             picview.EnableMakeImage = false;
-            if (e.Category <= wsp.GroupDefine.UserGroupCount)
+            if (e.Value <= wsp.GroupDefine.UserGroupCount)
             {
-                foreach(int index in e.Index)
-                wsp.Store.UpdateLabelCategory(fileName, index, e.Category);
+                for(int i=e.Index.Length-1;i>=0;i--) {
+                    int index = e.Index[i];
+                    if (e.Action == ListViewAdpter.UserActionEventArgs.ActionType.setGroup)
+                        wsp.Store.UpdateLabelCategory(fileName, index, e.Value);
+                    else if (e.Action == ListViewAdpter.UserActionEventArgs.ActionType.del)
+                        wsp.Store.DelLabelItem(fileName, index);
+
+                }
+                        
             }
             picview.EnableMakeImage = true;
             picview.MakeImageNow();
@@ -448,7 +465,7 @@ namespace LabelPlus
 
             listviewapt = LabelListViewAPT;
             listviewapt.ListViewSelectedIndexChanged += new EventHandler(listViewSelectedIndexChanged);
-            listviewapt.UserSetCategory += new ListViewAdpter.UserActionEventHandler(listViewUserSetCategory);
+            listviewapt.UserSetCategory += new ListViewAdpter.UserActionEventHandler(listViewUserAction);
 
             this.modebuttons = ModeButtons;
             this.modebuttons.IndexChanged += new EventHandler(modeButtons_IndexChanged);

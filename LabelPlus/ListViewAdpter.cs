@@ -21,20 +21,28 @@ namespace LabelPlus
         #region Events
         public EventHandler ListViewSelectedIndexChanged;
 
-        public class UserSetCategoryEventArgs : EventArgs{
+        public class UserActionEventArgs : EventArgs{
             int[] index;
-            int category; 
+            int value; 
+            ActionType actionType;
 
-            public UserSetCategoryEventArgs(int[] index, int category)
+            public enum ActionType { 
+                setGroup,
+                del,
+            }
+
+            public UserActionEventArgs(int[] index, ActionType type, int value = -1) 
             {
                 this.index = index;
-                this.category = category;
+                this.value = value;
+                this.actionType = type;
             }
 
             public int[] Index { get{return index;} }
-            public int Category { get { return category; } } 
+            public int Value { get { return value; } }
+            public ActionType Action { get { return actionType; } }
         }
-        public delegate void UserActionEventHandler(object sender, UserSetCategoryEventArgs e);
+        public delegate void UserActionEventHandler(object sender, UserActionEventArgs e);
         public UserActionEventHandler UserSetCategory;
 
         #endregion
@@ -186,9 +194,20 @@ namespace LabelPlus
                 foreach (int item in lv.SelectedIndices) {
                     tmp.Add(item);
                 }
+                if(tmp.Count !=0)
+                    UserSetCategory(sender,
+                        new UserActionEventArgs(tmp.ToArray(),UserActionEventArgs.ActionType.setGroup , e.KeyCode - Keys.D1 + 1));
+            }
+            else if (e.KeyCode == Keys.Delete) {
+                List<int> tmp = new List<int>();
+                foreach (int item in lv.SelectedIndices)
+                {
+                    tmp.Add(item);
+                }
+                if (tmp.Count != 0)
+                    UserSetCategory(sender,
+                        new UserActionEventArgs(tmp.ToArray(), UserActionEventArgs.ActionType.del));
 
-                UserSetCategory(sender,
-                    new UserSetCategoryEventArgs(tmp.ToArray(), e.KeyCode - Keys.D1 + 1));
             }
             e.SuppressKeyPress = true;
         }
