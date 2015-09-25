@@ -578,7 +578,6 @@
             this.TranslateTextBox.Name = "TranslateTextBox";
             this.TranslateTextBox.Size = new System.Drawing.Size(257, 136);
             this.TranslateTextBox.TabIndex = 5;
-            this.TranslateTextBox.WordWrap = false;
             // 
             // openFileDialog
             // 
@@ -604,6 +603,7 @@
             // 
             // picView
             // 
+            this.picView.AlwaysShowGroup = false;
             this.picView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picView.EnableMakeImage = true;
             this.picView.Location = new System.Drawing.Point(3, 3);

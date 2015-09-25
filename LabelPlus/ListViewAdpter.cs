@@ -59,6 +59,8 @@ namespace LabelPlus
             }
         }
 
+        public int SelectedIndexCount { get { return lv.SelectedItems.Count; } }
+
         public ListView ListView { get { return lv; } }
         #endregion
 

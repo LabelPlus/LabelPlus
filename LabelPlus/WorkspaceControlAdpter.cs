@@ -164,7 +164,10 @@ namespace LabelPlus
             else if (e.KeyCode == Keys.R) {
                 modebuttons.SelectedButtonIndex = 3;
             }
-            
+            else if (e.KeyCode == Keys.A) {
+                menuquicktext.Show();
+                e.IsInputKey = true;
+            }   
         }
 
         private void listViewSelectedIndexChanged(object sender, EventArgs e)
@@ -187,11 +190,15 @@ namespace LabelPlus
                     if (workMode == WorkMode.Input) {
                         if (picview.Focused)
                             return;
-
+                        if (listviewapt.SelectedIndexCount > 1)
+                            return;
                         picview.SetLabelVisual(listviewapt.SelectedIndex);
                     }
                     else if (workMode == WorkMode.Check)
                     {
+                        if (listviewapt.SelectedIndexCount > 1)
+                            return;
+
                         if (listviewapt.ListView.Focused == true)
                             picview.SetLabelVisual(listviewapt.SelectedIndex);                        
                     }
