@@ -33,7 +33,7 @@
       <Control name="toolStripButton_EditBig" text="Font Size" />
       <Control name="toolStripButton_EditSmall" text="" />
       <Control name="toolStripButton_Clear" text="Clear Labels" />
-      <Control name="toolStripButton_GroupSetting" text="File Setting" />
+      <Control name="toolStripButton_FileSetting" text="File Setting" />
       
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Next Label" />

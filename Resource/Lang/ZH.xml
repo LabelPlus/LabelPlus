@@ -33,7 +33,7 @@
       <Control name="toolStripButton_EditBig" text="字体增大" />
       <Control name="toolStripButton_EditSmall" text="字体减小" />
       <Control name="toolStripButton_Clear" text="清空标签" />
-      <Control name="toolStripButton_GroupSetting" text="文件设置" />
+      <Control name="toolStripButton_FileSetting" text="文件设置" />
       
       <!-- 其他 -->
       <Control name="labelCtrlEnterTip" text="切换条目(Ctrl+Enter,↑↓←→),快捷短语(Alt+A)" />

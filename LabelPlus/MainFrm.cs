@@ -141,6 +141,7 @@ namespace LabelPlus
                 }
                 this.Text = FROM_TITLE + new FileInfo(openFileDialog.FileName).Name;
 
+                wsp_control_apt.page_right();
                 toolStripComboBox_File.DroppedDown = true;
             }
         }
