@@ -20,6 +20,10 @@ namespace LabelPlus
 
         #region Events
         public EventHandler ListViewSelectedIndexChanged;
+        internal void OnListViewSelectedIndexChanged() {
+            if (lvSelectedIndexChangedEnable && ListViewSelectedIndexChanged != null) 
+                ListViewSelectedIndexChanged(this, new EventArgs());
+        }
 
         public class UserActionEventArgs : EventArgs{
             int[] index;
@@ -146,11 +150,13 @@ namespace LabelPlus
                     lvSelectedIndexChangedEnable = true;
                 }
 
+                //OnListViewSelectedIndexChanged();
                 return true;
             }
             catch
             {
                 lvSelectedIndexChangedEnable = true;
+                //OnListViewSelectedIndexChanged();
                 return false;
             }
         }
@@ -177,7 +183,7 @@ namespace LabelPlus
         }
         private void lvSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lvSelectedIndexChangedEnable && ListViewSelectedIndexChanged != null) ListViewSelectedIndexChanged(sender, e);
+            OnListViewSelectedIndexChanged();
         }
         private void lvClientSizeChanged(object sender, EventArgs e)
         {

@@ -236,7 +236,7 @@ namespace LabelPlus
                 {
                     listviewapt.ReloadItems(wsp.Store[fileName]);
                     picview.SetLabels(wsp.Store[fileName],wsp.GroupDefine.GetViewNames() , wsp.GroupDefine.GetColors());
-                    //listviewapt.SelectedIndex = -1;
+                    listviewapt.SelectedIndex = 0;
                 }
                 else {
                     listviewapt.ReloadItems(null);
