@@ -15,6 +15,7 @@ namespace LabelPlus
         ListView lv;
         bool lvSelectedIndexChangedEnable = true;   //SelectedIndexChanged Event Switch
         GroupDefineItemCollection group;
+        ContextMenuStrip myMenuStrip;
 
         #endregion
 
@@ -82,6 +83,28 @@ namespace LabelPlus
             return group.GetFullViewName(index);
         }
 
+        internal void onDelItems() {
+            List<int> tmp = new List<int>();
+            foreach (int item in lv.SelectedIndices)
+            {
+                tmp.Add(item);
+            }
+            if (tmp.Count != 0)
+                UserSetCategory(this,
+                    new UserActionEventArgs(tmp.ToArray(), UserActionEventArgs.ActionType.del));
+        }
+
+        internal void onSetCategory(int category)
+        {
+            List<int> tmp = new List<int>();
+            foreach (int item in lv.SelectedIndices)
+            {
+                tmp.Add(item);
+            }
+            if (tmp.Count != 0)
+                UserSetCategory(this,
+                    new UserActionEventArgs(tmp.ToArray(), UserActionEventArgs.ActionType.setGroup, category));
+        }
         public bool ReloadItems(List<LabelItem> items)
         {
             try
@@ -196,27 +219,50 @@ namespace LabelPlus
         {
             if (e.KeyCode >= Keys.D1 && e.KeyCode <= Keys.D9)
             {
-                List<int> tmp = new List<int>();
-                foreach (int item in lv.SelectedIndices) {
-                    tmp.Add(item);
-                }
-                if(tmp.Count !=0)
-                    UserSetCategory(sender,
-                        new UserActionEventArgs(tmp.ToArray(),UserActionEventArgs.ActionType.setGroup , e.KeyCode - Keys.D1 + 1));
+                onSetCategory(e.KeyCode - Keys.D1 + 1);
             }
             else if (e.KeyCode == Keys.Delete) {
-                List<int> tmp = new List<int>();
-                foreach (int item in lv.SelectedIndices)
-                {
-                    tmp.Add(item);
-                }
-                if (tmp.Count != 0)
-                    UserSetCategory(sender,
-                        new UserActionEventArgs(tmp.ToArray(), UserActionEventArgs.ActionType.del));
-
+                onDelItems();
             }
             e.SuppressKeyPress = true;
         }
+
+        private void lvMosuseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) {
+                rebuildMenuStrip();
+                myMenuStrip.Show(Control.MousePosition);
+            }
+        }
+
+        private void rebuildMenuStrip() {
+            myMenuStrip.Items.Clear();            
+            foreach (string i in group.GetUserGroupNameArray())
+            {
+                myMenuStrip.Items.Add(i);
+            }
+
+            myMenuStrip.Items.Add(StringResources.GetValue("listview_menustrip_del"));
+
+        }
+
+        private void myMenuStripItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            myMenuStrip.Close();
+
+            int index = myMenuStrip.Items.IndexOf(e.ClickedItem);
+            if (index == myMenuStrip.Items.Count - 1) 
+            {
+                //del
+                onDelItems();
+            }
+            else 
+            { 
+                //set group
+                onSetCategory(index+1);
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -241,10 +287,15 @@ namespace LabelPlus
             lv.SelectedIndexChanged += new EventHandler(lvSelectedIndexChanged);
             lv.FontChanged += new EventHandler(lvFontChanged);
             lv.KeyDown += new KeyEventHandler(lvKeyDown);
+            lv.MouseClick += new MouseEventHandler(lvMosuseClick);
             lvClientSizeChanged(this, new EventArgs());
+
+            myMenuStrip = new ContextMenuStrip();
+            myMenuStrip.ItemClicked += new ToolStripItemClickedEventHandler(myMenuStripItemClicked);
 
             this.group = groupDefine;
         }
+
 
         #endregion
     }

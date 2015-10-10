@@ -54,6 +54,14 @@ namespace LabelPlus
                 return "G"+ n.ToString() + items[n - 1].Name;
             }
         }
+        public string[] GetFullViewNames()
+        {
+            List<string> tmp = new List<string>();
+            for (int i = 1; i <= 9; i++)
+                tmp.Add(GetFullViewName(i));
+
+            return tmp.ToArray();
+        }
 
         public Color GetColor(int n) {
             return defaultItems[n - 1].Color;

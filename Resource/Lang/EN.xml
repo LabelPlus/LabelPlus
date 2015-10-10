@@ -32,7 +32,6 @@
       <Control name="fileToolStripLabel" text="Image" />
       <Control name="toolStripButton_EditBig" text="Font Size" />
       <Control name="toolStripButton_EditSmall" text="" />
-      <Control name="toolStripButton_Clear" text="Clear Labels" />
       <Control name="toolStripButton_FileSetting" text="File Setting" />
       
       <!-- 其他 -->
@@ -111,5 +110,9 @@
     <String name="error_openfilefail" text="Fail to open the file."/>
     <String name="error_file_version_over" text="Version too high!"/>
     <String name="error_file_startblocks_lost" text="Start Blocks lost."/> 
+	
+	<!-- "listview右键菜单 -->
+    <String name="listview_menustrip_del" text="Del(&amp;D)"/> 	
+	
   </Strings>
 </Resource>

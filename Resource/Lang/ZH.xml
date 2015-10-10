@@ -32,7 +32,6 @@
       <Control name="fileToolStripLabel" text="图片" />
       <Control name="toolStripButton_EditBig" text="字体增大" />
       <Control name="toolStripButton_EditSmall" text="字体减小" />
-      <Control name="toolStripButton_Clear" text="清空标签" />
       <Control name="toolStripButton_FileSetting" text="文件设置" />
       
       <!-- 其他 -->
@@ -112,8 +111,9 @@
     <String name="error_openfilefail" text="打开文件失败"/>
     <String name="error_file_version_over" text="文件版本太高，无法使用本版本编辑！"/>   
     <String name="error_file_startblocks_lost" text="文件StartBlocks丢失"/> 
-    
-    
+	
+	<!-- "listview右键菜单 -->
+    <String name="listview_menustrip_del" text="删除(&amp;D)"/> 
   
   </Strings>
 </Resource>

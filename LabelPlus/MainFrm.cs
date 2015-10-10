@@ -245,17 +245,17 @@ namespace LabelPlus
         {
             wsp_control_apt.page_right();
         }
-        private void toolStripButton_Clear_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-                StringResources.GetValue("clear_all_label_question"),
-                "warning！！！",
-                MessageBoxButtons.YesNo);
+        //private void toolStripButton_Clear_Click(object sender, EventArgs e)
+        //{
+        //    var result = MessageBox.Show(
+        //        StringResources.GetValue("clear_all_label_question"),
+        //        "warning！！！",
+        //        MessageBoxButtons.YesNo);
 
-            if (result == System.Windows.Forms.DialogResult.Yes)
-                wsp.Store.DelAllLabelInFile(wsp_control_apt.FileName);
+        //    if (result == System.Windows.Forms.DialogResult.Yes)
+        //        wsp.Store.DelAllLabelInFile(wsp_control_apt.FileName);
 
-        }
+        //}
         private void toolStripButton_EditBig_Click(object sender, EventArgs e)
         {
             Font oldFont = TranslateTextBox.Font;
