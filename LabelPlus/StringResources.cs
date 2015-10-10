@@ -1,4 +1,12 @@
-﻿/*
+﻿/**
+ * 
+ * Copyright 2015, Noodlefighter
+ * Released under GPL License.
+ *
+ * License: http://noodlefighter.com/label_plus/license
+ */
+
+/*
  *  Describe:           Global Var Manage Class ,ignore case.
  *  Author:             Noodlefitghter 
  *   Edit Data:          2014/08/13

@@ -1,4 +1,12 @@
-﻿/*
+﻿/**
+ * 
+ * Copyright 2015, Noodlefighter
+ * Released under GPL License.
+ *
+ * License: http://noodlefighter.com/label_plus/license
+ */
+
+/*
  *  Author:             Noodlefitghter
  *  Describe:           Simple Multilingual Program Lib
  *  Edit Data:          2014/07/05

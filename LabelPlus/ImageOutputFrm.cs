@@ -1,4 +1,12 @@
-﻿using System;
+﻿/**
+ * 
+ * Copyright 2015, Noodlefighter
+ * Released under GPL License.
+ *
+ * License: http://noodlefighter.com/label_plus/license
+ */
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;

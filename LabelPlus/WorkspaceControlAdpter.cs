@@ -1,4 +1,12 @@
-﻿#region Using Directives
+﻿/**
+ * 
+ * Copyright 2015, Noodlefighter
+ * Released under GPL License.
+ *
+ * License: http://noodlefighter.com/label_plus/license
+ */
+
+#region Using Directives
 
 using System;
 using System.Linq;
