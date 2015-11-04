@@ -119,7 +119,7 @@ namespace LabelPlus.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Noodlefighter(虾包), wiki908(小学生) 的本地化字符串。
+        ///   查找类似 Noodlefighter(虾包), sgqy 的本地化字符串。
         /// </summary>
         internal static string CodeContributors {
             get {
