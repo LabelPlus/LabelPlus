@@ -68,6 +68,7 @@
       <Control name="labelZoom" text="缩放比例" />
       <Control name="button" text="输出" />
       <Control name="buttonAbort" text="停止" />
+      <Control name="checkBoxJumpNoNum" text="跳过无标号图" />
     </Controls>
   </Form>
 

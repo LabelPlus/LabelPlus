@@ -73,32 +73,37 @@ namespace LabelPlus
             {
                 foreach (string key in wsp.Store.Filenames)
                 {
-                    string outputFilename = folderBrowserDialog.SelectedPath + @"\" + key;
-                    outputFilename = replaceExtension(outputFilename, radioButtonPNG.Checked ? ".png" : ".jpg");
-
-                    string inputFilename = wsp.DirPath + @"\" + key;
-                    try
+                    if (checkBoxJumpNoNum.Checked && wsp.Store[key].Count == 0) { }
+                    else
                     {
-                        Image in_img = Image.FromFile(inputFilename);
-                        Image out_img = null;
-                        var rslt = pv.MakeImage(ref out_img, ref in_img, Convert.ToSingle(textBox.Text), wsp.Store[key]);
-                        in_img.Dispose();
-                        if (!rslt)
+
+                        string outputFilename = folderBrowserDialog.SelectedPath + @"\" + key;
+                        outputFilename = replaceExtension(outputFilename, radioButtonPNG.Checked ? ".png" : ".jpg");
+
+                        string inputFilename = wsp.DirPath + @"\" + key;
+                        try
                         {
-                            throw new FormatException();
-                        }
-                        else
-                        {
-                            using (Stream stream = new FileStream(outputFilename, FileMode.Create))
+                            Image in_img = Image.FromFile(inputFilename);
+                            Image out_img = null;
+                            var rslt = pv.MakeImage(ref out_img, ref in_img, Convert.ToSingle(textBox.Text), wsp.Store[key]);
+                            in_img.Dispose();
+                            if (!rslt)
                             {
-                                out_img.Save(stream, radioButtonPNG.Checked ? ImageFormat.Png : ImageFormat.Jpeg);
-                                out_img.Dispose();
+                                throw new FormatException();
                             }
-                            //stream.Close();
+                            else
+                            {
+                                using (Stream stream = new FileStream(outputFilename, FileMode.Create))
+                                {
+                                    out_img.Save(stream, radioButtonPNG.Checked ? ImageFormat.Png : ImageFormat.Jpeg);
+                                    out_img.Dispose();
+                                }
+                                //stream.Close();
+                            }
                         }
+                        catch
+                        { log += "\n" + StringResources.GetValue("can_not_output_file") + outputFilename; }
                     }
-                    catch
-                    { log += "\n" + StringResources.GetValue("can_not_output_file") + outputFilename; }
                     Invoke(new Action(() => ++outPgBar.Value));
                 }
                 log += "\n\n" + StringResources.GetValue("output_complete");

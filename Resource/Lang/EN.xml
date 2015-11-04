@@ -68,6 +68,7 @@
       <Control name="labelZoom" text="Zoom" />
       <Control name="button" text="Output" />
       <Control name="buttonAbort" text="Abort" />
+      <Control name="checkBoxJumpNoNum" text="Jump unlabeled" />
     </Controls>
   </Form>
   <Form>
