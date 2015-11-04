@@ -244,7 +244,7 @@ namespace LabelPlus
                 {
                     listviewapt.ReloadItems(wsp.Store[fileName]);
                     picview.SetLabels(wsp.Store[fileName],wsp.GroupDefine.GetViewNames() , wsp.GroupDefine.GetColors());
-                    listviewapt.SelectedIndex = 0;
+                    //listviewapt.SelectedIndex = 0;
                 }
                 else {
                     listviewapt.ReloadItems(null);
@@ -354,7 +354,8 @@ namespace LabelPlus
             picview.EnableMakeImage = false;
             picview.LoadImage(wsp.DirPath + @"\" + combo.Text);
             picview.EnableMakeImage = true;
-            labelItemListChanged(null, null);            
+            labelItemListChanged(null, null);
+            listviewapt.SelectedIndex = 0;
         }
 
         private void userGroupChanged(object sender, EventArgs e)
