@@ -363,7 +363,9 @@ namespace LabelPlus
         private void SetLayout()
         {
             double h = this.ClientSize.Height;
-            double w = this.ClientSize.Width;           
+            double w = this.ClientSize.Width;
+
+            if (h == 0 || w == 0) return;
 
             if (h > w * 1.5) // set to Vertical
             {
