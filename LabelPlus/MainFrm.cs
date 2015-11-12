@@ -11,6 +11,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 #endregion
 
 namespace LabelPlus
@@ -91,7 +92,7 @@ namespace LabelPlus
 
             wsp.NewFile();
 
-            this.Text = FROM_TITLE; 
+            this.Text = FROM_TITLE;
         }
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
@@ -140,8 +141,9 @@ namespace LabelPlus
                 {
                     wsp.readWorkspaceFromFile(openFileDialog.FileName);
                 }
-                catch (Exception exp){
-                    MessageBox.Show(StringResources.GetValue("error_openfilefail") 
+                catch (Exception exp)
+                {
+                    MessageBox.Show(StringResources.GetValue("error_openfilefail")
                         + "\r\n" + exp.ToString());
 
                     return;
@@ -161,7 +163,7 @@ namespace LabelPlus
                     MessageBox.Show(StringResources.GetValue("save_complete"));
                 else if (saveResult == System.Windows.Forms.DialogResult.Cancel)
                     return;
-                    
+
             }
 
             wsp_control_apt.NewFile();
@@ -282,10 +284,15 @@ namespace LabelPlus
 
         }
 
+
         private void timerAutoSave_Tick(object sender, EventArgs e)
         {
             if (wsp.NeedSave && wsp.HavePath)
-                wsp.SaveBAK();
+            {
+                // 分离线程，防止使用 U 盘等低速存储时打字会卡
+                var th = new Thread(() => wsp.SaveBAK());
+                th.Start();
+            }
         }
         private void toolStripButton_HideWindow_Click(object sender, EventArgs e)
         {
@@ -318,7 +325,7 @@ namespace LabelPlus
         {
             System.Diagnostics.Process.Start("http://noodlefighter.com/label_plus");
         }
-         
+
         #endregion
 
         #region Constructors
@@ -337,12 +344,12 @@ namespace LabelPlus
             wsp_control_apt = new WorkspaceControlAdpter(
                 modeBtnGroup,
                 toolStripComboBox_File,
-                TranslateTextBox, 
+                TranslateTextBox,
                 TextBox_GroupBox,
-                new ListViewAdpter(listView, wsp.GroupDefine), 
+                new ListViewAdpter(listView, wsp.GroupDefine),
                 picView,
                 contextMenuStripQuickText,
-                toolStrip, 
+                toolStrip,
                 wsp);
 
             zoomAdaptor = new ZoomAdaptor(picView,
@@ -396,7 +403,8 @@ namespace LabelPlus
 
         private void picView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.T) {
+            if (e.KeyCode == Keys.T)
+            {
                 toolStripButton_HideWindow_Click(this, null);
             }
         }

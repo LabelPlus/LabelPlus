@@ -80,21 +80,26 @@ namespace LabelPlus
         }
         public Boolean SaveBAK()
         {
-            if (HavePath && alterNeedBak)
+            try
             {
-                DateTime time = DateTime.Now;
-                string timeStr = time.ToString("yyMMdd_HHmmss_");
-                DirectoryInfo dirInfo = new DirectoryInfo(DirPath + "\\bak\\");
-                if (!dirInfo.Exists) {
-                    dirInfo.Create();
+                if (HavePath && alterNeedBak)
+                {
+                    DateTime time = DateTime.Now;
+                    string timeStr = time.ToString("yyMMdd_HHmmss_");
+                    DirectoryInfo dirInfo = new DirectoryInfo(DirPath + "\\bak\\");
+                    if (!dirInfo.Exists)
+                    {
+                        dirInfo.Create();
+                    }
+                    bool tmp = writeFileFromWorkspace(dirInfo.FullName + "\\" + timeStr + Filename);
+                    if (tmp)
+                        alterNeedBak = false;
+                    return tmp;
                 }
-                bool tmp = writeFileFromWorkspace(dirInfo.FullName + "\\" + timeStr + Filename);
-                if (tmp)
-                    alterNeedBak = false; 
-                return tmp;
+                else
+                    return false;
             }
-            else
-                return false;
+            catch { return false; }
         }
 
         private void storeChanged(object sender, EventArgs e)
