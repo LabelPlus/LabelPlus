@@ -177,9 +177,15 @@ namespace LabelPlus
                 if (dirInfo.Exists)
                 {
                     //目录可用
+                    string filename = "work.txt";
+                    int order = 0;
+                    do
+                    {
+                        filename = StringResources.GetValue("default_file_name") + "_" + order + ".txt";
+                        wsp.Path = dirInfo.FullName + "\\" + filename;
+                        ++order;
+                    } while (File.Exists(wsp.Path));
 
-                    string filename = StringResources.GetValue("default_file_name") + ".txt";
-                    wsp.Path = dirInfo.FullName + "\\" + filename;
                     if (wsp.Save())
                     {
                         //显示提示
