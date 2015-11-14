@@ -375,7 +375,7 @@ namespace LabelPlus
                 string[] nowLabelResultValues = { };
                 getStrlineTypeResult result = new getStrlineTypeResult();
 
-                StreamReader sr = new StreamReader(path, Encoding.Unicode);
+                StreamReader sr = new StreamReader(path, Encoding.UTF8);
                 while (!sr.EndOfStream)
                 {
                     string str = sr.ReadLine();
@@ -476,7 +476,7 @@ namespace LabelPlus
             try
             {
                 FileStream fs = new FileStream(path, FileMode.Create);
-                StreamWriter sr = new StreamWriter(fs, Encoding.Unicode);
+                StreamWriter sr = new StreamWriter(fs, Encoding.UTF8);
 
                 var filenames = store.Keys;
 
