@@ -375,7 +375,7 @@ namespace LabelPlus
                 string[] nowLabelResultValues = { };
                 getStrlineTypeResult result = new getStrlineTypeResult();
 
-                StreamReader sr = new StreamReader(path, Encoding.UTF8);
+                StreamReader sr = new StreamReader(path, Encoding.UTF8, true);
                 while (!sr.EndOfStream)
                 {
                     string str = sr.ReadLine();
