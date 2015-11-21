@@ -210,6 +210,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "$(SolutionDir)GetRelease" 1&gt;nul 2&gt;&amp;1
+xcopy /y /e /h /c /i "$(SolutionDir)Resource" "$(OutDir)" 1&gt;nul 2&gt;&amp;1
+xcopy /y /e /h /c /i "$(SolutionDir)Resource" "$(SolutionDir)GetRelease" 1&gt;nul 2&gt;&amp;1
+copy /y  "$(TargetPath)" "$(SolutionDir)GetRelease" 1&gt;nul 2&gt;&amp;1
+echo Publish: The whole package is output to "$(SolutionDir)GetRelease"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rmdir /s /q "$(SolutionDir)GetRelease" 1&gt;nul 2&gt;&amp;1
+</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
