@@ -52,18 +52,20 @@ namespace LabelPlus
 
         private void addFolderFilesToList()
         {
-            string[] filenames = Directory.GetFiles(wsp.DirPath, "*.jpg", SearchOption.TopDirectoryOnly);
-            foreach (string filename in filenames)
-            {
-                var tmp = new FileInfo(filename);
-                listBoxFolderFile.Items.Add(tmp.Name);
-            }
+            string[] extension_list = new string[] { ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".bmp" };
+            string[] filenames = Directory.GetFiles(wsp.DirPath);
 
-            filenames = Directory.GetFiles(wsp.DirPath, "*.png", SearchOption.TopDirectoryOnly); filenames = Directory.GetFiles(wsp.DirPath, "*.png", SearchOption.TopDirectoryOnly);
             foreach (string filename in filenames)
             {
                 var tmp = new FileInfo(filename);
-                listBoxFolderFile.Items.Add(tmp.Name);
+
+                foreach (string extension in extension_list)
+                {
+                    if (tmp.Name.EndsWith(extension))
+                    {
+                        listBoxFolderFile.Items.Add(tmp.Name);
+                    } 
+                }
             }
         }
 
