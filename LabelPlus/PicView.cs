@@ -310,7 +310,7 @@ namespace LabelPlus
                         sf.LineAlignment = StringAlignment.Center;                        
                         
                         //实体字
-                        tmp.DrawString((i + 1).ToString(), myFont, myBrushRed, rect, sf);
+                        tmp.DrawString((i + 1).ToString(), myFont, myBrushRed, rect.X + rect.Width/2, rect.Y + rect.Height/2, sf);
 
                         //外框                
                         //tmp.DrawRectangle(mySidePen, rect.X, rect.Y, rect.Width, rect.Height);
