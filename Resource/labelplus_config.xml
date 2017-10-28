@@ -57,19 +57,19 @@
     
   <GroupDefine>    
     <Group>
-        <Name>分组1</Name>
+        <Name>框内</Name>
         <RGB>237,28,36</RGB>
     </Group>
     <Group>
-        <Name>分组2</Name>
+        <Name>框外</Name>
         <RGB>48,57,177</RGB>
     </Group>
     <Group>
-        <Name>分组3</Name>
+        <Name></Name>
         <RGB>34,177,76</RGB>
     </Group>
     <Group>
-        <Name>分组4</Name>
+        <Name></Name>
         <RGB>0,162,232</RGB>
     </Group>   
     <Group>
