@@ -94,7 +94,7 @@
   
   <Strings>
     <String name="save_question" text="File changed, save？"/>
-    <String name="save complete" text="Save Complete!"/>
+    <String name="save_complete" text="Save Complete!"/>
     <String name="input_images_need_save" text="File did not saved, you should save it first."/>
     <String name="clear_all_label_question" text="Sure to DELETE all labels！？"/>
     <String name="can_not_output_file" text="Could not output the file："/>
