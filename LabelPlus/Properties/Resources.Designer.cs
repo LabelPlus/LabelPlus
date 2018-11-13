@@ -70,7 +70,7 @@ namespace LabelPlus.Properties {
         }
         
         /// <summary>
-        ///   查找类似 1.2.1 的本地化字符串。
+        ///   查找类似 1.2.2 的本地化字符串。
         /// </summary>
         internal static string AppVer {
             get {
@@ -79,7 +79,7 @@ namespace LabelPlus.Properties {
         }
         
         /// <summary>
-        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Icon bitbug_favicon {
             get {
