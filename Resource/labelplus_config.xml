@@ -58,39 +58,39 @@
   <GroupDefine>    
     <Group>
         <Name>框内</Name>
-        <RGB>237,28,36</RGB>
+        <RGB>255, 0, 0</RGB>
     </Group>
     <Group>
         <Name>框外</Name>
-        <RGB>48,57,177</RGB>
+        <RGB>0, 0, 255</RGB>
     </Group>
     <Group>
         <Name></Name>
-        <RGB>34,177,76</RGB>
+        <RGB>0, 128, 0</RGB>
     </Group>
     <Group>
         <Name></Name>
-        <RGB>0,162,232</RGB>
+        <RGB>30, 144, 255</RGB>
     </Group>   
     <Group>
         <Name></Name>
-        <RGB>163,73,164</RGB>
+        <RGB>255, 215, 0</RGB>
     </Group>
     <Group>
         <Name></Name>
-        <RGB>240,228,0</RGB>
+        <RGB>255, 0, 255</RGB>
     </Group>
     <Group>
         <Name></Name>
-        <RGB>255,135,0</RGB>
+        <RGB>160, 82, 45</RGB>
     </Group>
     <Group>
         <Name></Name>
-        <RGB>255,32,104</RGB>
+        <RGB>255, 69, 0</RGB>
     </Group>    
     <Group>
         <Name></Name>
-        <RGB>184,133,37</RGB>
+        <RGB>148, 0, 211</RGB>
     </Group>        
   </GroupDefine>
   
