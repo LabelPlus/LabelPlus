@@ -173,7 +173,7 @@ namespace LabelPlus
          */
         public float LabelSideLength() { return LabelSideLength(image); }
         public float LabelSideLength(Image image) {
-            return (float)(Math.Max(image.Width, image.Height)*0.03);
+            return (float)(Math.Min(image.Width, image.Height)*0.03);
         }
         RectangleF getLabelRectangle(float x,float y) {
             return getLabelRectangle(x, y, image);
