@@ -523,6 +523,7 @@ namespace LabelPlus
                 Console.WriteLine(message.ToString());
                 try
                 {
+
                     path = path.Replace(".txt", "(1).txt");
                     FileStream fs = new FileStream(path , FileMode.Create);
                     StreamWriter sr = new StreamWriter(fs, Encoding.UTF8);
