@@ -34,12 +34,15 @@
             // 
             // PicView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PicView";
+            this.Size = new System.Drawing.Size(200, 188);
             this.Load += new System.EventHandler(this.PicView_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PicView_Paint);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicView_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicView_MouseUp);
             this.Resize += new System.EventHandler(this.PicView_Resize);
             this.ResumeLayout(false);
 

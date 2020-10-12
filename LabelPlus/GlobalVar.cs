@@ -37,9 +37,9 @@ namespace LabelPlus
             /* 读配置文件 */
 
             FileInfo fi = new FileInfo(@"labelplus_config.xml");
+            Console.Write(fi.FullName);
             if (!fi.Exists)
                 throw new Exception("Not found config file.");
-
             XmlReader reader = new XmlTextReader(fi.FullName);
             XmlDocument doc = new XmlDocument();
             doc.Load(reader);

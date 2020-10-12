@@ -27,6 +27,7 @@ namespace LabelPlus
                 leftClick,
                 rightClick,
                 mouseIndexChanged,
+                labelChanged
             }
             ActionType type;
 
@@ -43,6 +44,11 @@ namespace LabelPlus
             public float Y_percent { get { return y_percent; } }
             public ActionType Type { get { return type; } }
         }
+
+
+        //拖拽
+        bool dragStart = false;
+        LabelItem dragLabel = null;
 
         public delegate void UserActionEventHandler(object sender, LabelUserActionEventArgs e);
         /*Label相关*/
@@ -544,10 +550,43 @@ namespace LabelPlus
 
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                //左键
-                if (LabelUserAction != null)
-                    LabelUserAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ActionType.leftClick));
+                if (dragLabel != null && dragStart == true)
+                {
+                   
+                    dragLabel.X_percent = x_percent;
+                    dragLabel.Y_percent = y_percent;
+                    //Console.WriteLine(dragLabel.X_percent + "    " + dragLabel.Y_percent);
+                    dragLabel = null;
+                    dragStart = false;
+                    if (LabelUserAction != null)
+                        LabelUserAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ActionType.labelChanged));
+
+                    return;
+                }
+                //MessageBox.Show("i find you");
+                bool flag = false;
+                foreach(LabelItem label in this.labels){
+
+                    if (Math.Abs(x_percent - label.X_percent) < 0.02 && Math.Abs(y_percent - label.Y_percent) < 0.02)
+                    {
+                       // Console.WriteLine(x_percent + " " + label.X_percent + " " );
+                        //MessageBox.Show("nice");
+                        flag = true;
+                        dragStart = true;
+                        dragLabel = label;
+                        //MessageBox.Show("已选中"+dragLabel.Text);
+                        break;
+                    }
+                    
+                }
+
+                if (!flag) {
+                    if (LabelUserAction != null)
+                        LabelUserAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ActionType.leftClick));
                 
+                }
+                //左键
+               
                 ////添加
                 //var referRect = getLabelRectangle(0, 0); //参考矩形
                 //x_percent = (startP.X * zoom + e.X - referRect.Width / 2) / image.Width;
@@ -589,7 +628,9 @@ namespace LabelPlus
             {
                 
                 int index = getLabelIndex(e.X, e.Y);
-
+                //Console.WriteLine(e.X+"  "+e.Y);
+              
+                
                 if (index != lastMouseIndex) { 
                     if(LabelUserAction!=null)
                         LabelUserAction(this,new LabelUserActionEventArgs(index,e.X,e.Y, LabelUserActionEventArgs.ActionType.mouseIndexChanged));
@@ -648,6 +689,14 @@ namespace LabelPlus
 
    
         #endregion
+
+        private void PicView_MouseUp(object sender, MouseEventArgs e)
+        {
+
+
+           
+            
+        }
 
     }
 }

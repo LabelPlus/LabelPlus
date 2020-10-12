@@ -102,6 +102,7 @@ namespace LabelPlus
             textbox.TextChanged += new EventHandler(textbox_TextChanged);
         }
 
+        //添加和删除操作
         private void picView_UserClickAction(object sender, PicView.LabelUserActionEventArgs e)
         {
             bool ctrlBePush = workMode==WorkMode.Label || Control.ModifierKeys == Keys.Control ;
@@ -136,10 +137,19 @@ namespace LabelPlus
                         listviewapt.SelectedIndex = -1;
                     }
                     break;
+                case PicView.LabelUserActionEventArgs.ActionType.labelChanged:
+                    {
+                        wsp.Store.ChangeLabelItem();
+                        if (e.Index == -1)
+                            return;
+                        listviewapt.SelectedIndex = e.Index;
+                    }
+                    break;
                 case PicView.LabelUserActionEventArgs.ActionType.mouseIndexChanged:
 
-                    if (workMode == WorkMode.Check) 
+                    if (workMode == WorkMode.Check)
                     {
+                        
                         if (e.Index == -1)
                             return;
                         listviewapt.SelectedIndex = e.Index;

@@ -336,6 +336,15 @@ namespace LabelPlus
             OnGroupListChanged();
             return true;
         }
+        public bool ChangeLabelItem()
+        {
+            try
+            {
+                OnLabelItemListChanged();
+                return true;
+            }
+            catch { return false; }
+        }
 
         public bool DelLabelItem(string file, int index)
         {
@@ -347,6 +356,8 @@ namespace LabelPlus
             }
             catch { return false; }
         }
+
+
         public bool DelAllLabelInFile(string file)
         {
             try
@@ -507,7 +518,55 @@ namespace LabelPlus
 
                 return true;
             }
-            catch { return false; }
+            catch(IOException message)
+            {
+                Console.WriteLine(message.ToString());
+                try
+                {
+                    path = path.Replace(".txt", "(1).txt");
+                    FileStream fs = new FileStream(path , FileMode.Create);
+                    StreamWriter sr = new StreamWriter(fs, Encoding.UTF8);
+
+                    var filenames = store.Keys;
+
+                    sr.WriteLine(getLabelFileStartBlocksString());
+
+                    foreach (var name in filenames)
+                    {
+                        int count = 0;
+                        List<LabelItem> items = store[name];
+
+                        sr.WriteLine();
+                        sr.WriteLine(">>>>>>>>[" + name + "]<<<<<<<<");
+                        foreach (var n in items)
+                        {
+                            count++;
+                            sr.WriteLine("----------------[" + count.ToString() +
+                                "]----------------[" +
+                                n.X_percent.ToString("F3") + "," +
+                                n.Y_percent.ToString("F3") + "," +
+                                n.Category.ToString() +
+                                "]");
+                            sr.WriteLine(n.Text);
+                            sr.WriteLine();
+                        }
+                    }
+                    sr.Close();
+                    fs.Close();
+                    
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+                
+            }
+            catch
+            {
+                return false;
+            }
 
         }
         internal getStrlineTypeResult getStrlineType(string str)

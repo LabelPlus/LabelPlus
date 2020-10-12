@@ -96,14 +96,16 @@ namespace LabelPlus
             Hashtable result = new Hashtable();
 
             XmlDocument doc = getLangXmlDocument(lang);
-
+           
             XmlNode root = doc.DocumentElement;
             XmlNodeList nodelist = root.SelectNodes("Form[Name='" + frmName + "']/Controls/Control");
 
             //读窗口文本
             try
             {
-                XmlNode frmRoot = root.SelectSingleNode("Form[Name='" + frmName + "']/Text");
+                XmlNode frmRoot = root.SelectSingleNode("Form[Name='" + frmName + "']/Name");
+                if(frmRoot==null)
+                    MessageBox.Show("11");
                 result.Add(frmName.ToLower(), frmRoot.InnerText);
             }
             catch {

@@ -62,7 +62,7 @@ namespace LabelPlus
                 {
                     return System.Windows.Forms.DialogResult.Cancel;
                 }
-
+             
             }
             else
             {
@@ -73,6 +73,7 @@ namespace LabelPlus
                     if (wsp.Save())
                     {
                         return System.Windows.Forms.DialogResult.OK;
+                        
                     }
                     else
                     {
@@ -260,17 +261,17 @@ namespace LabelPlus
         {
             wsp_control_apt.page_right();
         }
-        //private void toolStripButton_Clear_Click(object sender, EventArgs e)
-        //{
-        //    var result = MessageBox.Show(
-        //        StringResources.GetValue("clear_all_label_question"),
-        //        "warning！！！",
-        //        MessageBoxButtons.YesNo);
+        private void toolStripButton_Clear_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+                StringResources.GetValue("clear_all_label_question"),
+                "warning！！！",
+                MessageBoxButtons.YesNo);
 
-        //    if (result == System.Windows.Forms.DialogResult.Yes)
-        //        wsp.Store.DelAllLabelInFile(wsp_control_apt.FileName);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+                wsp.Store.DelAllLabelInFile(wsp_control_apt.FileName);
 
-        //}
+        }
         private void toolStripButton_EditBig_Click(object sender, EventArgs e)
         {
             Font oldFont = TranslateTextBox.Font;
@@ -412,6 +413,42 @@ namespace LabelPlus
             if (e.KeyCode == Keys.T)
             {
                 toolStripButton_HideWindow_Click(this, null);
+            }
+        }
+
+        private void picView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          
+        }
+
+        private void picView_KeyDown(object sender, KeyEventArgs e)
+        {
+          
+        }
+
+
+        //快捷键保存
+        private void MainFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                //同时按下了Ctrl + S键
+              
+              
+                   
+                        if (save_file(false) == System.Windows.Forms.DialogResult.OK)
+                        {
+                            MessageBox.Show(StringResources.GetValue("save_complete"));
+                            //e.Cancel = false;
+                  
+                        }
+                        else
+                        {
+                            //e.Cancel = true;
+                        }
+                    
+                    
+                
             }
         }
 
