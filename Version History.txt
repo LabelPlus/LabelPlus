@@ -1,4 +1,6 @@
-﻿
+﻿v1.2.4
+    更新.NET Framework，从原先的v3.5 Client Profile更换为v4.0 Client Profile
+
 v1.2.3
     修复在显示图片过长或过宽时，标签显示过大的问题。
     修正默认分组，1分组和8分组 颜色接近，容易混淆的问题
