@@ -415,6 +415,13 @@ namespace LabelPlus
             }
         }
 
+        private void MainFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.S && e.Modifiers == Keys.Control)
+            {
+                saveSToolStripMenuItem_Click(sender, new EventArgs());
+            }
+        }
     }
 
 }
