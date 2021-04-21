@@ -61,7 +61,7 @@ namespace LabelPlus
 
                 foreach (string extension in extension_list)
                 {
-                    if (tmp.Name.EndsWith(extension))
+                    if (tmp.Name.ToLower().EndsWith(extension))
                     {
                         listBoxFolderFile.Items.Add(tmp.Name);
                     } 

@@ -416,42 +416,13 @@ namespace LabelPlus
             }
         }
 
-        private void picView_KeyPress(object sender, KeyPressEventArgs e)
-        {
-          
-        }
-
-        private void picView_KeyDown(object sender, KeyEventArgs e)
-        {
-          
-        }
-
-
-        //快捷键保存
         private void MainFrm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.S && e.Modifiers == Keys.Control)
             {
-                //同时按下了Ctrl + S键
-              
-              
-                   
-                        if (save_file(false) == System.Windows.Forms.DialogResult.OK)
-                        {
-                            MessageBox.Show(StringResources.GetValue("save_complete"));
-                            //e.Cancel = false;
-                  
-                        }
-                        else
-                        {
-                            //e.Cancel = true;
-                        }
-                    
-                    
-                
+                saveSToolStripMenuItem_Click(sender, new EventArgs());
             }
         }
-
     }
 
 }
