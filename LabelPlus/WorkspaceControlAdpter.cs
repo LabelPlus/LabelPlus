@@ -159,8 +159,7 @@ namespace LabelPlus
             LabelUndo label = new LabelUndo()
             {
                 Index = listviewapt.Count,
-                X_percent = e.X_percent,
-                Y_percent = e.Y_percent,
+                Location = new Location() { X_percent = e.X_percent, Y_percent = e.Y_percent },
                 Category = groupbuttons.SelectIndex + 1,
             };
 
@@ -174,14 +173,15 @@ namespace LabelPlus
             LabelUndo label = new LabelUndo()
             {
                 Index = e.Index,
-                X_percent = e.X_percent,
-                Y_percent = e.Y_percent,
+                Location = new Location() { X_percent = e.X_percent, Y_percent = e.Y_percent },
                 Category = groupbuttons.SelectIndex + 1,
             };
             if (itemIndex >= 0)
             {
                 if (LabelFileManager.store[fileName][itemIndex].Text != null)
                     label.Text = LabelFileManager.store[fileName][itemIndex].Text;
+
+                label.Category = LabelFileManager.store[fileName][itemIndex].Category;
             }
             DeleteLabelCommand deleteLabelCommand = new DeleteLabelCommand(DeleteLabel, AddLabel, label);
             UndoRedoManager.LabelCommandPool.Register(deleteLabelCommand);
@@ -190,13 +190,12 @@ namespace LabelPlus
 
         private void AddLabel(LabelUndo label)
         {
-            wsp.Store.AddLabelItem(FileName, new LabelItem(label.X_percent, label.Y_percent, label.Text, label.Category), label.Index);
+            wsp.Store.AddLabelItem(FileName, new LabelItem(label.Location.X_percent, label.Location.Y_percent, label.Text, label.Category), label.Index);
             listviewapt.SelectedIndex = listviewapt.Count - 1;
         }
 
         private void DeleteLabel(LabelUndo label)
         {
-
             wsp.Store.DelLabelItem(FileName, label.Index);
             listviewapt.SelectedIndex = -1;
         }
@@ -422,32 +421,9 @@ namespace LabelPlus
                 return;
             }
 
-            var toUndoDequeList = UndoRedoManager.LabelCommandPool.toUndoDeque.ToList();
-            var toRedoStackList = UndoRedoManager.LabelCommandPool.toRedoStack.ToList();
+            //更新标签池文本
+            UndoRedoManager.UpdateLabelPool(itemIndex, -1, -1, textbox.Text);
 
-            if (toUndoDequeList.Count != 0)
-            {
-
-                foreach (var label in toUndoDequeList)
-                {
-                    if (label.labelUndo.Index == itemIndex)
-                    {
-                        label.labelUndo.Text = textbox.Text;
-                        break;
-                    }
-                }
-            }
-            if (toRedoStackList.Count != 0)
-            {
-                foreach (var label in toRedoStackList)
-                {
-                    if (label.labelUndo.Index == itemIndex)
-                    {
-                        label.labelUndo.Text = textbox.Text;
-                        break;
-                    }
-                }
-            }
             wsp.Store.UpdateLabelItemText(fileName, itemIndex, textbox.Text);
             //TODO:文本撤回
         }

@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+using System.Reflection;
+using System.Linq;
 #endregion
 
 namespace LabelPlus
@@ -50,6 +52,7 @@ namespace LabelPlus
         //拖拽
         bool dragStart = false;
         LabelItem dragLabel = null;
+        LabelUndo dragLabelPrevious = new LabelUndo();
 
         public delegate void UserActionEventHandler(object sender, LabelUserActionEventArgs e);
         /*Label相关*/
@@ -603,15 +606,8 @@ namespace LabelPlus
             {
                 if (dragLabel != null && dragStart == true)
                 {
-
-                    dragLabel.X_percent = x_percent;
-                    dragLabel.Y_percent = y_percent;
-                    //Console.WriteLine(dragLabel.X_percent + "    " + dragLabel.Y_percent);
-                    dragLabel = null;
-                    dragStart = false;
-                    if (LabelUserAction != null)
-                        LabelUserAction(this, new LabelUserActionEventArgs(index, x_percent, y_percent, LabelUserActionEventArgs.ActionType.labelChanged));
-
+                    //移动标签
+                    MoveLabelCommand(x_percent, y_percent);
                     return;
                 }
                 //MessageBox.Show("i find you");
@@ -626,6 +622,19 @@ namespace LabelPlus
                         flag = true;
                         dragStart = true;
                         dragLabel = label;
+                        //选取另一个标签时，清空标签池
+                        if (index != dragLabelPrevious.Index && index != -1)
+                        {
+                            UndoRedoManager.labelCommandPool.Clear();
+                        }
+                        var dragUndo = new LabelUndo()
+                        {
+                            Index = index,
+                            Location = new Location() { X_percent = x_percent, Y_percent = y_percent },
+                            Category = label.Category,
+                            Text = label.Text
+                        };
+                        dragLabelPrevious = dragUndo;
                         //MessageBox.Show("已选中"+dragLabel.Text);
                         break;
                     }
@@ -671,6 +680,46 @@ namespace LabelPlus
             //    //检阅模式
 
             //}
+        }
+
+        private void MoveLabelCommand(float x_percent, float y_percent)
+        {
+            LabelUndo label = new LabelUndo()
+            {
+                Index = dragLabelPrevious.Index,
+                Location = new Location() { X_percent = x_percent, Y_percent = y_percent },
+
+            };
+            label.LocationPrevious = new LocationPrevious() { X_percent = dragLabelPrevious.Location.X_percent, Y_percent = dragLabelPrevious.Location.Y_percent };
+            MoveLabelCommand moveLabelCommand = new MoveLabelCommand(MoveLabel, UndoMoveLabel, label);
+            UndoRedoManager.LabelCommandPool.Register(moveLabelCommand);
+            moveLabelCommand.Excute();
+        }
+
+        private void MoveLabel(LabelUndo label)
+        {
+            dragLabel.X_percent = label.Location.X_percent;
+            dragLabel.Y_percent = label.Location.Y_percent;
+            //Console.WriteLine(dragLabel.X_percent + "    " + dragLabel.Y_percent);
+            //dragLabel = null;
+            dragStart = false;
+            if (LabelUserAction != null)
+                LabelUserAction(this, new LabelUserActionEventArgs(label.Index, label.Location.X_percent, label.Location.Y_percent, LabelUserActionEventArgs.ActionType.labelChanged));
+            //更新标签池坐标
+            //UndoRedoManager.UpdateLabelPool(label.Index, label.X_percent, label.Y_percent);
+        }
+
+        private void UndoMoveLabel(LabelUndo label)
+        {
+            dragLabel.X_percent = label.LocationPrevious.X_percent;
+            dragLabel.Y_percent = label.LocationPrevious.Y_percent;
+            //Console.WriteLine(dragLabel.X_percent + "    " + dragLabel.Y_percent);
+            //dragLabel = null;
+            dragStart = false;
+            if (LabelUserAction != null)
+                LabelUserAction(this, new LabelUserActionEventArgs(label.Index, label.LocationPrevious.X_percent, label.LocationPrevious.Y_percent, LabelUserActionEventArgs.ActionType.labelChanged));
+            //更新标签池坐标
+            //UndoRedoManager.UpdateLabelPool(dragLabelPrevious.Index, dragLabelPrevious.X_percent, dragLabelPrevious.Y_percent);
         }
 
         bool tooltop_showing = false;

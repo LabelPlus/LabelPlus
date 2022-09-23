@@ -17,14 +17,14 @@ namespace LabelPlus
         public int Index { get; set; }
 
         /// <summary>
-        /// x轴坐标
+        /// 当前位置
         /// </summary>
-        public float X_percent { get; set; }
+        public Location Location { get; set; }
 
         /// <summary>
-        /// y轴坐标
+        /// 之前位置
         /// </summary>
-        public float Y_percent { get; set; }
+        public LocationPrevious LocationPrevious { get; set; }
 
         /// <summary>
         /// 文本
@@ -35,5 +35,37 @@ namespace LabelPlus
         /// 分组
         /// </summary>
         public int Category { get; set; }
+    }
+
+    /// <summary>
+    /// 之前位置
+    /// </summary>
+    public class LocationPrevious
+    {
+        /// <summary>
+        /// x轴坐标
+        /// </summary>
+        public float X_percent { get; set; }
+
+        /// <summary>
+        /// y轴坐标
+        /// </summary>
+        public float Y_percent { get; set; }
+    }
+
+    /// <summary>
+    /// 当前位置
+    /// </summary>
+    public class Location
+    {
+        /// <summary>
+        /// x轴坐标
+        /// </summary>
+        public float X_percent { get; set; }
+
+        /// <summary>
+        /// y轴坐标
+        /// </summary>
+        public float Y_percent { get; set; }
     }
 }

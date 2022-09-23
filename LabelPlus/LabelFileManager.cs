@@ -307,6 +307,9 @@ namespace LabelPlus
                 store[file][index].Category = category;
                 //OnLabelItemTextChanged();
                 OnLabelItemListChanged();
+
+                //更新标签池分组
+                UndoRedoManager.UpdateLabelPool(index, -1, -1, null, category);
                 return true;
             }
             catch { return false; }
