@@ -62,7 +62,7 @@ namespace LabelPlus
                 {
                     return System.Windows.Forms.DialogResult.Cancel;
                 }
-             
+
             }
             else
             {
@@ -73,7 +73,7 @@ namespace LabelPlus
                     if (wsp.Save())
                     {
                         return System.Windows.Forms.DialogResult.OK;
-                        
+
                     }
                     else
                     {
@@ -171,10 +171,13 @@ namespace LabelPlus
             wsp.NewFile();
             this.Text = FROM_TITLE;
 
-            folderBrowserDialog.Description = StringResources.GetValue("tip_chose_photo_dir");
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var dlg = new FolderPicker();
+            dlg.InputPath = @"c:\";
+
+            //folderBrowserDialog.Description = StringResources.GetValue("tip_chose_photo_dir");
+            if (dlg.ShowDialog(IntPtr.Zero) == true)
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+                DirectoryInfo dirInfo = new DirectoryInfo(dlg.ResultPath);
                 if (dirInfo.Exists)
                 {
                     //目录可用

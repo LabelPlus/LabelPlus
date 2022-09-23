@@ -42,7 +42,6 @@ namespace LabelPlus
             }
         }
 
-        //TODO:文本撤回
         /// <summary>
         /// 文本池
         /// </summary>
@@ -105,15 +104,7 @@ namespace LabelPlus
             {
                 if (x_percent != -1 && y_percent != -1)
                 {
-                    foreach (var label in toUndoDequeList)
-                    {
-                        if (label.labelUndo.Index == index)
-                        {
-                            label.labelUndo.Location.X_percent = x_percent;
-                            label.labelUndo.Location.Y_percent = y_percent;
-                            break;
-                        }
-                    }
+
                 }
 
                 if (text != null)

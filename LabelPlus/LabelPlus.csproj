@@ -100,6 +100,7 @@
     <Compile Include="Command\LabelCommand\LabelUndo.cs" />
     <Compile Include="Command\LabelCommand\MoveLabelCommand.cs" />
     <Compile Include="Command\UndoRedoManager.cs" />
+    <Compile Include="FolderPicker.cs" />
     <Compile Include="GlobalVar.cs" />
     <Compile Include="GroupButtonAdaptor.cs" />
     <Compile Include="GroupDefineItem.cs" />
