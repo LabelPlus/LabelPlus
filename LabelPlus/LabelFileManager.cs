@@ -308,8 +308,8 @@ namespace LabelPlus
                 //OnLabelItemTextChanged();
                 OnLabelItemListChanged();
 
-                //更新标签池分组
-                UndoRedoManager.UpdateLabelPool(index, -1, -1, null, category);
+                //清空标签池
+                UndoRedoManager.labelCommandPool.Clear();
                 return true;
             }
             catch { return false; }

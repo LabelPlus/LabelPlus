@@ -705,8 +705,6 @@ namespace LabelPlus
             dragStart = false;
             if (LabelUserAction != null)
                 LabelUserAction(this, new LabelUserActionEventArgs(label.Index, label.Location.X_percent, label.Location.Y_percent, LabelUserActionEventArgs.ActionType.labelChanged));
-            //更新标签池坐标
-            //UndoRedoManager.UpdateLabelPool(label.Index, label.X_percent, label.Y_percent);
         }
 
         private void UndoMoveLabel(LabelUndo label)
@@ -718,8 +716,6 @@ namespace LabelPlus
             dragStart = false;
             if (LabelUserAction != null)
                 LabelUserAction(this, new LabelUserActionEventArgs(label.Index, label.LocationPrevious.X_percent, label.LocationPrevious.Y_percent, LabelUserActionEventArgs.ActionType.labelChanged));
-            //更新标签池坐标
-            //UndoRedoManager.UpdateLabelPool(dragLabelPrevious.Index, dragLabelPrevious.X_percent, dragLabelPrevious.Y_percent);
         }
 
         bool tooltop_showing = false;

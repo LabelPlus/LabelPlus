@@ -64,6 +64,7 @@ namespace LabelPlus
         {
             try
             {
+                UndoRedoManager.labelCommandPool.Clear();
                 if (combo.SelectedIndex != 0)
                     combo.SelectedIndex--;
             }
@@ -71,8 +72,10 @@ namespace LabelPlus
         }
         public void page_right()
         {
+            UndoRedoManager.labelCommandPool.Clear();
             try
             {
+                UndoRedoManager.labelCommandPool.Clear();
                 if (combo.SelectedIndex !=
                     combo.Items.Count - 1)
                     combo.SelectedIndex++;
@@ -170,19 +173,20 @@ namespace LabelPlus
 
         private void DeleteLabelCommand(PicView.LabelUserActionEventArgs e)
         {
+            if (e.Index == -1)
+                return;
+
             LabelUndo label = new LabelUndo()
             {
                 Index = e.Index,
                 Location = new Location() { X_percent = e.X_percent, Y_percent = e.Y_percent },
                 Category = groupbuttons.SelectIndex + 1,
             };
-            if (itemIndex >= 0)
-            {
-                if (LabelFileManager.store[fileName][itemIndex].Text != null)
-                    label.Text = LabelFileManager.store[fileName][itemIndex].Text;
 
-                label.Category = LabelFileManager.store[fileName][itemIndex].Category;
-            }
+            if (LabelFileManager.store[fileName][e.Index].Text != null)
+                label.Text = LabelFileManager.store[fileName][e.Index].Text;
+
+            label.Category = LabelFileManager.store[fileName][e.Index].Category;
             DeleteLabelCommand deleteLabelCommand = new DeleteLabelCommand(DeleteLabel, AddLabel, label);
             UndoRedoManager.LabelCommandPool.Register(deleteLabelCommand);
             deleteLabelCommand.Excute();
@@ -421,11 +425,10 @@ namespace LabelPlus
                 return;
             }
 
-            //更新标签池文本
-            UndoRedoManager.UpdateLabelPool(itemIndex, -1, -1, textbox.Text);
+            //清空标签池
+            UndoRedoManager.labelCommandPool.Clear();
 
             wsp.Store.UpdateLabelItemText(fileName, itemIndex, textbox.Text);
-            //TODO:文本撤回
         }
 
         private void comboSelectedIndexChanged(object sender, EventArgs e)
