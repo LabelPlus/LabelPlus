@@ -90,6 +90,17 @@
     <Compile Include="AboutFrm.designer.cs">
       <DependentUpon>AboutFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="Command\CommandPool.cs" />
+    <Compile Include="Command\Deque.cs" />
+    <Compile Include="Command\LabelCommand\AddLabelCommand.cs" />
+    <Compile Include="Command\LabelCommand\DeleteLabelCommand.cs" />
+    <Compile Include="Command\LabelCommand\LabelCommand.cs" />
+    <Compile Include="Command\LabelCommand\LabelCommandPool.cs" />
+    <Compile Include="Command\LabelCommand\LabelUndo.cs" />
+    <Compile Include="Command\LabelCommand\MoveLabelCommand.cs" />
+    <Compile Include="Command\UndoRedoManager.cs" />
+    <Compile Include="FolderPicker.cs" />
     <Compile Include="GlobalVar.cs" />
     <Compile Include="GroupButtonAdaptor.cs" />
     <Compile Include="GroupDefineItem.cs" />
