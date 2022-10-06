@@ -70,7 +70,7 @@ namespace LabelPlus.Properties {
         }
         
         /// <summary>
-        ///   查找类似 1.2.6 的本地化字符串。
+        ///   查找类似 1.3.0 的本地化字符串。
         /// </summary>
         internal static string AppVer {
             get {
@@ -119,7 +119,7 @@ namespace LabelPlus.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Noodlefighter(虾包), sgqy, Jin Cheng, Yeding, apocelipes, Lost-Swords 的本地化字符串。
+        ///   查找类似 Noodlefighter(虾包), sgqy, Jin Cheng, Yeding, apocelipes, Lost-Swords, pllxy 的本地化字符串。
         /// </summary>
         internal static string CodeContributors {
             get {
