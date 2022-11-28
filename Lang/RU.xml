@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Russian Resource for LabelPlus 1.0 -->
+<!-- By berry-->
+<Resource>
+  <Form>
+
+    <Name>MainFrm</Name>
+    <Controls>
+      <!-- 菜单 -->
+      <Control name="fileToolStripMenuItem" text="Файл(&amp;F)" />
+      <Control name="newToolStripMenuItem" text="Новый файл(&amp;N)" />
+      <Control name="openToolStripMenuItem" text="Открыть файл(&amp;O)" />
+      <Control name="saveProjectSToolStripMenuItem" text="Сохранить(&amp;S)" />
+      <Control name="saveAsDToolStripMenuItem" text="Сохранить как(&amp;S)" />
+      <Control name="exitEToolStripMenuItem" text="Выход(&amp;E)" />
+
+      <Control name="imageToolStripMenuItem" text="Менеджер изображений(&amp;I)" />
+
+      <Control name="outputPToolStripMenuItem" text="Вывод(&amp;O)" />
+      <Control name="outputAllToolStripMenuItem" text="Все изображения(&amp;O)" />
+      <Control name="outputPhotoshopScriptToolStripMenuItem" text="Скрипт Photoshop(&amp;P)" />
+
+      <Control name="helpAToolStripMenuItem" text="Справка(&amp;H)" />
+      <Control name="viewHelpHToolStripMenuItem" text="Посмотреть справку(&amp;H)" />
+      <Control name="aboutAToolStripMenuItem" text="О программе(&amp;A)" />
+      <!-- 工具栏 -->
+      <Control name="toolStripButton_BrowseMode" text="Обзор(&amp;Q)" />
+      <Control name="toolStripButton_EditLabelMode" text="Ярлык(&amp;W)" />
+      <Control name="toolStripButton_InputMode" text="Ввод(&amp;E)" />
+      <Control name="toolStripButton_CheckMode" text="Проверка(&amp;R)" />
+      <Control name="toolStripButton_HideWindow" text="Скрыть(&amp;T)" />
+      <Control name="fileToolStripLabel" text="Изображение" />
+      <Control name="toolStripButton_EditBig" text="Разм. шрифта" />
+      <Control name="toolStripButton_EditSmall" text="" />
+      <Control name="toolStripButton_FileSetting" text="Параметр файла" />
+      
+      <!-- 其他 -->
+      <Control name="labelCtrlEnterTip" text="Ctrl+Enter = Следующий ярлык" />
+      <Control name="toolStripLabelTipSetCategory" text="Кл.1-4 для настройки категории" />	  
+    </Controls>
+  </Form>
+
+  <Form>
+    <Name>OutputScriptFrm</Name>
+	<Text>Вывод скрипта Photoshop</Text>	
+    <Controls>
+      <Control name="LabelNumCheckBox" text="Ярлыки результата(1,2,3...)" />
+      <Control name="notHeadFootSignCheckBox" text="Добавить метку:start,end " />
+      <Control name="notCloseFileCheckBox" text="Не закрывайте файл после правки" />
+      <Control name="checkBoxMakeUnLabeledFile" text="Файл без ярлыка" />
+      <Control name="checkBoxSetFont" text="Шрифт:" />
+      <Control name="checkBoxSetFontSize" text="Разм. шрифта" />
+      <Control name="outputButton" text="Вывод" />
+      <Control name="checkBoxUseOtherFileType" text="Использ. другой тип файла" />
+      <Control name="checkBoxAutoGroupAction" text="выполнить действие GroupN для группы слоёв" />
+      <Control name="labelAutoGroupActionTip" text="(имя группы действий)" />
+      <Control name="labelOutputItemTip" text="Элемент вывода" />
+      <Control name="labelDefaultFormatTip" text="Формат по умолчанию" />
+      <Control name="labelAutodoTip" text="Автовыполнение" />	  	  
+    </Controls>
+  </Form>
+
+  <Form>
+    <Name>ImageOutputFrm</Name>
+	<Text>Вывод всех изображений</Text>	
+    <Controls>
+      <Control name="labelOutputFormat" text="Формат файла" />
+      <Control name="labelZoom" text="Приблизить" />
+      <Control name="button" text="Вывод" />
+      <Control name="buttonAbort" text="Прервать" />
+      <Control name="checkBoxJumpNoNum" text="Перейти к: без ярлыка" />
+    </Controls>
+  </Form>
+  <Form>
+    <Name>ManageImageFrm</Name>
+	<Text>Менеджер изображений</Text>	
+    <Controls>
+      <Control name="labelFolderFile" text="Файл в одной папке" />
+      <Control name="labelIncludedFile" text="Включённый файл" />
+      <Control name="buttonOK" text="OK" />
+      <Control name="buttonCancel" text="Отмена" />
+    </Controls>
+  </Form>
+  
+  <Form>
+    <Name>FileSettingFrm</Name>
+	<Text>Параметр файла</Text>	
+    <Controls>
+      <Control name="labelGroup" text="Группы" />
+      <Control name="labelComment" text="Комментарий" />
+      <Control name="buttonOK" text="OK" />
+    </Controls>
+  </Form>  
+  
+  <Strings>
+    <String name="save_question" text="Файл изменён, сохранить？"/>
+    <String name="save_complete" text="Сохранение завершено!"/>
+    <String name="input_images_need_save" text="Файл не сохранён, необходимо сначала сохранить его."/>
+    <String name="clear_all_label_question" text="Уверены, что нужно УДАЛИТЬ все ярлыки！？"/>
+    <String name="can_not_output_file" text="Не удалось вывести файл："/>
+    <String name="output_complete" text="Вывод завершён!"/>
+    <String name="output_fail" text="Не удалось вывести файл!"/>
+    <String name="output_aborted" text="Процесс вывода прерван"/>
+    <String name="ps_output_complete" text="auto_label_for_photoshop.jsx - это файл скрипта. \n Способ его использования：1.перетащите его в Photoshop \n2.Выберите каталог изображений"/>
+    <String name="tip_chose_photo_dir" text="Выберите каталог изображений。\nПрограмма создаст текстовый файл в этом каталоге."/>
+    <String name="tip_new_file_be_saved" text="Новый файл сохранён:{0}"/>
+    <String name="tip_setting_group" text="Пожалуйста, запишите группу в правильном формате, каждая группа пишется в одну строку, от 1 до 9 групп"/> 
+    <String name="tip_sure_del_label" text="Вы хотите удалить выбранные ярлыки?"/> 
+    <String name="tip_setting_comment" text="'-' не может быть одной строкой в комментарии."/> 
+    <String name="default_file_name" text="перевод"/>
+    <String name="error_openfilefail" text="Невозможность открыть файл."/>
+    <String name="error_file_version_over" text="Версия слишком новая!"/>
+    <String name="error_file_startblocks_lost" text="Стартовые блоки потеряны."/> 
+	
+	<!-- "listview右键菜单 -->
+    <String name="listview_menustrip_del" text="Удал.(&amp;D)"/> 	
+	
+  </Strings>
+</Resource>

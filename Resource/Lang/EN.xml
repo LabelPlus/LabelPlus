@@ -102,7 +102,7 @@
     <String name="output_fail" text="Failed to output the file!"/>
     <String name="output_aborted" text="Output progress is aborted"/>
     <String name="ps_output_complete" text="auto_label_for_photoshop.jsx is you script file \n Method to use it：1.drag it into Photoshop \n2.Select the Dir of images"/>
-    <String name="tip_chose_photo_dir" text="Plase choose directory of images。\nProgram will create a text file in this directory."/>
+    <String name="tip_chose_photo_dir" text="Please choose directory of images。\nProgram will create a text file in this directory."/>
     <String name="tip_new_file_be_saved" text="New file saved:{0}"/>
     <String name="tip_setting_group" text="Please set the group with correct format，each group write in one line, 1 to 9 groups"/> 
     <String name="tip_sure_del_label" text="Sure to delete the selected labels?"/> 

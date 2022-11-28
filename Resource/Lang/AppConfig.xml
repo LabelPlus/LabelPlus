@@ -5,6 +5,7 @@
     <List>
       <Item>中文[ZH]</Item>
       <Item>英文[EN]</Item>
+	  <Item>俄罗斯[RU]</Item>
     </List>
   </Area>
   <Area>
@@ -12,6 +13,15 @@
     <List>
       <Item>Chinese[ZH]</Item>
       <Item>English[EN]</Item>
+	  <Item>Russian[RU]</Item>
+    </List>
+  </Area>
+  <Area>
+    <Language>RU</Language>
+    <List>
+      <Item>Китайский[ZH]</Item>
+      <Item>Английский[EN]</Item>
+	  <Item>Русский[RU]</Item>
     </List>
   </Area>
 
