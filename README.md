@@ -9,16 +9,21 @@ A Easy tool for comic translation. Reduce communication costs of translator. Exp
 
 [Homepage](http://noodlefighter.com/label_plus)
 
-[Photoshop导入脚本](https://github.com/LabelPlus/PS-Script)
 
 [License](http://noodlefighter.com/label_plus/license)
 
 
+## 导入脚本
 
-**项目目前处于开发停滞的状态，如果有更多功能需求，请多了解一下以下类似项目**
+将LabelPlus格式文本导入到其他图像处理、排版软件中需要导入脚本的支持：   
+
+- [Photoshop导入脚本](https://github.com/LabelPlus/PS-Script)
+- [Indesign导入脚本（by几千块）](https://github.com/jqk4388/ID-Script-labelplus)     
 
 
 ## 其他LabelPlus实现
+
+**项目目前处于开发停滞的状态，如果有更多功能需求，请多了解一下以下类似项目**
 
 ### Moeflow
 
