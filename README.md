@@ -1,5 +1,7 @@
 # LabelPlus
 
+> 🎉 我们制作了LabelPlus功能的新项目，更易用+AI驱动+云端同步/远程协作+全平台支持，[猫译员 - Neko Translator](https://nekonekone.com/translator)！
+
 [![Build status](https://ci.appveyor.com/api/projects/status/je7w45o4k90ia411/branch/master?svg=true)](https://ci.appveyor.com/project/sgqy/labelplus/branch/master)
 
 标号器+ 漫画翻译辅助工具. 减少翻译工作交接成本. 导出文本至ps.
@@ -68,7 +70,6 @@ https://github.com/dmMaze/BallonsTranslator
 https://github.com/KUR-creative/SickZil-Machine
 
 很早的一个韩国人写的实验性项目，机器自动涂白。
-
 
 
 ### YuzuMarker
