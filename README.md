@@ -1,6 +1,12 @@
 # LabelPlus
 
-> 🎉 我们制作了LabelPlus功能的新项目，更易用+AI驱动+云端同步/远程协作+全平台支持，[猫译员 - Neko Translator](https://nekonekone.com/translator)！
+> 🎉 我们制作了覆盖LabelPlus功能的新项目
+> 
+> 🎉 更易用+AI驱动+云端同步/远程协作+全平台支持
+> 
+> 🎉 欢迎尝试: [猫译员 - Neko Translator](https://nekonekone.com/translator)！
+
+---
 
 [![Build status](https://ci.appveyor.com/api/projects/status/je7w45o4k90ia411/branch/master?svg=true)](https://ci.appveyor.com/project/sgqy/labelplus/branch/master)
 
